@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private Camera cam;
     public LevelGenerator.Scripts.LevelGenerator levelGeneratorPrefab;
+    public GameObject debugSphere;
 
     Vector2Int TileCoordinateUnderMouse()
     {
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
     }
 
     private void OnDrawGizmos()
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         Vector3 unityCoordinate = new Vector3(tile.x + 0.5f, 0.0f, tile.y + 0.5f);
         Debug.Log("X: " + tile.x + ", Y: " + tile.y);
+
+        debugSphere.transform.position = unityCoordinate;
 
         Gizmos.DrawWireSphere(unityCoordinate, 0.5f);
     }
