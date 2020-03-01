@@ -1,0 +1,20 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Verminator.Data
+{
+    [System.Serializable]
+    public class CreatureData
+    {
+        public string Name;
+        public int MaxHp;
+        public int Speed;
+        public int BaseDamage;
+        public int CreatureLevel;
+        public int MaxEncumbrance;
+
+        public string AssetPath;
+        public GameObject CreaturePrefab;
+    }
+}
