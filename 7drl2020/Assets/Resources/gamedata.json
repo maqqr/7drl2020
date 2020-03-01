@@ -1,0 +1,27 @@
+{
+    "items": {
+        "dagger" :              { "weight": 2, "damM": 2, "damT": 4, "def": 1, "name": "dagger", "assetpath": "Items/Dagger", "desc": "Watch your back." },
+
+        "longsword" :           { "weight": 6, "damM": 6, "damT": 2, "def": 1, "name": "longsword", "assetpath": "Items/Longsword", "desc": "I've seen longer ones." },
+
+        "bucket":               { "weight": 4, "damM": 1, "damT": 1, "def": 1, "name": "bucket", "assetpath": "Items/Bucket", "desc": "Lancelot's first shield. " },
+               
+        "potionAcid":           { "weight": 1, "damM": 0, "damT": 8, "def": 0, "experience":10, "name": "potion of acid", "assetpath": "Items/PotionAcid", "desc": "Filled with acid. Not safe to drink.", "healing":-8, "breakable":true },    
+        "bluemushroom":         { "weight": 1, "damM": 0, "damT": 0, "def": 0, "healing": 1, "experience":3, "name": "blue mushroom", "assetpath": "Items/BlueMushroom", "desc": "Glowing mushroom.", "nutrition":5 },
+    },
+
+    "creatures": {
+        "player":               { "name": "Player", "assetpath": "Creatures/Goblin", "maxhp": 12, "speed": 100, "basedamage": 1, "maxencumbrance": 30 },
+        "rat":                  { "name": "Rat", "assetpath": "Creatures/Rat", "maxhp": 6, "speed": 100, "basedamage": 1 },
+        "swordrat":             { "name": "Rat", "assetpath": "Creatures/SwordRat", "maxhp": 6, "speed": 100, "basedamage": 1 }
+    },
+
+    "spawnlist": {
+        "0": ["rat", "rat", "rat", "rat", "rat", "rat", "swordrat"]
+    },
+
+    "itemspawnlist": {
+        "0": ["dagger", "bucket", "bluemushroom"]
+
+    }
+}
