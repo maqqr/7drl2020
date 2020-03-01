@@ -47,7 +47,8 @@ MonoBehaviour:
   SectionContainer: {fileID: 0}
   MaxLevelSize: 0
   MaxAllowedOrder: 0
-  Sections: []
+  Sections:
+  - {fileID: 7823329940223043184, guid: d17a4ddf94d5eab40b1938601cbca7c2, type: 3}
   DeadEnds: []
   InitialSectionTags: []
   SpecialRules: []
