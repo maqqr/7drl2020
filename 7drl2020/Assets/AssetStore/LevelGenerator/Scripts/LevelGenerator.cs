@@ -84,7 +84,12 @@ namespace LevelGenerator.Scripts
             }
         }
 
-        protected void CreateInitialSection() => Instantiate(PickSectionWithTag(InitialSectionTags), transform).Initialize(this, 0);
+        protected void CreateInitialSection()
+        {
+            var section = Instantiate(PickSectionWithTag(InitialSectionTags));
+            section.transform.SetParent(transform);
+            section.Initialize(this, 0);
+        }
 
         public void AddSectionTemplate() => Instantiate(Resources.Load("SectionTemplate"), Vector3.zero, Quaternion.identity);
         public void AddDeadEndTemplate() => Instantiate(Resources.Load("DeadEndTemplate"), Vector3.zero, Quaternion.identity);

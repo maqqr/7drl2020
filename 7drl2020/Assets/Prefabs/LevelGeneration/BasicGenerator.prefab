@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626a6e366a9c48a48525cde4050d0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 0
+  Seed: 2137389888
   SectionContainer: {fileID: 0}
-  MaxLevelSize: 0
-  MaxAllowedOrder: 0
+  MaxLevelSize: 50
+  MaxAllowedOrder: 12
   Sections:
   - {fileID: 7823329940223043184, guid: d17a4ddf94d5eab40b1938601cbca7c2, type: 3}
   DeadEnds: []
-  InitialSectionTags: []
+  InitialSectionTags:
+  - room
   SpecialRules: []
