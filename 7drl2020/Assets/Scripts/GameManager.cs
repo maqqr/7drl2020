@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         var level = new GameObject("Level1");
-        levelGeneratorPrefab.SectionContainer = level.transform;
-        levelGeneratorPrefab.GenerateLevel();
+        var generator = Instantiate(levelGeneratorPrefab);
+        generator.SectionContainer = level.transform;
+        generator.GenerateLevel();
+        Destroy(generator);
     }
 
     void Update()
