@@ -31,7 +31,7 @@ namespace Verminator.Data
                     Defence = item.Value["def"].AsInt,
                     Description = item.Value["desc"],
                     ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"]),
-                    //Nutrition = item.Value["sanity"] != null ? item.Value["sanity"].AsInt : 0,
+                    Sanity = item.Value["sanity"] != null ? item.Value["sanity"].AsInt : 0,
                     Healing = item.Value["healing"] != null ? item.Value["healing"].AsInt : 0,
                     Poisoning = item.Value["poisoning"] != null ? item.Value["poisoning"].AsInt : 0,
                     Breakable = item.Value["breakable"] != null ? item.Value["breakable"].AsBool : false,
