@@ -10,13 +10,20 @@ public class GameManager : MonoBehaviour
     Vector2Int TileCoordinateUnderMouse()
     {
         // TODO: raycast from camera
-        RaycastHit hit;
-        Vector3 objectHit = new Vector3(0,0,0);
+        // RaycastHit hit;
+         Vector3 objectHit = new Vector3(0,0,0);
+        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // if (Physics.Raycast(ray, out hit)) {
+        //     objectHit = hit.point;
+        //     
+        //     // Do something with the object that was hit by the raycast.
+        // }
+
+        Plane plane = new Plane(Vector3.up,0f);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit)) {
-            objectHit = hit.point;
-            
-            // Do something with the object that was hit by the raycast.
+        float dToPlane;
+        if (plane.Raycast(ray, out dToPlane)) {
+            objectHit = ray.GetPoint(dToPlane);
         }
         return new Vector2Int(castCoord(objectHit.x), castCoord(objectHit.z));
     }
