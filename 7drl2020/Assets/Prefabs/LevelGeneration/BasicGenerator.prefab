@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626a6e366a9c48a48525cde4050d0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 2137389888
+  Seed: 0
   SectionContainer: {fileID: 0}
   MaxLevelSize: 50
   MaxAllowedOrder: 12
@@ -51,8 +51,10 @@ MonoBehaviour:
   - {fileID: 7823329940223043184, guid: d17a4ddf94d5eab40b1938601cbca7c2, type: 3}
   - {fileID: 7823329940223043184, guid: 97ba7409e2f783245a47f7472c66fbff, type: 3}
   - {fileID: 7823329940223043184, guid: 88b7e5fa894523546af9cb10a18329ee, type: 3}
+  - {fileID: 7823329940223043184, guid: b54e59987eeb91b46891c72eb4c571d9, type: 3}
+  - {fileID: 7823329940223043184, guid: 0b50cd938e932cd46bdb8434e85f75ee, type: 3}
   DeadEnds:
   - {fileID: 1769625825286644012, guid: a007c4e6f331dba4ebf3b3c048ef4af5, type: 3}
   InitialSectionTags:
-  - room
+  - GSR
   SpecialRules: []

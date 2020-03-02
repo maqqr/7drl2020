@@ -6,12 +6,14 @@ namespace Verminator.Data
 {
     public class GameData
     {
+        public static GameData Instance;
+
         public readonly Dictionary<string, ItemData> ItemData = new Dictionary<string, ItemData>();
         public readonly Dictionary<string, CreatureData> CreatureData = new Dictionary<string, CreatureData>();
         public readonly Dictionary<int, string[]> SpawnList = new Dictionary<int, string[]>();
         public readonly Dictionary<int, string[]> ItemSpawnList = new Dictionary<int, string[]>();
 
-        public static GameData LoadData()
+        public static void LoadData()
         {
             TextAsset textAsset = Resources.Load<TextAsset>("gamedata");
             string rawJsonData = textAsset.text;
@@ -64,7 +66,7 @@ namespace Verminator.Data
                 gameData.SpawnList.Add(int.Parse(spawnlist.Key), keys.ToArray());
             }
 
-              foreach (var spawnlist in parsedData["itemspawnlist"])
+            foreach (var spawnlist in parsedData["itemspawnlist"])
             {
                 List<string> keys = new List<string>();
                 foreach (var key in spawnlist.Value.AsArray)
@@ -74,7 +76,7 @@ namespace Verminator.Data
                 gameData.ItemSpawnList.Add(int.Parse(spawnlist.Key), keys.ToArray());
             }
 
-            return gameData;
+            Instance = gameData;
         }
     }
 }
