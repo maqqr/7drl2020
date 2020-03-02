@@ -17,7 +17,15 @@ namespace Verminator
         public Creature PlayerCreature;
         //private int advanceTime;
 
+        public Mesh ShoeMesh;
+        public Material ShoeMaterial;
+
         public DungeonFloor CurrentFloor => currentFloorIndex >= 0 && currentFloorIndex < dungeonFloors.Count ? dungeonFloors[currentFloorIndex] : null;
+
+        public void DrawShoe(Vector3 position, Quaternion rotation)
+        {
+            Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
+        }
 
         public Vector2Int TileCoordinateUnderMouse()
         {

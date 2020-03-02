@@ -28,6 +28,8 @@ namespace Verminator
                 }
                 Tiles.Add(position, tile);
             }
+
+            UpdatePathfindingGrid();
         }
 
         public Creature SpawnCreature(string id, Vector2Int spawnCoordinate) // creature id is defined in json
@@ -130,7 +132,11 @@ namespace Verminator
 
         private void CalculateBounds()
         {
-            
+            foreach (var key in Tiles.Keys)
+            {
+                Bounds.Encapsulate(Utils.ConvertToUnityCoord(key));
+            }
+            Bounds.Expand(1f);
         }
 
         public List<Vector2Int> FindPath(Vector2Int from, Vector2Int to)

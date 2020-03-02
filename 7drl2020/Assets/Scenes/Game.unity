@@ -4390,6 +4390,9 @@ MonoBehaviour:
   debugSphere: {fileID: 1677087128}
   currentFloorIndex: -1
   PlayerCreature: {fileID: 0}
+  ShoeMesh: {fileID: -7929139438592967118, guid: ded367f8970072e4d99230d0f624046c,
+    type: 3}
+  ShoeMaterial: {fileID: 2100000, guid: a8520141452bc524d852ff1463e8a601, type: 2}
 --- !u!4 &1073530841
 Transform:
   m_ObjectHideFlags: 0
