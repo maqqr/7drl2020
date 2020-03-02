@@ -11,8 +11,12 @@
     },
 
     "creatures": {
-        "player":               { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 12, "speed": 100, "basedamage": 1, "maxencumbrance": 30 },
-        "testcreature":         { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 12, "speed": 100, "basedamage": 1, "maxencumbrance": 30 }
+        "player":               { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
+        "testcreature":         { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] }
+    },
+
+    "traits": {
+        "test":                 { "name": "" }
     },
 
     "spawnlist": {

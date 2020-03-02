@@ -10,6 +10,7 @@ namespace Verminator.Data
 
         public readonly Dictionary<string, ItemData> ItemData = new Dictionary<string, ItemData>();
         public readonly Dictionary<string, CreatureData> CreatureData = new Dictionary<string, CreatureData>();
+        public readonly Dictionary<string, TraitData> TraitData = new Dictionary<string, TraitData>();
         public readonly Dictionary<int, string[]> SpawnList = new Dictionary<int, string[]>();
         public readonly Dictionary<int, string[]> ItemSpawnList = new Dictionary<int, string[]>();
 
@@ -43,17 +44,44 @@ namespace Verminator.Data
 
             foreach (var cre in parsedData["creatures"])
             {
-                gameData.CreatureData.Add(cre.Key, new CreatureData()
+                var creData = new CreatureData()
                 {
                     Name = cre.Value["name"],
                     AssetPath = cre.Value["assetpath"],
-                    MaxHp = cre.Value["maxhp"].AsInt,
-                    Speed = cre.Value["speed"].AsInt,
-                    BaseDamage = cre.Value["basedamage"].AsInt,
-                    CreatureLevel = cre.Value["crelevel"] != null ? cre.Value["crelevel"].AsInt : 1,
-                    MaxEncumbrance = cre.Value["maxencumbrance"] != null ? cre.Value["maxencumbrance"].AsInt : 50,
+                    BaseMaxHp = cre.Value["maxhp"].AsInt,
+                    BaseMaxMp = cre.Value["maxmp"] != null ? cre.Value["maxmp"].AsInt : 0,
+                    BaseSpeed = cre.Value["speed"].AsInt,
+                    BaseMeleeSkill = cre.Value["melee"].AsInt,
+                    BaseRangedSkill = cre.Value["ranged"].AsInt,
+                    BaseStr = cre.Value["str"].AsInt,
+                    BaseInt = cre.Value["int"] != null ? cre.Value["int"].AsInt : 0,
+                    BaseAggroRange = cre.Value["aggrorange"] != null ? cre.Value["aggrorange"].AsInt : 0,
                     CreaturePrefab = Resources.Load<GameObject>(cre.Value["assetpath"])
-                });
+                };
+                List<string> allowedTraits = new List<string>();
+                if (cre.Value["allowedtraits"])
+                {
+                    foreach (var key in cre.Value["allowedtraits"])
+                    {
+                        allowedTraits.Add(key.Value);
+                    }
+                }
+                creData.AllowedTraits = allowedTraits.ToArray();
+                gameData.CreatureData.Add(cre.Key, creData);
+            }
+
+            foreach (var trait in parsedData["traits"])
+            {
+                var traitData = new TraitData()
+                {
+                    Name = trait.Value["name"],
+                    ModelAssetPath = trait.Value["modelassetpath"],
+                    StrBonus = trait.Value["strbonus"].AsInt,
+                    IntBonus = trait.Value["intbonus"].AsInt,
+                    ModelScaleMultiplier = trait.Value["scalemultiplier"].AsFloat,
+                    ModelPrefab = Resources.Load<GameObject>(trait.Value["ModelAssetPath"])
+                };
+                gameData.TraitData.Add(trait.Key, traitData);
             }
 
             foreach (var spawnlist in parsedData["spawnlist"])
