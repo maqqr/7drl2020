@@ -80,7 +80,17 @@ namespace Verminator
 
         public void MoveCreature(Creature creature, Vector2Int from, Vector2Int to) {
             // TODO
-            
+            float nSteps = 2000;
+            float xzDist = Vector2.Distance(new Vector2(from.x,from.y), new Vector2(to.x,to.y));
+            float paraHeight = 1f;
+            Vector2 curXZ = from;
+            float curY = 0f;
+            for (float steps = 0; steps<nSteps;steps++) {
+                curXZ = Vector2.Lerp(curXZ,to,steps/nSteps);
+                curY = paraHeight * (curXZ.x - (float)from.x) * (curXZ.x - (float)to.x) / (-0.25f * xzDist * xzDist);
+                creature.transform.position = new Vector3(curXZ.x,curY,curXZ.y);
+            }
+            creature.Position = new Vector2Int(to.x,to.y);
         }
 
         public void DestroyItem(Item item)

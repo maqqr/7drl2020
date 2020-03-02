@@ -212,7 +212,8 @@ namespace Verminator.GameViews
                         // Get the path to the desired location
                         pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
                         if (pathToPos != null) {
-                            player.Position = pathToPos[0];
+                            //player.Position = pathToPos[0];
+                            gameManager.CurrentFloor.MoveCreature(player,player.Position,pathToPos[0]);
                             pathToPos.RemoveAt(0);
                             //gameManager.AdvanceTime(player.Speed);
                             //gameManager.UpdatePlayerVisibility();

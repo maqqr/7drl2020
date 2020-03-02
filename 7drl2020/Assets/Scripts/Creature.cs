@@ -36,7 +36,8 @@ namespace Verminator
 
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {
-                Position = newPosition;
+                gameManager.CurrentFloor.MoveCreature(this,Position,newPosition);
+                //Position = newPosition;
             }
         }
     }
