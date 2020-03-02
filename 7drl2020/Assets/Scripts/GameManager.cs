@@ -299,6 +299,7 @@ namespace Verminator
         {
             Vector2Int tile = TileCoordinateUnderMouse();
             mouseTileChanged = tile!=mouseTile;
+            mouseTile = tile;
 
             Vector3 unityCoordinate = new Vector3(tile.x + 0.5f, 0.0f, tile.y + 0.5f);
             debugSphere.transform.position = unityCoordinate;
