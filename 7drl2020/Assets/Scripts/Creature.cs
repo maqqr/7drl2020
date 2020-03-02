@@ -20,10 +20,10 @@ namespace Verminator
         // Jump variables:
         Vector2Int jumpFrom;
         Vector2Int jumpTo;
-        [SerializeField] float jumpAnimationSpeed = 1000f;
+        float jumpAnimationSpeed = 6342f;
         float steps = 9999;
         float nSteps = 2000;
-        float paraHeight = 1f;
+        float paraHeight = 0.387f;
 
         private void Start()
         {
@@ -39,7 +39,7 @@ namespace Verminator
                 float curY = 0f;
 
                 curXZ = Vector2.Lerp(curXZ, jumpTo, steps / (float)nSteps);
-                curY = paraHeight * (curXZ.x - (float)jumpFrom.x) * (curXZ.x - (float)jumpTo.x) / (-0.25f * xzDist * xzDist);
+                curY = -paraHeight * (Vector2.Distance(curXZ,jumpFrom)) * (Vector2.Distance(curXZ,jumpTo)) / (-0.25f * xzDist * xzDist);
 
                 transform.position = new Vector3(curXZ.x + 0.5f, curY, curXZ.y + 0.5f);
 
