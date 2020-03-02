@@ -78,6 +78,11 @@ namespace Verminator
             return null;
         }
 
+        public void MoveCreature(Creature creature, Vector2Int from, Vector2Int to) {
+            // TODO
+            
+        }
+
         public void DestroyItem(Item item)
         {
             // TODO

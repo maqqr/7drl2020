@@ -22,6 +22,9 @@ namespace Verminator
 
         public DungeonFloor CurrentFloor => currentFloorIndex >= 0 && currentFloorIndex < dungeonFloors.Count ? dungeonFloors[currentFloorIndex] : null;
 
+        public Vector2Int mouseTile;
+        public bool mouseTileChanged;
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
@@ -295,6 +298,8 @@ namespace Verminator
         private void Update()
         {
             Vector2Int tile = TileCoordinateUnderMouse();
+            mouseTileChanged = tile!=mouseTile;
+
             Vector3 unityCoordinate = new Vector3(tile.x + 0.5f, 0.0f, tile.y + 0.5f);
             debugSphere.transform.position = unityCoordinate;
 

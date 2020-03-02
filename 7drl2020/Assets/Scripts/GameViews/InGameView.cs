@@ -58,19 +58,26 @@ namespace Verminator.GameViews
                 }
                 HandlePlayerInput();
             }
+            DrawPath();
+            
 
-            if (pathToPos!=null) {
+            return false;
+        }
+
+        private void DrawPath() {
+            Vector2Int? playerMoveTo = gameManager.TileCoordinateUnderMouse();
+            var player = gameManager.PlayerCreature;
+            if (gameManager.mouseTileChanged && gameManager.CurrentFloor.IsWalkableFrom(player.Position,playerMoveTo.Value)) {
+                pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
                 for (int ind =0;ind<pathToPos.Count;ind++) {
                     try { 
                         Quaternion angle = new Quaternion();
                         angle.SetLookRotation(new Vector3(pathToPos[ind].x,0,pathToPos[ind].y)-new Vector3(pathToPos[ind-1].x,0,pathToPos[ind-1].y));
-                        gameManager.DrawShoe(new Vector3(pathToPos[ind-1].x,0,pathToPos[ind-1].y), angle);
+                        gameManager.DrawShoe(new Vector3(pathToPos[ind-1].x+0.5f,0,pathToPos[ind-1].y+0.5f), angle);
                     }
                     catch {}
                 }
             }
-
-            return false;
         }
 
         private void HandlePlayerInput()
