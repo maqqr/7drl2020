@@ -16,6 +16,8 @@ namespace Verminator.GameViews
 
         private int debugMode = 5;
 
+        private List<Vector2Int> pathToPos;
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -189,6 +191,9 @@ namespace Verminator.GameViews
                     Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(playerMoveTo.Value);
                     if (creatureBlocking == null)
                     {
+                        // Get the path to the desired location
+                        pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
+                        Debug.Log(pathToPos[0]);
                         player.Position = playerMoveTo.Value;
                         //gameManager.AdvanceTime(player.Speed);
                         //gameManager.UpdatePlayerVisibility();
