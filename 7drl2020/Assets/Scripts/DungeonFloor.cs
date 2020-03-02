@@ -143,7 +143,7 @@ namespace Verminator
             return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
         }
 
-        public bool IsWalkableFrom(Vector2Int from, Vector2Int to)
+        public bool IsWalkableFrom(Vector2Int from, Vector2Int to) // 'from' and 'to' are assumed to be next to each other
         {
             // TODO: check that manhattan distance between 'from' and 'to' is not greater than 1?
 

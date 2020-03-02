@@ -32,7 +32,12 @@ namespace Verminator
         {
             // TODO: make proper AI
 
-            Position += new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+            var newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+
+            if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
+            {
+                Position = newPosition;
+            }
         }
     }
 }
