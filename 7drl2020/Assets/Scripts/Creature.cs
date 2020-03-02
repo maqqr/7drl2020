@@ -17,6 +17,14 @@ namespace Verminator
         // public int Hp;
         // List<InventoryItem> Inventory;
 
+        // Jump variables:
+        Vector2Int jumpFrom;
+        Vector2Int jumpTo;
+        [SerializeField] float jumpAnimationSpeed = 1000f;
+        float steps = 9999;
+        float nSteps = 2000;
+        float paraHeight = 1f;
+
         private void Start()
         {
 
@@ -24,8 +32,31 @@ namespace Verminator
 
         private void Update()
         {
-            Vector3 target = Utils.ConvertToUnityCoord(Position);
-            transform.position += (target - transform.position) * 10f * Time.deltaTime;
+            if (steps < nSteps)
+            {
+                float xzDist = Vector2.Distance(new Vector2(jumpFrom.x, jumpFrom.y), new Vector2(jumpTo.x, jumpTo.y));
+                Vector2 curXZ = jumpFrom;
+                float curY = 0f;
+
+                curXZ = Vector2.Lerp(curXZ, jumpTo, steps / (float)nSteps);
+                curY = paraHeight * (curXZ.x - (float)jumpFrom.x) * (curXZ.x - (float)jumpTo.x) / (-0.25f * xzDist * xzDist);
+
+                transform.position = new Vector3(curXZ.x + 0.5f, curY, curXZ.y + 0.5f);
+
+                steps += Time.deltaTime * jumpAnimationSpeed;
+            }
+        }
+
+        public void Move(Vector2Int to)
+        {
+            if (Position != to)
+            {
+                jumpFrom = Position;
+                jumpTo = to;
+                steps = 0;
+
+                Position = to;
+            }
         }
 
         public void AIUpdate(GameManager gameManager)
@@ -36,7 +67,7 @@ namespace Verminator
 
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {
-                gameManager.CurrentFloor.MoveCreature(this,Position,newPosition);
+                Move(newPosition);
                 //Position = newPosition;
             }
         }
