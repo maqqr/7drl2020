@@ -59,6 +59,17 @@ namespace Verminator.GameViews
                 HandlePlayerInput();
             }
 
+            if (pathToPos!=null) {
+                for (int ind =0;ind<pathToPos.Count;ind++) {
+                    try { 
+                        Quaternion angle = new Quaternion();
+                        angle.SetLookRotation(new Vector3(pathToPos[ind].x,0,pathToPos[ind].y)-new Vector3(pathToPos[ind-1].x,0,pathToPos[ind-1].y));
+                        gameManager.DrawShoe(new Vector3(pathToPos[ind-1].x,0,pathToPos[ind-1].y), angle);
+                    }
+                    catch {}
+                }
+            }
+
             return false;
         }
 
@@ -193,11 +204,14 @@ namespace Verminator.GameViews
                     {
                         // Get the path to the desired location
                         pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
-                        Debug.Log(pathToPos[0]);
-                        player.Position = playerMoveTo.Value;
-                        //gameManager.AdvanceTime(player.Speed);
-                        //gameManager.UpdatePlayerVisibility();
-                        gameManager.AdvanceGameWorld(player.Speed);
+                        if (pathToPos != null) {
+                            player.Position = pathToPos[0];
+                            pathToPos.RemoveAt(0);
+                            //gameManager.AdvanceTime(player.Speed);
+                            //gameManager.UpdatePlayerVisibility();
+                            gameManager.AdvanceGameWorld(player.Speed);
+                        }
+                        
                     }
                     else if (creatureBlocking != player)
                     {
