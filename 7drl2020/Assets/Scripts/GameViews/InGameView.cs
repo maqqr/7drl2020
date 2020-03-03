@@ -114,7 +114,12 @@ namespace Verminator.GameViews
                         Debug.Log("Failed to pick up " + item.Data.Name);
                     }
                 }
+            }
 
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                gameManager.AddNewView(new CharacterSheetView());
             }
 
             //if (Utils.IsDown(gameManager.keybindings.PeekLeft))

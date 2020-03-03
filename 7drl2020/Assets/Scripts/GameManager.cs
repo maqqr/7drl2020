@@ -9,6 +9,8 @@ namespace Verminator
     {
         public LevelGenerator.Scripts.LevelGenerator levelGeneratorPrefab;
         public GameObject debugSphere;
+        public GameObject itemLineUIPrefab;
+        public GameObject inventoryCanvas;
 
         public int currentFloorIndex = -1;
         private List<DungeonFloor> dungeonFloors = new List<DungeonFloor>();
