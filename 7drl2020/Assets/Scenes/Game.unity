@@ -4871,6 +4871,7 @@ MonoBehaviour:
   mouseTile: {x: 0, y: 0}
   mouseTileChanged: 0
   UIEquipSlots: {fileID: 1086642260}
+  lastUsedSlot: 0
 --- !u!4 &1073530841
 Transform:
   m_ObjectHideFlags: 0

@@ -1,159 +1,244 @@
-﻿using static System.Linq.Enumerable;
-using static System.String;
-using static System.Console;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System;
-using EdgeList = System.Collections.Generic.List<(int node, double weight)>;
+using System.Linq;
+using UnityEngine;
 
-namespace Verminator
+public class Path
 {
 
-    public static class Dijkstra
-    {
-        public static void Main()
-        {
-            Graph graph = new Graph(6);
-            Func<char, int> id = c => c - 'a';
-            Func<int, char> name = i => (char)(i + 'a');
-            foreach (var (start, end, cost) in new[] {
-            ('a', 'b', 7),
-            ('a', 'c', 9),
-            ('a', 'f', 14),
-            ('b', 'c', 10),
-            ('b', 'd', 15),
-            ('c', 'd', 11),
-            ('c', 'f', 2),
-            ('d', 'e', 6),
-            ('e', 'f', 9),
-        })
-            {
-                graph.AddEdge(id(start), id(end), cost);
-            }
+	/// <summary>
+	/// The nodes.
+	/// </summary>
+	protected List<Node> m_Nodes = new List<Node>();
 
-            var path = graph.FindPath(id('a'));
-            for (int d = id('b'); d <= id('f'); d++)
-            {
-                WriteLine(Join(" -> ", Path(id('a'), d).Select(p => $"{name(p.node)}({p.distance})").Reverse()));
-            }
+	/// <summary>
+	/// The length of the path.
+	/// </summary>
+	protected float m_Length = 0f;
 
-            IEnumerable<(double distance, int node)> Path(int start, int destination)
-            {
-                yield return (path[destination].distance, destination);
-                for (int i = destination; i != start; i = path[i].prev)
-                {
-                    yield return (path[path[i].prev].distance, path[i].prev);
-                }
-            }
-        }
+	/// <summary>
+	/// Gets the nodes.
+	/// </summary>
+	/// <value>The nodes.</value>
+	public virtual List<Node> nodes
+	{
+		get
+		{
+			return m_Nodes;
+		}
+	}
 
-    }
+	/// <summary>
+	/// Gets the length of the path.
+	/// </summary>
+	/// <value>The length.</value>
+	public virtual float length
+	{
+		get
+		{
+			return m_Length;
+		}
+	}
 
-    sealed class Graph
-    {
-        private readonly List<EdgeList> adjacency;
+	/// <summary>
+	/// Bake the path.
+	/// Making the path ready for usage, Such as caculating the length.
+	/// </summary>
+	public virtual void Bake()
+	{
+		List<Node> calculated = new List<Node>();
+		m_Length = 0f;
+		for (int i = 0; i < m_Nodes.Count; i++)
+		{
+			Node node = m_Nodes[i];
+			for (int j = 0; j < node.connections.Count; j++)
+			{
+				Node connection = node.connections[j];
 
-        public Graph(int vertexCount) => adjacency = Range(0, vertexCount).Select(v => new EdgeList()).ToList();
+				// Don't calcualte calculated nodes
+				if (m_Nodes.Contains(connection) && !calculated.Contains(connection))
+				{
 
-        public int Count => adjacency.Count;
-        public bool HasEdge(int s, int e) => adjacency[s].Any(p => p.node == e);
-        public bool RemoveEdge(int s, int e) => adjacency[s].RemoveAll(p => p.node == e) > 0;
+					// Calculating the distance between a node and connection when they are both available in path nodes list
+					m_Length += Vector2.Distance(node.Position, connection.Position);
+				}
+			}
+			calculated.Add(node);
+		}
+	}
 
-        public bool AddEdge(int s, int e, double weight)
-        {
-            if (HasEdge(s, e)) return false;
-            adjacency[s].Add((e, weight));
-            return true;
-        }
+	/// <summary>
+	/// Returns a string that represents the current object.
+	/// </summary>
+	/// <returns>A string that represents the current object.</returns>
+	/// <filterpriority>2</filterpriority>
+	public override string ToString()
+	{
+		return string.Format(
+			"Nodes: {0}\nLength: {1}",
+			string.Join(
+				", ",
+				nodes.Select(node => node.Position.ToString()).ToArray()),
+			length);
+	}
 
-        public (double distance, int prev)[] FindPath(int start)
-        {
-            var info = Range(0, adjacency.Count).Select(i => (distance: double.PositiveInfinity, prev: i)).ToArray();
-            info[start].distance = 0;
-            var visited = new System.Collections.BitArray(adjacency.Count);
+}
 
-            var heap = new Heap<(int node, double distance)>((a, b) => a.distance.CompareTo(b.distance));
-            heap.Push((start, 0));
-            while (heap.Count > 0)
-            {
-                var current = heap.Pop();
-                if (visited[current.node]) continue;
-                var edges = adjacency[current.node];
-                for (int n = 0; n < edges.Count; n++)
-                {
-                    int v = edges[n].node;
-                    if (visited[v]) continue;
-                    double alt = info[current.node].distance + edges[n].weight;
-                    if (alt < info[v].distance)
-                    {
-                        info[v] = (alt, current.node);
-                        heap.Push((v, alt));
-                    }
-                }
-                visited[current.node] = true;
-            }
-            return info;
-        }
+public class Node
+{
 
-    }
+	/// <summary>
+	/// The connections (neighbors).
+	/// </summary>
+	[SerializeField]
+	protected List<Node> m_Connections = new List<Node>();
 
-    sealed class Heap<T>
-    {
-        private readonly IComparer<T> comparer;
-        private readonly List<T> list = new List<T> { default };
+	public Vector2Int Position;
 
-        public Heap() : this(default(IComparer<T>)) { }
+	/// <summary>
+	/// Gets the connections (neighbors).
+	/// </summary>
+	/// <value>The connections.</value>
+	public virtual List<Node> connections
+	{
+		get
+		{
+			return m_Connections;
+		}
+	}
 
-        public Heap(IComparer<T> comparer)
-        {
-            this.comparer = comparer ?? Comparer<T>.Default;
-        }
+	public Node this[int index]
+	{
+		get
+		{
+			return m_Connections[index];
+		}
+	}
 
-        public Heap(Comparison<T> comparison) : this(Comparer<T>.Create(comparison)) { }
+}
 
-        public int Count => list.Count - 1;
+/// <summary>
+/// The Graph.
+/// </summary>
+public class Graph
+{
 
-        public void Push(T element)
-        {
-            list.Add(element);
-            SiftUp(list.Count - 1);
-        }
+	/// <summary>
+	/// The nodes.
+	/// </summary>
+	[SerializeField]
+	protected List<Node> m_Nodes = new List<Node>();
 
-        public T Pop()
-        {
-            T result = list[1];
-            list[1] = list[list.Count - 1];
-            list.RemoveAt(list.Count - 1);
-            SiftDown(1);
-            return result;
-        }
+	/// <summary>
+	/// Gets the nodes.
+	/// </summary>
+	/// <value>The nodes.</value>
+	public virtual List<Node> nodes
+	{
+		get
+		{
+			return m_Nodes;
+		}
+	}
 
-        private static int Parent(int i) => i / 2;
-        private static int Left(int i) => i * 2;
-        private static int Right(int i) => i * 2 + 1;
+	/// <summary>
+	/// Gets the shortest path from the starting Node to the ending Node.
+	/// </summary>
+	/// <returns>The shortest path.</returns>
+	/// <param name="start">Start Node.</param>
+	/// <param name="end">End Node.</param>
+	public virtual Path GetShortestPath(Node start, Node end)
+	{
+		// We don't accept null arguments
+		if (start == null || end == null)
+		{
+			throw new ArgumentNullException();
+		}
 
-        private void SiftUp(int i)
-        {
-            while (i > 1)
-            {
-                int parent = Parent(i);
-                if (comparer.Compare(list[i], list[parent]) > 0) return;
-                (list[parent], list[i]) = (list[i], list[parent]);
-                i = parent;
-            }
-        }
+		// The final path
+		Path path = new Path();
 
-        private void SiftDown(int i)
-        {
-            for (int left = Left(i); left < list.Count; left = Left(i))
-            {
-                int smallest = comparer.Compare(list[left], list[i]) <= 0 ? left : i;
-                int right = Right(i);
-                if (right < list.Count && comparer.Compare(list[right], list[smallest]) <= 0) smallest = right;
-                if (smallest == i) return;
-                (list[i], list[smallest]) = (list[smallest], list[i]);
-                i = smallest;
-            }
-        }
+		// If the start and end are same node, we can return the start node
+		if (start == end)
+		{
+			path.nodes.Add(start);
+			return path;
+		}
 
-    }
+		// The list of unvisited nodes
+		List<Node> unvisited = new List<Node>();
+
+		// Previous nodes in optimal path from source
+		Dictionary<Node, Node> previous = new Dictionary<Node, Node>();
+
+		// The calculated distances, set all to Infinity at start, except the start Node
+		Dictionary<Node, float> distances = new Dictionary<Node, float>();
+
+		for (int i = 0; i < m_Nodes.Count; i++)
+		{
+			Node node = m_Nodes[i];
+			unvisited.Add(node);
+
+			// Setting the node distance to Infinity
+			distances.Add(node, float.MaxValue);
+		}
+
+		// Set the starting Node distance to zero
+		distances[start] = 0f;
+		while (unvisited.Count != 0)
+		{
+
+			// Ordering the unvisited list by distance, smallest distance at start and largest at end
+			unvisited = unvisited.OrderBy(node => distances[node]).ToList();
+
+			// Getting the Node with smallest distance
+			Node current = unvisited[0];
+
+			// Remove the current node from unvisisted list
+			unvisited.Remove(current);
+
+			// When the current node is equal to the end node, then we can break and return the path
+			if (current == end)
+			{
+
+				// Construct the shortest path
+				while (previous.ContainsKey(current))
+				{
+
+					// Insert the node onto the final result
+					path.nodes.Insert(0, current);
+
+					// Traverse from start to end
+					current = previous[current];
+				}
+
+				// Insert the source onto the final result
+				path.nodes.Insert(0, current);
+				break;
+			}
+
+			// Looping through the Node connections (neighbors) and where the connection (neighbor) is available at unvisited list
+			for (int i = 0; i < current.connections.Count; i++)
+			{
+				Node neighbor = current.connections[i];
+
+				// Getting the distance between the current node and the connection (neighbor)
+				float length = Vector2.Distance(current.Position, neighbor.Position);
+
+				// The distance from start node to this connection (neighbor) of current node
+				float alt = distances[current] + length;
+
+				// A shorter path to the connection (neighbor) has been found
+				if (alt < distances[neighbor])
+				{
+					distances[neighbor] = alt;
+					previous[neighbor] = current;
+				}
+			}
+		}
+		path.Bake();
+		return path;
+	}
+
 }

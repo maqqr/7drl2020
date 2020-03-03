@@ -14,6 +14,8 @@ namespace Verminator
 
         public Bounds Bounds;
         private Pathfinding.DungeonGrid pathfindingGrid;
+        private Graph graph = new Graph();
+        Dictionary<Vector2Int, Node> cache = new Dictionary<Vector2Int, Node>();
 
         public void Initialize(GameManager gameManager)
         {
@@ -165,17 +167,53 @@ namespace Verminator
 
         public void UpdatePathfindingGrid()
         {
-            CalculateBounds();
-            int minX = (int)Mathf.Round(Bounds.min.x);
-            int maxX = (int)Mathf.Round(Bounds.max.x);
-            int minY = (int)Mathf.Round(Bounds.min.z);
-            int maxY = (int)Mathf.Round(Bounds.max.z);
+            //CalculateBounds();
+            //int minX = (int)Mathf.Round(Bounds.min.x);
+            //int maxX = (int)Mathf.Round(Bounds.max.x);
+            //int minY = (int)Mathf.Round(Bounds.min.z);
+            //int maxY = (int)Mathf.Round(Bounds.max.z);
 
-            pathfindingGrid = new Pathfinding.DungeonGrid();
-            pathfindingGrid.CreateGrid(minX, maxX, minY, maxY, delegate (Vector2Int pos)
+            //pathfindingGrid = new Pathfinding.DungeonGrid();
+            //pathfindingGrid.CreateGrid(minX, maxX, minY, maxY, delegate (Vector2Int pos)
+            //{
+            //    return IsWalkable(pos);
+            //});
+
+            var deltas = new List<Vector2Int>();
+            for (int x = -1; x < 2; x++)
             {
-                return IsWalkable(pos);
-            });
+                for (int y = -1; y < 2; y++)
+                {
+                    if (!(x == 0 && y == 0))
+                    {
+                        deltas.Add(new Vector2Int(x, y));
+                    }
+                }
+            }
+
+            foreach (var kv in Tiles)
+            {
+                var node = new Node() { Position = kv.Key };
+                graph.nodes.Add(node);
+                cache.Add(kv.Key, node);
+            }
+
+            foreach (var node in graph.nodes)
+            {
+                foreach (var delta in deltas)
+                {
+                    var neighbourPos = node.Position + delta;
+                    if (cache.ContainsKey(neighbourPos))
+                    {
+                        var neighbour = cache[neighbourPos];;
+
+                        if (IsWalkableFrom(node.Position, neighbourPos))
+                        {
+                            node.connections.Add(neighbour);
+                        }
+                    }
+                }
+            }
         }
 
         public bool IsWalkable(Vector2Int pos)
@@ -194,12 +232,21 @@ namespace Verminator
 
         public List<Vector2Int> FindPath(Vector2Int from, Vector2Int to)
         {
-            System.Func<Vector2Int, Vector2Int, bool> isWalkableFrom = delegate (Vector2Int start, Vector2Int end)
-            {
-                return IsWalkableFrom(start, end);
-            };
+            //System.Func<Vector2Int, Vector2Int, bool> isWalkableFrom = delegate (Vector2Int start, Vector2Int end)
+            //{
+            //    return IsWalkableFrom(start, end);
+            //};
 
-            return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
+            //return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
+
+            List<Vector2Int> pathPoints = new List<Vector2Int>();
+            var path = graph.GetShortestPath(cache[from], cache[to]);
+            for (int i = 0; i < path.nodes.Count; i++)
+            {
+                pathPoints.Add(path.nodes[i].Position);
+            }
+            pathPoints.RemoveAt(0);
+            return pathPoints;
         }
 
         public bool IsWalkableFrom(Vector2Int from, Vector2Int to) // 'from' and 'to' are assumed to be next to each other
@@ -213,29 +260,35 @@ namespace Verminator
 
             //bool targetSpaceFree = IsWalkable(to, ignoreMask);
             //return targetSpaceFree && !wayBlocked;
-            if(from == to) return true;
-            if(Vector2.Distance(from,to)==1){
-                if(Physics.Raycast(Utils.ConvertToUnityCoord(from),Utils.ConvertToUnityCoord(to)-Utils.ConvertToUnityCoord(from),1f))
+            if (from == to) return true;
+            if (Vector2.Distance(from, to) == 1)
+            {
+                if (Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(from), 1f))
                 {
                     return false;
                 }
             }
-            if (Vector2.Distance(from,to)>1 && Vector2.Distance(from,to)<2){
-                    bool success = false;
-                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)) - Utils.ConvertToUnityCoord(from), 1f)) {
-                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)), 1f)) {
-                            success = true;
-                        }
+            if (Vector2.Distance(from, to) > 1 && Vector2.Distance(from, to) < 2)
+            {
+                bool success = false;
+                if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(to.x, from.y)) - Utils.ConvertToUnityCoord(from), 1f))
+                {
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x, from.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x, from.y)), 1f))
+                    {
+                        success = true;
                     }
-                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)) - Utils.ConvertToUnityCoord(from), 1f)) {
-                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)), 1f)) {
-                            success = true;
-                        }
-                    }
-                    if (!success) return false;
                 }
+                if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(from.x, to.y)) - Utils.ConvertToUnityCoord(from), 1f))
+                {
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(from.x, to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(from.x, to.y)), 1f))
+                    {
+                        success = true;
+                    }
+                }
+                if (!success) return false;
+            }
 
-            
+
 
             if (!Tiles.ContainsKey(to))
             {
