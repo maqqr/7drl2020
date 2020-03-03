@@ -15,7 +15,7 @@ namespace Verminator
         // Creature specific attributes:
         public Vector2Int Position; // Creature's position in tile coordinates
         // public int Hp;
-        // List<InventoryItem> Inventory;
+        //List<Item> Inventory;
 
         // Jump variables:
         Vector2Int jumpFrom;
@@ -90,6 +90,12 @@ namespace Verminator
                 Move(newPosition);
                 //Position = newPosition;
             }
+        }
+
+        public bool AddItem(Item item) {
+            // TODO: check if inventory is full or if the creature can hold the item
+            Inventory.Add(item);
+            return true;
         }
     }
 }

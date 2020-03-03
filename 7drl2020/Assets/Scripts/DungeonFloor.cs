@@ -74,13 +74,42 @@ namespace Verminator
 
         public Item SpawnItem(string id, Vector2Int spawnCoordinate) // item id is defined in json
         {
-            // TODO
-            return null;
+            if (!Data.GameData.Instance.CreatureData.ContainsKey(id))
+            {
+                Debug.LogError($"{nameof(SpawnItem)}: Tried to spawn item with invalid id '{id}'");
+                return null;
+            }
+
+            Data.ItemData data = Data.GameData.Instance.ItemData[id];
+
+            if (data.ItemPrefab == null)
+            {
+                Debug.LogError($"{nameof(SpawnItem)}: Item prefab missing for id '{id}'");
+                return null;
+            }
+
+            GameObject itemObject = Instantiate(data.ItemPrefab, Utils.ConvertToUnityCoord(spawnCoordinate), Quaternion.identity);
+            itemObject.transform.position = Utils.ConvertToUnityCoord(spawnCoordinate);
+            itemObject.transform.parent = transform;
+
+            Item item = itemObject.GetComponent<Item>();
+            item.Data = data;
+            //creature.Hp = creature.MaxLife;
+            item.Position = spawnCoordinate;
+
+            Items.Add(item);
+            return item;
         }
 
         public void DestroyItem(Item item)
         {
-            // TODO
+            if (!Items.Contains(item))
+            {
+                Debug.LogError($"{nameof(DestroyItem)}: Failed to destroy item that does not exists on this dungeon floor");
+                return;
+            }
+            Items.Remove(item);
+            Destroy(item.gameObject);
         }
 
         public Creature GetCreatureAt(Vector2Int position, bool includePlayer = true)
@@ -98,6 +127,17 @@ namespace Verminator
                 return gameManager.PlayerCreature;
             }
 
+            return null;
+        }
+
+        public Item GetItemAt(Vector2Int position) {
+            foreach(var item in Items)
+            {
+                if (item.Position == position)
+                {
+                    return item;
+                }
+            }
             return null;
         }
 
