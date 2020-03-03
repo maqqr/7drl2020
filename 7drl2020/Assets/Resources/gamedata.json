@@ -39,8 +39,9 @@
 
         "leatherboots":             { "name": "leather boots", "assethpath": "Item/LeatherBoots", "weight": 4, "armorslot": "legs", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Pair of boots made of leather." },
         "chainmailboots":           { "name": "chainmail boots", "assethpath": "Item/ChainmaliBoots", "weight": 5, "armorslot": "legs", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Pair of chainmail boots.." },
-        "platemailboots":           { "name": "platemail boots", "assethpath": "Item/PlatemailBoots", "weight": 7, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." }
+        "platemailboots":           { "name": "platemail boots", "assethpath": "Item/PlatemailBoots", "weight": 7, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." },
 
+        "tail": { "name": "tail", "assetpath": "Item/Tail", "weight": 1, "dmg": "1d2+1", "dmgtype": "slashing", "maxrange": 1, "ammo": "", "desc": "A rats tail." }
     },
 
     "creatures": {
@@ -62,7 +63,18 @@
     },
 
     "traits": {
-        "test":       { "name": "TestTrait", "modelassetpath": "Test", "hpbonus": 0, "strbonus": 0, "meleebonus": 0, "rangedbonus": 0, "scalemultiplier": 1.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 }
+        "test":       { "name": "TestTrait", "modelassetpath": "Test", "hpbonus": 0, "strbonus": 0, "meleebonus": 0, "rangedbonus": 0, "scalemultiplier": 1.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+      
+        "tough":        { "name": "tough", "modelassetpath": "Test",            "hpbonus": 10, "strbonus": 10,  "meleebonus": 0,   "rangedbonus": 0,  "scalemultiplier": 1.0,  "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 5, "bluntresbonus": 0, "piercingresbonus": 5, "magicresbonus": 0 },
+        "deadly":       { "name": "deadly", "modelassetpath": "Test",           "hpbonus": 0,  "strbonus": 20,  "meleebonus": 10,  "rangedbonus": 10, "scalemultiplier": 1.0,  "extraweapons": [], "aggrorangemodifier": 2, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "extratail":    { "name": "extra tail", "modelassetpath": "Test",       "hpbonus": 0,  "strbonus": 0,   "meleebonus": 0,   "rangedbonus": 0,  "scalemultiplier": 1.0,  "extraweapons": ["tail"], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "extratails2":  { "name": "two extra tails", "modelassetpath": "Test",  "hpbonus": 0,  "strbonus": 0,   "meleebonus": 0,   "rangedbonus": 0,  "scalemultiplier": 1.0,  "extraweapons": ["tail", "tail"], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "extratails3":  { "name": "3 extra tails", "modelassetpath": "Test",    "hpbonus": 0,  "strbonus": 0,   "meleebonus": 0,   "rangedbonus": 0,  "scalemultiplier": 1.0,  "extraweapons": ["tail", "tail", "tail"], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "large":        { "name": "large", "modelassetpath": "Test",            "hpbonus": 40, "strbonus": 30,  "meleebonus": 0,   "rangedbonus": 0,  "scalemultiplier": 10.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "runt":         { "name": "runt", "modelassetpath": "Test",             "hpbonus": -5, "strbonus": -10, "meleebonus": 10,  "rangedbonus": 0,  "scalemultiplier": 0.5,  "extraweapons": [], "aggrorangemodifier": -2, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "eyeless":      { "name": "eyeless", "modelassetpath": "Test",          "hpbonus": 0,  "strbonus": 0,   "meleebonus": -10, "rangedbonus": 0,  "scalemultiplier": 1.0,  "extraweapons": [], "aggrorangemodifier": 10, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 },
+        "scarred":      { "name": "scarred", "modelassetpath": "Test",          "hpbonus": -5, "strbonus": 0,   "meleebonus": 30,  "rangedbonus": 30, "scalemultiplier": 1.0,  "extraweapons": ["tail"], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 }
+    
     },
 
     "spawnlist": {
