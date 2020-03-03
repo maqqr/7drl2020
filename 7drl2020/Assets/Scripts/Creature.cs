@@ -52,10 +52,23 @@ namespace Verminator
             if (Position != to)
             {
                 RaycastHit hit;
-                Debug.DrawRay(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(to)-Utils.ConvertToUnityCoord(Position) * 1, Color.white);
-                if (Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
-                    return false;
+                // If moving diagonally, check if there exists a manhattan-like path
+                if (Vector2.Distance(Position,to)>1){
+                    bool success = false;
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)), out hit, 1f)) {
+                            success = true;
+                        }
+                    }
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)), out hit, 1f)) {
+                            success = true;
+                        }
+                    }
+                    if (!success) return false;
                 }
+                
+                
                 jumpFrom = Position;
                 jumpTo = to;
                 steps = 0;
