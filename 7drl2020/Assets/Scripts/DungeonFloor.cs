@@ -213,6 +213,29 @@ namespace Verminator
 
             //bool targetSpaceFree = IsWalkable(to, ignoreMask);
             //return targetSpaceFree && !wayBlocked;
+            if(from == to) return true;
+            if(Vector2.Distance(from,to)==1){
+                if(Physics.Raycast(Utils.ConvertToUnityCoord(from),Utils.ConvertToUnityCoord(to)-Utils.ConvertToUnityCoord(from),1f))
+                {
+                    return false;
+                }
+            }
+            if (Vector2.Distance(from,to)>1 && Vector2.Distance(from,to)<2){
+                    bool success = false;
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)) - Utils.ConvertToUnityCoord(from), 1f)) {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x,from.y)), 1f)) {
+                            success = true;
+                        }
+                    }
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(from), Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)) - Utils.ConvertToUnityCoord(from), 1f)) {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(from.x,to.y)), 1f)) {
+                            success = true;
+                        }
+                    }
+                    if (!success) return false;
+                }
+
+            
 
             if (!Tiles.ContainsKey(to))
             {
