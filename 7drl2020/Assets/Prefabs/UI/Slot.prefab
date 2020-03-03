@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphicsContainer: {fileID: 2376863168012606949}
   SlotNumberText: {fileID: 2855557174938679764}
+  SlotBorder: {fileID: 8094959915216915247}
 --- !u!65 &7746240556870616937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -356,6 +357,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c6ad996687b707498425382bd26f4fa, type: 3}
+--- !u!1 &8094959915216915247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 3c6ad996687b707498425382bd26f4fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 249666315898884646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5047491743701875004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3c6ad996687b707498425382bd26f4fa,

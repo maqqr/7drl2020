@@ -10,6 +10,8 @@ namespace Verminator
 
         public TMPro.TextMeshProUGUI SlotNumberText;
 
+        public GameObject SlotBorder;
+
         public event System.Action<int> OnClick;
 
         int slotIndex;
@@ -42,6 +44,11 @@ namespace Verminator
             {
                 renderer.gameObject.layer = LayerMask.NameToLayer("UI");
             }
+        }
+
+        public void SetColor(Color color)
+        {
+            SlotBorder.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", color);
         }
     }
 }
