@@ -68,9 +68,14 @@ namespace Verminator.GameViews
         {
             Vector2Int? playerMoveTo = gameManager.TileCoordinateUnderMouse();
             var player = gameManager.PlayerCreature;
-            if (gameManager.CurrentFloor.IsWalkableFrom(player.Position, playerMoveTo.Value))
+            if (gameManager.mouseTileChanged) {
+                try {
+                    pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
+                }
+                catch {}
+            }
+            if (pathToPos!=null)
             {
-                if (gameManager.mouseTileChanged) pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
                 for (int ind = 0; ind < pathToPos.Count; ind++)
                 {
                     try
