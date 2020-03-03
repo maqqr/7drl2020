@@ -46,7 +46,7 @@
 
     "creatures": {
         "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
-        "testcreature": { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] },
+        "testcreature": { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] },
 
         "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
         "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"] },
