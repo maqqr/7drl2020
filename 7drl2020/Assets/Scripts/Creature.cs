@@ -47,16 +47,23 @@ namespace Verminator
             }
         }
 
-        public void Move(Vector2Int to)
+        public bool Move(Vector2Int to)
         {
             if (Position != to)
             {
+                RaycastHit hit;
+                Debug.DrawRay(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(to)-Utils.ConvertToUnityCoord(Position) * 1, Color.white);
+                if (Physics.SphereCast(Utils.ConvertToUnityCoord(Position),0.05f,Utils.ConvertToUnityCoord(to-Position),out hit,1f)) {
+                    return false;
+                }
                 jumpFrom = Position;
                 jumpTo = to;
                 steps = 0;
 
                 Position = to;
+                return true;
             }
+            return false;
         }
 
         public void AIUpdate(GameManager gameManager)

@@ -166,6 +166,7 @@ namespace Verminator
                 return false;
             }
 
+
             var targetTile = Tiles[to];
             return targetTile.IsWalkable;
         }

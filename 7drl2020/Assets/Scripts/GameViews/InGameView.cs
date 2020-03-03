@@ -213,11 +213,13 @@ namespace Verminator.GameViews
                         pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
                         if (pathToPos != null) {
                             //player.Position = pathToPos[0];
-                            player.Move(pathToPos[0]);
-                            pathToPos.RemoveAt(0);
-                            //gameManager.AdvanceTime(player.Speed);
-                            //gameManager.UpdatePlayerVisibility();
-                            gameManager.AdvanceGameWorld(player.Speed);
+                            if (player.Move(pathToPos[0])) {
+                                 pathToPos.RemoveAt(0);
+                                //gameManager.AdvanceTime(player.Speed);
+                                //gameManager.UpdatePlayerVisibility();
+                                gameManager.AdvanceGameWorld(player.Speed);
+                            }
+
                         }
                         
                     }
