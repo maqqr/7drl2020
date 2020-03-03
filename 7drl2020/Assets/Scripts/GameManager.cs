@@ -87,7 +87,17 @@ namespace Verminator
 
         private void EquipSlotClicked(int index)
         {
-            // TODO
+            lastUsedSlot = index-1;
+            for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
+            {
+                var slot = UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>();
+                if (i==lastUsedSlot) {
+                    slot.SetColor(UnityEngine.Color.red);
+                }
+                else {
+                    slot.SetColor(UnityEngine.Color.gray);
+                }
+            }
         }
 
         public void AddNewView(GameViews.IGameView view)
@@ -325,6 +335,12 @@ namespace Verminator
             {
                 var slot = UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>();
                 slot.SetNumber(i + 1);
+                if (i==lastUsedSlot) {
+                    slot.SetColor(UnityEngine.Color.red);
+                }
+                else {
+                    slot.SetColor(UnityEngine.Color.gray);
+                }
 
                 if (i < PlayerCreature.EquipSlots.Length && PlayerCreature.EquipSlots[i] != null)
                 {
