@@ -1,34 +1,34 @@
 {
     "items": {
-        "testitem":             { "name": "Test item", "assetpath": "Item/TestItem", "weight": 1, "damage": "1d1", "minrange": 1, "maxrange": 2, "ammo": "", "fragile": false, "edible": false, "gainhp": 0, "gainmp": 0, "gainsanity": 0, "armorslot": "", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 0, "desc": "This is a test item." },
+        "testitem":      { "name": "Test item", "assetpath": "Item/TestItem", "weight": 1, "damage": "1d1", "minrange": 1, "maxrange": 2, "ammo": "", "fragile": false, "edible": false, "gainhp": 0, "gainmp": 0, "gainsanity": 0, "armorslot": "", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 0, "desc": "This is a test item." },
 
-        "apple": { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
-        "bread": { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
-        "cheese": { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
+        "apple":         { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
+        "bread":         { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
+        "cheese":        { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
 
-        "sword": { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
-        "mace": { "name": "mace", "assetpath": "Item/Mace", "weight": 10, "dmg": "1d6+1", "maxrange": 1, "desc": "A mace." },
-        "spear": { "name": "spear", "assetpath": "Item/Spear", "weight": 15, "dmg": "1d4+1", "dmgtype": "slashing", "desc": "A spear." },
+        "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
+        "mace":          { "name": "mace", "assetpath": "Item/Mace", "weight": 10, "dmg": "1d6+1", "maxrange": 1, "desc": "A mace." },
+        "spear":         { "name": "spear", "assetpath": "Item/Spear", "weight": 15, "dmg": "1d4+1", "dmgtype": "slashing", "desc": "A spear." },
 
-        "arrow": { "name": "arrow", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
-        "bolt": { "name": "bolt", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
+        "arrow":         { "name": "arrow", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
+        "bolt":          { "name": "bolt", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
 
-        "bow": { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
-        "crossbow": { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4", "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
-        "dart": { "name": "dart", "assetpath": "Item/TestDart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
+        "bow":           { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
+        "crossbow":      { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4", "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "dart":          { "name": "dart", "assetpath": "Item/TestDart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
 
-        "helmet": { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
-        "ratscalp": { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "Large rat scalp." }
+        "helmet":        { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "Large rat scalp." }
 
     },
 
     "creatures": {
-        "player":               { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
-        "testcreature":         { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] }
+        "player":          { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
+        "testcreature":    { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] }
     },
 
     "traits": {
-        "test":                 { "name": "TestTrait", "modelassetpath": "Test", "hpbonus": 0, "strbonus": 0, "meleebonus": 0, "rangedbonus": 0, "scalemultiplier": 1.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 }
+        "test":       { "name": "TestTrait", "modelassetpath": "Test", "hpbonus": 0, "strbonus": 0, "meleebonus": 0, "rangedbonus": 0, "scalemultiplier": 1.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 }
     },
 
     "spawnlist": {
