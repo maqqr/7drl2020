@@ -70,7 +70,7 @@ namespace Verminator
             }
             return false;
         }
-        public static int RollDice(string dmg,bool pos) {
+        public static int RollDice(string dmg,bool pos = false) {
             int result = 0;
             string[] parts = dmg.Split('d');
             int nDice = 0;
