@@ -33,7 +33,7 @@ namespace Verminator.Data
 
             foreach (var item in parsedData["items"])
             {
-                gameData.ItemData.Add(item.Key, new ItemData()
+                var itemData = new ItemData()
                 {
                     Id = item.Key,
                     Name = item.Value["name"],
@@ -41,7 +41,7 @@ namespace Verminator.Data
                     AssetPath = item.Value["assetpath"],
                     Weight = item.Value["weight"].AsInt,
                     Damage = item.Value["dmg"] != null ? (string)item.Value["dmg"] : "1d1",
-                    DamageType = item.Value["dmgtype"] != null ? (string)item.Value["dmgtype"] : "blunt",
+                    DamageTypeStr = item.Value["dmgtype"] != null ? (string)item.Value["dmgtype"] : "blunt",
                     Ammo = item.Value["ammo"] != null ? (string)item.Value["ammo"] : "",
                     IsEdible = item.Value["edible"] != null ? item.Value["edible"].AsBool : false,
                     MinRange = GetDefault(1, "minrange", item),
@@ -55,7 +55,9 @@ namespace Verminator.Data
                     MagicRes = GetDefault(0, "magicres", item),
                     ArmorSlot = item.Value["armorslot"] != null ? (string)item.Value["armorslot"] : "",
                     ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"])
-                });
+                };
+                itemData.DamageType = (DamageType)System.Enum.Parse(typeof(DamageType), itemData.DamageTypeStr, true);
+                gameData.ItemData.Add(item.Key, itemData);
             }
 
             foreach (var cre in parsedData["creatures"])

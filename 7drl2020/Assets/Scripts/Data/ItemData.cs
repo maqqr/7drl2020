@@ -16,7 +16,8 @@ namespace Verminator.Data
         public int MaxRange;
 
         public string Damage;
-        public string DamageType;
+        public string DamageTypeStr;
+        public DamageType DamageType;
 
         public bool IsEdible;
         public int GainHealth;
