@@ -240,8 +240,7 @@ namespace Verminator.GameViews
 
             if (playerMoveTo != null)
             {
-                if (gameManager.CurrentFloor.IsWalkableFrom(player.Position, playerMoveTo.Value))
-                {
+
                     Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(playerMoveTo.Value);
                     if (creatureBlocking == null)
                     {
@@ -276,7 +275,7 @@ namespace Verminator.GameViews
                         //gameManager.AdvanceTime(player.Speed);
                         
                     }
-                }
+            
             }
         }
     }
