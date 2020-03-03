@@ -78,6 +78,16 @@ namespace Verminator
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
 
             UpdateEquipSlotGraphics();
+
+            for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
+            {
+                UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>().OnClick += EquipSlotClicked;
+            }
+        }
+
+        private void EquipSlotClicked(int index)
+        {
+            // TODO
         }
 
         public void AddNewView(GameViews.IGameView view)

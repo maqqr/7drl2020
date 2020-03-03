@@ -10,13 +10,20 @@ namespace Verminator
 
         public TMPro.TextMeshProUGUI SlotNumberText;
 
+        public event System.Action<int> OnClick;
+
+        int slotIndex;
+
         private void OnMouseDown()
         {
             Debug.Log("OnMouseDown " + name);
+
+            OnClick?.Invoke(slotIndex);
         }
 
         public void SetNumber(int i)
         {
+            slotIndex = i;
             SlotNumberText.text = i.ToString();
         }
 
