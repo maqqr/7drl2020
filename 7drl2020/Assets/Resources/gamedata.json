@@ -16,7 +16,7 @@
     },
 
     "traits": {
-        "test":                 { "name": "" }
+        "test":                 { "name": "TestTrait", "modelassetpath": "Test", "hpbonus": 0, "strbonus": 0, "meleebonus": 0, "rangedbonus": 0, "scalemultiplier": 1.0, "extraweapons": [], "aggrorangemodifier": 0, "slashingresbonus": 0, "bluntresbonus": 0, "piercingresbonus": 0, "magicresbonus": 0 }
     },
 
     "spawnlist": {

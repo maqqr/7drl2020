@@ -16,6 +16,15 @@ namespace Verminator.Data
 
         public static void LoadData()
         {
+            int GetDefault(int defaultValue, string key, KeyValuePair<string, SimpleJSON.JSONNode> collection)
+            {
+                if (collection.Value[key] != null)
+                {
+                    return collection.Value[key].AsInt;
+                }
+                return defaultValue;
+            }
+
             TextAsset textAsset = Resources.Load<TextAsset>("gamedata");
             string rawJsonData = textAsset.text;
 
@@ -76,10 +85,17 @@ namespace Verminator.Data
                 {
                     Name = trait.Value["name"],
                     ModelAssetPath = trait.Value["modelassetpath"],
-                    StrBonus = trait.Value["strbonus"].AsInt,
-                    IntBonus = trait.Value["intbonus"].AsInt,
+                    MaxHpBonus = GetDefault(0, "hpbonus", trait),
+                    StrBonus = GetDefault(0, "strbonus", trait),
+                    MeleeBonus = GetDefault(0, "meleebonus", trait),
+                    RangedBonus = GetDefault(0, "rangedbonus", trait),
                     ModelScaleMultiplier = trait.Value["scalemultiplier"].AsFloat,
-                    ModelPrefab = Resources.Load<GameObject>(trait.Value["ModelAssetPath"])
+                    AggroRangeModifier = GetDefault(0, "aggrorangemodifier", trait),
+                    SlashingResBonus = GetDefault(0, "slashingresbonus", trait),
+                    BluntResBonus = GetDefault(0, "bluntresbonus", trait),
+                    PiercingResBonus = GetDefault(0, "piercingresbonus", trait),
+                    MagicResBonus = GetDefault(0, "magicresbonus", trait),
+                    //ModelPrefab = Resources.Load<GameObject>(trait.Value["ModelAssetPath"])
                 };
                 gameData.TraitData.Add(trait.Key, traitData);
             }
