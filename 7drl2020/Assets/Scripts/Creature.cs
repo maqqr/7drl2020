@@ -53,7 +53,7 @@ namespace Verminator
             {
                 RaycastHit hit;
                 Debug.DrawRay(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(to)-Utils.ConvertToUnityCoord(Position) * 1, Color.white);
-                if (Physics.SphereCast(Utils.ConvertToUnityCoord(Position),0.05f,Utils.ConvertToUnityCoord(to-Position),out hit,1f)) {
+                if (Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
                     return false;
                 }
                 jumpFrom = Position;
