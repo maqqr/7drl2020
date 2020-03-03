@@ -56,7 +56,7 @@ namespace Verminator.Data
                     ArmorSlot = item.Value["armorslot"] != null ? (string)item.Value["armorslot"] : "",
                     ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"])
                 };
-                itemData.DamageType = (DamageType)System.Enum.Parse(typeof(DamageType), itemData.DamageTypeStr.Substring(0, 1).ToUpper() + itemData.DamageTypeStr.Substring(1));
+                itemData.DamageType = (DamageType)System.Enum.Parse(typeof(DamageType), itemData.DamageTypeStr, true);
                 gameData.ItemData.Add(item.Key, itemData);
             }
 
