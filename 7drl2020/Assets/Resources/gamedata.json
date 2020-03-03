@@ -1,11 +1,12 @@
 {
     "items": {
-        "testitem":      { "name": "Test item", "assetpath": "Item/TestItem", "weight": 1, "damage": "1d1", "minrange": 1, "maxrange": 2, "ammo": "", "fragile": false, "edible": false, "gainhp": 0, "gainmp": 0, "gainsanity": 0, "armorslot": "", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 0, "desc": "This is a test item." },
+        "testitem":      { "name": "Test item", "assetpath": "Item/TestItem", "weight": 1, "damage": "1d1", "dmgtype": "blunt", "minrange": 1, "maxrange": 2, "ammo": "", "fragile": false, "edible": false, "gainhp": 0, "gainmp": 0, "gainsanity": 0, "armorslot": "", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 0, "desc": "This is a test item." },
 
-        "apple":         { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
-        "bread":         { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
-        "cheese":        { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
-        "mugofbeer":     { "name": "mug of beer", "assetpath": "Item/MugOfBeer", "weight": 5, "maxrange": 5, "ammo": "mug of beer", "fragile": true, "edible": true, "gainhp": 10, "gainmp": 40, "desc": "A mug of cheap beer." },
+        "apple":            { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
+        "bread":            { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
+        "cheese":           { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
+        "mugofbeer":        { "name": "mug of beer", "assetpath": "Item/MugOfBeer", "weight": 5, "maxrange": 5, "ammo": "mug of beer", "fragile": true, "edible": true, "gainmp": 30, "desc": "A mug of cheap beer." },
+        "flaskofspirits":   { "name": "flask of spirits", "assetpath": "Item/FlaskOfSpirits", "weight": 5, "maxrange": 5, "ammo": "flask of spirits", "fragile": true, "edible": true, "gainmp": 50, "desc": "A flask of spirits." },
 
         "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword", "weight": 6, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
         "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
@@ -19,26 +20,26 @@
         "arrow":         { "name": "arrow", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
         "bolt":          { "name": "bolt", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
 
-        "bow":           { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
-        "crossbow":      { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4", "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "bow":           { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
+        "crossbow":      { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
         "dart":          { "name": "dart", "assetpath": "Item/TestDart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
         "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "helmet":        { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
-        "leathercap":    { "name": "leather cap", "assethpath": "Item/LeatherCap", "weight": 3, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
-        "chaincoif":     { "name": "chain coif", "assethpath": "Item/ChainCoif", "weight": 5, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
-        "domedhelmet":   { "name": "domed helmet", "assethpath": "Item/DomedHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
-        "antimagicward": { "name": "antimagic ward", "assethpath": "Item/AntimagicWard", "weight": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
-        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "Large rat scalp." },
+        "helmet":        { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
+        "leathercap":    { "name": "leather cap", "assethpath": "Item/LeatherCap", "weight": 3, "maxrange": 1, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
+        "chaincoif":     { "name": "chain coif", "assethpath": "Item/ChainCoif", "weight": 5, "maxrange": 1, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
+        "domedhelmet":   { "name": "domed helmet", "assethpath": "Item/DomedHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
+        "antimagicward": { "name": "antimagic ward", "assethpath": "Item/AntimagicWard", "weight": 1, "maxrange": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "maxrange": 1, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
         "lamellararmour":           { "name": "lamellar armour", "assethpath": "Item/LamellarArmour", "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Armour consisting of hardened leather laced together." },
-        "Studdedleatherarmour":     { "name": "studded leather armour", "assethpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
+        "studdedleatherarmour":     { "name": "studded leather armour", "assethpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
         "chainmail":                { "name": "chainmail", "assethpath": "Item/Chainmail", "weight": 12, "armorslot": "body", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Armour made of small metal rings." },
-        "platemail":                { "name": "platemail", "assethpath": "Item/Platemail", "weight": 20, "armorslot": "body", "slashingres": 30, "bluntres": 15, "piercingres": 20, "magicres": 0, "desc": "Armour made of steel plates. I wonder who left it in the basement." },
+        "platemail":                { "name": "platemail", "assethpath": "Item/Platemail", "weight": 25, "armorslot": "body", "slashingres": 30, "bluntres": 15, "piercingres": 20, "magicres": 0, "desc": "Armour made of steel plates. I wonder who left it in the basement." },
 
         "leatherboots":             { "name": "leather boots", "assethpath": "Item/LeatherBoots", "weight": 4, "armorslot": "legs", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Pair of boots made of leather." },
         "chainmailboots":           { "name": "chainmail boots", "assethpath": "Item/ChainmaliBoots", "weight": 5, "armorslot": "legs", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Pair of chainmail boots.." },
-        "platemailboots":           { "name": "platemail boots", "assethpath": "Item/PlatemailBoots", "weight": 6, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." }
+        "platemailboots":           { "name": "platemail boots", "assethpath": "Item/PlatemailBoots", "weight": 7, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." }
 
     },
 
