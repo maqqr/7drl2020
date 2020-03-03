@@ -90,7 +90,7 @@ namespace Verminator.GameViews
             var player = gameManager.PlayerCreature;
 
             // This is just for testing: move player to where the mouse was clicked
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !player.OnMove)
             {
                 playerMoveTo = gameManager.TileCoordinateUnderMouse();
             }

@@ -31,6 +31,8 @@ namespace Verminator
         float nSteps = 2000;
         float paraHeight = 0.387f;
 
+        public bool OnMove = false;
+
 
         public string Name => "Nameless";
 
@@ -71,6 +73,9 @@ namespace Verminator
 
                 steps += Time.deltaTime * jumpAnimationSpeed;
             }
+            else {
+                OnMove = false;
+            }
         }
 
         public bool Move(Vector2Int to)
@@ -100,6 +105,7 @@ namespace Verminator
                 steps = 0;
 
                 Position = to;
+                OnMove = true;
                 return true;
             }
             return false;
