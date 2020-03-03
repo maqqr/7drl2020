@@ -27,6 +27,8 @@ namespace Verminator
 
         public GameObject UIEquipSlots;
 
+        public int lastUsedSlot=0;
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
@@ -253,7 +255,33 @@ namespace Verminator
             }
 
             Debug.Log($"{attacker.Data.Name} attacks {defender.Data.Name}");
-
+            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
+            Data.ItemData weapon = attacker.Inventory[usedSlot].ItemData;
+            bool hit;
+            if(weapon.Ammo!=null) {
+                InventoryItem ammo = attacker.GetItemByName(weapon.Ammo);
+                if (ammo != null) {
+                    hit = UnityEngine.Random.Range(0,20)+1<=attacker.RangedSkill;
+                    attacker.RemoveItem(ammo,1);
+                }
+                else {
+                    Debug.Log($"{attacker.Data.Name} has no ammo {weapon.Ammo}");
+                    return;
+                }
+                
+            }
+            else {
+                hit = UnityEngine.Random.Range(0,20)+1<=attacker.MeleeSkill;
+            }
+            if (hit) {
+                DamageType dmgType = weapon.DamageType;
+                int dmg = Utils.RollDice(weapon.Damage,true);
+                dmg = dmg*(1-defender.GetResistance(dmgType));
+            }
+            else {
+                Debug.Log($"{attacker.Data.Name} misses!");
+            }
+            
             // TODO: implement combat
         }
 

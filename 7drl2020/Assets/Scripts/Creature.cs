@@ -151,5 +151,12 @@ namespace Verminator
                 Inventory.Remove(item);
             }
         }
+
+        public InventoryItem GetItemByName(string itemName) {
+            foreach (InventoryItem item in Inventory) {
+                if(item.ItemData.Name == itemName) return item;
+            }
+            return null;
+        }
     }
 }
