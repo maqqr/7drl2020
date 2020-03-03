@@ -70,5 +70,60 @@ namespace Verminator
             }
             return false;
         }
+        public static int CalcDamage(string dmg) {
+            int result = 0;
+            string[] parts = dmg.Split('d');
+            int nDice = 0;
+            try {
+                nDice = int.Parse(parts[0]);
+            }
+            catch {
+                Debug.Log("Unable to parse the amount of dice for "+dmg);
+                Debug.Log(parts);
+            }
+            int modifier =0;
+            int dice = 0;
+            parts = parts[1].Split('+');
+            if (parts.Length<2) {
+                parts = parts[0].Split('-');
+                try {
+                    dice = int.Parse(parts[0]);
+                    }
+                catch {
+                    Debug.Log("Unable to parse the sides of dice for "+dmg);
+                    Debug.Log(parts);
+                }
+                try{
+                    modifier = -int.Parse(parts[1]);
+                }
+                catch {
+                    Debug.Log("Unable to parse the - modifier for "+dmg);
+                    Debug.Log(parts);
+                }
+                
+            }
+            else {
+                try {
+                    dice = int.Parse(parts[0]);
+                    }
+                catch {
+                    Debug.Log("Unable to parse the sides of dice for "+dmg);
+                    Debug.Log(parts);
+                }
+                try{
+                    modifier = int.Parse(parts[1]);
+                }
+                catch {
+                    Debug.Log("Unable to parse the - modifier for "+dmg);
+                    Debug.Log(parts);
+                }
+            }
+            for (int i = 0;i<nDice;i++) {
+                result += Random.Range(0,dice)+1;
+
+            }
+            result += modifier;
+            return Mathf.Max(result,0);
+        }
     }
 }
