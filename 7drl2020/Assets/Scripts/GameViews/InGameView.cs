@@ -259,10 +259,12 @@ namespace Verminator.GameViews
                     else if (creatureBlocking != player)
                     {
                         //gameManager.playerAnim.StartAttackAnimation();
-                        gameManager.Fight(player, creatureBlocking);
+                        if (gameManager.Fight(player, creatureBlocking)) {
+                            gameManager.AdvanceGameWorld(player.Speed);
+                            forcedCooldown = 1.0f; // Add a small delay to prevent too fast attack spam
+                        }
                         //gameManager.AdvanceTime(player.Speed);
-                        gameManager.AdvanceGameWorld(player.Speed);
-                        forcedCooldown = 1.0f; // Add a small delay to prevent too fast attack spam
+                        
                     }
                 }
             }
