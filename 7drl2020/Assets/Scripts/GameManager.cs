@@ -29,6 +29,8 @@ namespace Verminator
 
         public GameObject UIEquipSlots;
 
+        public int lastUsedSlot=0;
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
@@ -244,19 +246,61 @@ namespace Verminator
             }
         }
 
-        public void Fight(Creature attacker, Creature defender)
+        public bool Fight(Creature attacker, Creature defender)
         {
             if (attacker == null || defender == null)
             {
                 string msg = attacker == null ? "Attacker cannot be null. " : "";
                 msg += defender == null ? "Defender cannot be null." : "";
                 Debug.LogError(nameof(Fight) + ": " + msg);
-                return;
+                return false;
+            }
+
+
+            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
+            Data.ItemData weapon;
+            try {
+                weapon = attacker.Inventory[usedSlot].ItemData;
+            }
+            catch {
+                Debug.Log($"{attacker.Data.Name} has no weapon equiped at slot {usedSlot}");
+                return false;
+            }
+            int dist = (int)Vector2.Distance(attacker.Position,defender.Position);
+            if(dist<weapon.MinRange || dist>weapon.MaxRange) {
+                Debug.Log($"{attacker.Data.Name} can't attack at this distance");
+                return false;
             }
 
             Debug.Log($"{attacker.Data.Name} attacks {defender.Data.Name}");
 
-            // TODO: implement combat
+            bool hit;
+            if(weapon.Ammo!=null && weapon.Ammo != "") {
+                InventoryItem ammo = attacker.GetItemByName(weapon.Ammo);
+                if (ammo != null) {
+                    hit = UnityEngine.Random.Range(0,20)+1<=attacker.RangedSkill;
+                    attacker.RemoveItem(ammo,1);
+                }
+                else {
+                    Debug.Log($"{attacker.Data.Name} has no ammo {weapon.Ammo}");
+                    return false;
+                }
+                
+            }
+            else {
+                hit = UnityEngine.Random.Range(0,20)+1<=attacker.MeleeSkill;
+            }
+            if (hit) {
+                DamageType dmgType = weapon.DamageType;
+                int dmg = Utils.RollDice(weapon.Damage,true);
+                dmg = dmg*(1-defender.GetResistance(dmgType));
+                defender.Hp -= dmg;
+                Debug.Log($"{defender.Data.Name} takes {dmg} damage!");
+            }
+            else {
+                Debug.Log($"{attacker.Data.Name} misses!");
+            }
+            return true;
         }
 
         public void UpdateEquipSlotGraphics()
