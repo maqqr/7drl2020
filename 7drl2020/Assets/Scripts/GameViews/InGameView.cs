@@ -104,6 +104,10 @@ namespace Verminator.GameViews
                     {
                         gameManager.CurrentFloor.DestroyItem(item);
                         Debug.Log("Picked up: " + item.Data.Name);
+
+                        // Equip it instantly. This is only for debugging
+                        player.EquipSlots[0] = player.Inventory[0];
+                        gameManager.UpdateEquipSlotGraphics();
                     }
                     else
                     {

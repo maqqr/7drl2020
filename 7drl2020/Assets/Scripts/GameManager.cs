@@ -25,6 +25,8 @@ namespace Verminator
         public Vector2Int mouseTile;
         public bool mouseTileChanged;
 
+        public GameObject UIEquipSlots;
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
@@ -68,6 +70,10 @@ namespace Verminator
             // Spawn player to the current floor
             PlayerCreature = CurrentFloor.GetComponent<DungeonFloor>().SpawnCreature("player", Vector2Int.zero);
             PlayerCreature.gameObject.transform.parent = null;
+
+            Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
+
+            UpdateEquipSlotGraphics();
         }
 
         public void AddNewView(GameViews.IGameView view)
@@ -124,8 +130,10 @@ namespace Verminator
                     GameObject dungeonFloorObj = new GameObject("Floor" + currentFloorIndex);
                     createdDungeonFloor = dungeonFloorObj.AddComponent<DungeonFloor>();
 
+                    generator.Seed = 234121242;
                     generator.SectionContainer = dungeonFloorObj.transform;
                     generator.GenerateLevel();
+                    Debug.Log("Last seed: " + generator.Seed);
                     Destroy(generator.gameObject);
 
                     if (IsDungeonValid(createdDungeonFloor))
@@ -247,6 +255,26 @@ namespace Verminator
             Debug.Log($"{attacker.Data.Name} attacks {defender.Data.Name}");
 
             // TODO: implement combat
+        }
+
+        public void UpdateEquipSlotGraphics()
+        {
+            if (UIEquipSlots == null)
+            {
+                Debug.LogError("UIEquipSlots reference is missing");
+                return;
+            }
+
+            for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
+            {
+                var slot = UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>();
+                slot.SetNumber(i + 1);
+
+                if (i < PlayerCreature.EquipSlots.Length && PlayerCreature.EquipSlots[i] != null)
+                {
+                    slot.UpdateGraphic(PlayerCreature.EquipSlots[i]);
+                }
+            }
         }
 
         public void PreviousDungeonFloor()

@@ -19,7 +19,7 @@ namespace Verminator
         public int TimeElapsed; // Creature is updated once TimeElapsed >= Speed
 
         public Vector2Int Position; // Creature's position in tile coordinates
-        List<InventoryItem> Inventory = new List<InventoryItem>();
+        public List<InventoryItem> Inventory = new List<InventoryItem>();
 
         public InventoryItem[] EquipSlots = new InventoryItem[3]; // These are refereces to items in inventory
 
