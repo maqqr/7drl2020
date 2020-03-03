@@ -44,8 +44,21 @@
     },
 
     "creatures": {
-        "player":          { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
-        "testcreature":    { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] }
+        "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
+        "testcreature": { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 100, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] },
+
+        "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
+        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"] },
+        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 110, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
+        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 120, "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
+        "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 2,  "ranged": 10, "str": 2, "allowedtraits": ["test"] },
+        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 50,  "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"] },
+        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 70,  "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"] },
+        "magmarat":     { "name": "magmarat", "assetpath": "Creatures/MagmaRat",         "maxhp": 20, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
+        "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 90,  "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"] },
+        "airrat":       { "name": "airrat", "assetpath": "Creatures/AirRat",             "maxhp": 8,  "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
+        "waterrat":     { "name": "waterrat", "assetpath": "Creatures/WaterRat",         "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] }
+
     },
 
     "traits": {
