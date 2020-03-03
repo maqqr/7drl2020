@@ -4,13 +4,19 @@ using UnityEngine;
 
 namespace Verminator
 {
+    public enum DamageType
+    {
+        Slashing,
+        Blunt,
+        Piercing,
+        Magic
+    }
+
     public class Creature : MonoBehaviour
     {
         [HideInInspector] public Data.CreatureData Data; // Static creature data shared by all creature of this type
         public bool InSync => true;
         public int TimeElapsed; // Creature is updated once TimeElapsed >= Data.Speed
-
-        public int Speed => 1000;
 
         // Creature specific attributes:
         public Vector2Int Position; // Creature's position in tile coordinates
@@ -24,6 +30,26 @@ namespace Verminator
         float steps = 9999;
         float nSteps = 2000;
         float paraHeight = 0.387f;
+
+
+        public string Name => "Nameless";
+
+        public int Hp { get; set; }
+        public int Mp { get; set; }
+        public int MaxHp => Data.BaseMaxHp;
+        public int MaxMp => Data.BaseMaxMp;
+        public int Strength => Data.BaseStr;
+        public int Intelligence => Data.BaseInt;
+        public int MeleeSkill => Data.BaseMeleeSkill;
+        public int RangedSkill => Data.BaseRangedSkill;
+        public int AggroRange => Data.BaseAggroRange;
+
+        public int Speed => 1000;
+
+        public int GetResistance(DamageType damageType)
+        {
+            return 0;
+        }
 
         private void Start()
         {
@@ -94,7 +120,7 @@ namespace Verminator
 
         public bool AddItem(Item item) {
             // TODO: check if inventory is full or if the creature can hold the item
-            Inventory.Add(item);
+            //Inventory.Add(item);
             return true;
         }
     }

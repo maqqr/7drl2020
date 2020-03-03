@@ -8,12 +8,19 @@ namespace Verminator.Data
     public class TraitData
     {
         public string Name;
+        public int MaxHpBonus;
         public int StrBonus;
-        public int IntBonus;
+        public int MeleeBonus;
+        public int RangedBonus;
         public float ModelScaleMultiplier;
+        public int AggroRangeModifier;
+
+        public int SlashingResBonus;
+        public int BluntResBonus;
+        public int PiercingResBonus;
+        public int MagicResBonus;
 
         public string ModelAssetPath;
-        public GameObject ModelPrefab;
     }
 
     [System.Serializable]
