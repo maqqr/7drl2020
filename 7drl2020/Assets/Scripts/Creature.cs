@@ -15,7 +15,7 @@ namespace Verminator
         // Creature specific attributes:
         public Vector2Int Position; // Creature's position in tile coordinates
         // public int Hp;
-        //List<Item> Inventory;
+        List<Item> Inventory;
 
         // Jump variables:
         Vector2Int jumpFrom;
