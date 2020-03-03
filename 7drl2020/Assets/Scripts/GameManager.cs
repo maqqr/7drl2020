@@ -383,10 +383,15 @@ namespace Verminator
         public void AdvanceGameWorld(int deltaTime)
         {
             // Update all enemy creatures
+            List<Creature> dyingCritters = new List<Creature>();
             foreach (var creature in CurrentFloor.Creatures)
             {
                 if (creature == PlayerCreature)
                 {
+                    continue;
+                }
+                if (creature.Hp <=0) {
+                    dyingCritters.Add(creature);
                     continue;
                 }
 
@@ -397,6 +402,10 @@ namespace Verminator
                     creature.TimeElapsed -= creature.Speed;
                     creature.AIUpdate(this);
                 }
+            }
+            foreach (var creature in dyingCritters) {
+                Debug.Log($"{creature.Data.Name} dies!");
+                CurrentFloor.DestroyCreature(creature);
             }
 
             //AdjustNutrition(-1);
