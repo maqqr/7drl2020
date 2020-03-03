@@ -70,7 +70,7 @@ namespace Verminator
             }
             return false;
         }
-        public static int CalcDamage(string dmg) {
+        public static int RollDice(string dmg,bool pos) {
             int result = 0;
             string[] parts = dmg.Split('d');
             int nDice = 0;
@@ -123,7 +123,7 @@ namespace Verminator
 
             }
             result += modifier;
-            return Mathf.Max(result,0);
+            return pos ? Mathf.Max(result,0):result;
         }
     }
 }
