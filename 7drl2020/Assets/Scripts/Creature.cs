@@ -16,12 +16,12 @@ namespace Verminator
     {
         [HideInInspector] public Data.CreatureData Data; // Static creature data shared by all creature of this type
         public bool InSync => true;
-        public int TimeElapsed; // Creature is updated once TimeElapsed >= Data.Speed
+        public int TimeElapsed; // Creature is updated once TimeElapsed >= Speed
 
-        // Creature specific attributes:
         public Vector2Int Position; // Creature's position in tile coordinates
-        // public int Hp;
-        //List<Item> Inventory;
+        List<InventoryItem> Inventory = new List<InventoryItem>();
+
+        public InventoryItem[] EquipSlots = new InventoryItem[3]; // These are refereces to items in inventory
 
         // Jump variables:
         Vector2Int jumpFrom;
@@ -118,10 +118,32 @@ namespace Verminator
             }
         }
 
-        public bool AddItem(Item item) {
+        public bool AddItem(Data.ItemData newItem) {
+
             // TODO: check if inventory is full or if the creature can hold the item
-            //Inventory.Add(item);
+
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].ItemData.Id == newItem.Id)
+                {
+                    Inventory[i].Count++;
+                    return true;
+                }
+            }
+
+            Inventory.Add(new InventoryItem() { ItemData = newItem, Count = 1 });
+
             return true;
+        }
+
+        public void RemoveItem(InventoryItem item, int removeCount)
+        {
+            item.Count--;
+
+            if (item.Count == 0)
+            {
+                Inventory.Remove(item);
+            }
         }
     }
 }

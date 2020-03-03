@@ -54,7 +54,7 @@ namespace Verminator
 
             Creature creature = creatureObject.GetComponent<Creature>();
             creature.Data = data;
-            //creature.Hp = creature.MaxLife;
+            creature.Hp = creature.MaxHp;
             creature.Position = spawnCoordinate;
 
             Creatures.Add(creature);
@@ -74,7 +74,7 @@ namespace Verminator
 
         public Item SpawnItem(string id, Vector2Int spawnCoordinate) // item id is defined in json
         {
-            if (!Data.GameData.Instance.CreatureData.ContainsKey(id))
+            if (!Data.GameData.Instance.ItemData.ContainsKey(id))
             {
                 Debug.LogError($"{nameof(SpawnItem)}: Tried to spawn item with invalid id '{id}'");
                 return null;
@@ -94,7 +94,6 @@ namespace Verminator
 
             Item item = itemObject.GetComponent<Item>();
             item.Data = data;
-            //creature.Hp = creature.MaxLife;
             item.Position = spawnCoordinate;
 
             Items.Add(item);
@@ -114,7 +113,7 @@ namespace Verminator
 
         public Creature GetCreatureAt(Vector2Int position, bool includePlayer = true)
         {
-            foreach(var creature in Creatures)
+            foreach (var creature in Creatures)
             {
                 if (creature.Position == position)
                 {
@@ -130,8 +129,9 @@ namespace Verminator
             return null;
         }
 
-        public Item GetItemAt(Vector2Int position) {
-            foreach(var item in Items)
+        public Item GetItemAt(Vector2Int position)
+        {
+            foreach (var item in Items)
             {
                 if (item.Position == position)
                 {
@@ -139,6 +139,19 @@ namespace Verminator
                 }
             }
             return null;
+        }
+
+        public List<Item> GetItemsAt(Vector2Int position)
+        {
+            List<Item> result = new List<Item>();
+            foreach (var item in Items)
+            {
+                if (item.Position == position)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
         }
 
         public Tile GetTileAt(Vector2Int position)

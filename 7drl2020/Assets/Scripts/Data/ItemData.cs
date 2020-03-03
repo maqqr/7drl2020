@@ -7,19 +7,31 @@ namespace Verminator.Data
     [System.Serializable]
     public class ItemData
     {
+        public string Id;
         public string Name;
-        public int Weight;
-        public int MeleeDamage;
-        public int ThrowingDamage;
-        public int Defence;
         public string Description;
-        public string AssetPath;
-        public int Sanity;
-        public int Healing;
-        public int Experience;
-        public bool Breakable;
-        public int Poisoning;
+        public int Weight;
 
+        public int MinRange;
+        public int MaxRange;
+
+        public string Damage;
+        public string DamageType;
+
+        public bool IsEdible;
+        public int GainHealth;
+        public int GainMana;
+        public int GainSanity;
+
+        public string Ammo;
+
+        public string ArmorSlot;
+        public int SlashingRes;
+        public int BluntRes;
+        public int PiercingRes;
+        public int MagicRes;
+
+        public string AssetPath;
         public GameObject ItemPrefab;
     }
 }

@@ -143,10 +143,18 @@ namespace Verminator
 
                 // Dungeon was generated, spawn some monsters next
                 var enemySpawnPoints = CurrentFloor.gameObject.transform.GetComponentsInChildren<CreatureSpawnPoint>();
-                Debug.Log("Spawn point count: " + enemySpawnPoints.Length);
+                Debug.Log("Creature spawn point count: " + enemySpawnPoints.Length);
                 for (int i = 0; i < enemySpawnPoints.Length; i++)
                 {
                     SpawnCreatureAtSpawnPoint(enemySpawnPoints[i]);
+                }
+
+                // Spawn items in dungeon
+                var itemSpawnPoints = CurrentFloor.gameObject.transform.GetComponentsInChildren<ItemSpawnPoint>();
+                Debug.Log("Item spawn point count: " + itemSpawnPoints.Length);
+                for (int i = 0; i < itemSpawnPoints.Length; i++)
+                {
+                    SpawnItemAtSpawnPoint(itemSpawnPoints[i]);
                 }
             }
             else
@@ -205,6 +213,24 @@ namespace Verminator
             else
             {
                 CurrentFloor.SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
+            }
+        }
+
+        private void SpawnItemAtSpawnPoint(ItemSpawnPoint itemSpawnPoint)
+        {
+            if (!(UnityEngine.Random.Range(1, 101) <= itemSpawnPoint.SpawnChance))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(itemSpawnPoint.SpawnItem))
+            {
+                Debug.LogError("Trying to spawn empty item. Item spawn point is missing item name.");
+                return;
+            }
+            else
+            {
+                CurrentFloor.SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position));
             }
         }
 
@@ -281,7 +307,7 @@ namespace Verminator
                 }
 
                 creature.TimeElapsed += deltaTime;
-                
+
                 while (creature.TimeElapsed >= creature.Speed)
                 {
                     creature.TimeElapsed -= creature.Speed;
@@ -298,7 +324,7 @@ namespace Verminator
         private void Update()
         {
             Vector2Int tile = TileCoordinateUnderMouse();
-            mouseTileChanged = tile!=mouseTile;
+            mouseTileChanged = tile != mouseTile;
             mouseTile = tile;
 
             Vector3 unityCoordinate = new Vector3(tile.x + 0.5f, 0.0f, tile.y + 0.5f);

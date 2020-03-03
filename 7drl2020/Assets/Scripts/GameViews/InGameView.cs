@@ -59,23 +59,27 @@ namespace Verminator.GameViews
                 HandlePlayerInput();
             }
             DrawPath();
-            
+
 
             return false;
         }
 
-        private void DrawPath() {
+        private void DrawPath()
+        {
             Vector2Int? playerMoveTo = gameManager.TileCoordinateUnderMouse();
             var player = gameManager.PlayerCreature;
-            if (gameManager.CurrentFloor.IsWalkableFrom(player.Position,playerMoveTo.Value)) {
-                if(gameManager.mouseTileChanged) pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
-                for (int ind =0;ind<pathToPos.Count;ind++) {
-                    try { 
+            if (gameManager.CurrentFloor.IsWalkableFrom(player.Position, playerMoveTo.Value))
+            {
+                if (gameManager.mouseTileChanged) pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
+                for (int ind = 0; ind < pathToPos.Count; ind++)
+                {
+                    try
+                    {
                         Quaternion angle = new Quaternion();
-                        angle.SetLookRotation(new Vector3(pathToPos[ind].x,0,pathToPos[ind].y)-new Vector3(pathToPos[ind-1].x,0,pathToPos[ind-1].y));
-                        gameManager.DrawShoe(new Vector3(pathToPos[ind-1].x+0.5f,0,pathToPos[ind-1].y+0.5f), angle);
+                        angle.SetLookRotation(new Vector3(pathToPos[ind].x, 0, pathToPos[ind].y) - new Vector3(pathToPos[ind - 1].x, 0, pathToPos[ind - 1].y));
+                        gameManager.DrawShoe(new Vector3(pathToPos[ind - 1].x + 0.5f, 0, pathToPos[ind - 1].y + 0.5f), angle);
                     }
-                    catch {}
+                    catch { }
                 }
             }
         }
@@ -89,6 +93,24 @@ namespace Verminator.GameViews
             if (Input.GetMouseButtonDown(0))
             {
                 playerMoveTo = gameManager.TileCoordinateUnderMouse();
+            }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                var item = gameManager.CurrentFloor.GetItemAt(player.Position);
+                if (item != null)
+                {
+                    if (player.AddItem(item.Data))
+                    {
+                        gameManager.CurrentFloor.DestroyItem(item);
+                        Debug.Log("Picked up: " + item.Data.Name);
+                    }
+                    else
+                    {
+                        Debug.Log("Failed to pick up " + item.Data.Name);
+                    }
+                }
+
             }
 
             //if (Utils.IsDown(gameManager.keybindings.PeekLeft))
@@ -210,18 +232,25 @@ namespace Verminator.GameViews
                     if (creatureBlocking == null)
                     {
                         // Get the path to the desired location
-                        pathToPos = gameManager.CurrentFloor.FindPath(player.Position,playerMoveTo.Value);
-                        if (pathToPos != null) {
+                        pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
+                        if (pathToPos != null)
+                        {
                             //player.Position = pathToPos[0];
-                            if (player.Move(pathToPos[0])) {
-                                 pathToPos.RemoveAt(0);
-                                //gameManager.AdvanceTime(player.Speed);
-                                //gameManager.UpdatePlayerVisibility();
+                            if (player.Move(pathToPos[0]))
+                            {
+                                pathToPos.RemoveAt(0);
                                 gameManager.AdvanceGameWorld(player.Speed);
+
+                                // This is just for debugging:
+                                var item = gameManager.CurrentFloor.GetItemAt(player.Position);
+                                if (item != null)
+                                {
+                                    Debug.Log("Item under player: " + item.Data.Name);
+                                }
                             }
 
                         }
-                        
+
                     }
                     else if (creatureBlocking != player)
                     {

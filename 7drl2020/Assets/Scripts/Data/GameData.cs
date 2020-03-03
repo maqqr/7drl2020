@@ -35,19 +35,26 @@ namespace Verminator.Data
             {
                 gameData.ItemData.Add(item.Key, new ItemData()
                 {
+                    Id = item.Key,
                     Name = item.Value["name"],
+                    Description = item.Value["desc"],
                     AssetPath = item.Value["assetpath"],
                     Weight = item.Value["weight"].AsInt,
-                    MeleeDamage = item.Value["damM"].AsInt,
-                    ThrowingDamage = item.Value["damT"].AsInt,
-                    Defence = item.Value["def"].AsInt,
-                    Description = item.Value["desc"],
-                    ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"]),
-                    Sanity = item.Value["sanity"] != null ? item.Value["sanity"].AsInt : 0,
-                    Healing = item.Value["healing"] != null ? item.Value["healing"].AsInt : 0,
-                    Poisoning = item.Value["poisoning"] != null ? item.Value["poisoning"].AsInt : 0,
-                    Breakable = item.Value["breakable"] != null ? item.Value["breakable"].AsBool : false,
-                    Experience = item.Value["experience"] != null ? item.Value["experience"].AsInt : 0
+                    Damage = item.Value["dmg"] != null ? (string)item.Value["dmg"] : "1d1",
+                    DamageType = item.Value["dmgtype"] != null ? (string)item.Value["dmgtype"] : "blunt",
+                    Ammo = item.Value["ammo"] != null ? (string)item.Value["ammo"] : "",
+                    IsEdible = item.Value["edible"] != null ? item.Value["edible"].AsBool : false,
+                    MinRange = GetDefault(1, "minrange", item),
+                    MaxRange = GetDefault(2, "maxrange", item),
+                    GainHealth = GetDefault(0, "gainhp", item),
+                    GainMana = GetDefault(0, "gainmp", item),
+                    GainSanity = GetDefault(0, "gainsanity", item),
+                    SlashingRes = GetDefault(0, "slashingres", item),
+                    BluntRes = GetDefault(0, "bluntres", item),
+                    PiercingRes = GetDefault(0, "piercingres", item),
+                    MagicRes = GetDefault(0, "magicres", item),
+                    ArmorSlot = item.Value["armorslot"] != null ? (string)item.Value["armorslot"] : "",
+                    ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"])
                 });
             }
 

@@ -1,13 +1,25 @@
 {
     "items": {
-        "dagger" :              { "weight": 2, "damM": 2, "damT": 4, "def": 1, "name": "dagger", "assetpath": "Items/Dagger", "desc": "Watch your back." },
+        "testitem":             { "name": "Test item", "assetpath": "Item/TestItem", "weight": 1, "damage": "1d1", "minrange": 1, "maxrange": 2, "ammo": "", "fragile": false, "edible": false, "gainhp": 0, "gainmp": 0, "gainsanity": 0, "armorslot": "", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 0, "desc": "This is a test item." },
 
-        "longsword" :           { "weight": 6, "damM": 6, "damT": 2, "def": 1, "name": "longsword", "assetpath": "Items/Longsword", "desc": "I've seen longer ones." },
+        "apple": { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
+        "bread": { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
+        "cheese": { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
 
-        "bucket":               { "weight": 4, "damM": 1, "damT": 1, "def": 1, "name": "bucket", "assetpath": "Items/Bucket", "desc": "Lancelot's first shield. " },
+        "sword": { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
+        "mace": { "name": "mace", "assetpath": "Item/Mace", "weight": 10, "dmg": "1d6+1", "maxrange": 1, "desc": "A mace." },
+        "spear": { "name": "spear", "assetpath": "Item/Spear", "weight": 15, "dmg": "1d4+1", "dmgtype": "slashing", "desc": "A spear." },
 
-        "potionAcid":           { "weight": 1, "damM": 0, "damT": 8, "def": 0, "experience":10, "name": "potion of acid", "assetpath": "Items/PotionAcid", "desc": "Filled with acid. Not safe to drink.", "healing":-8, "breakable":true },    
-        "bluemushroom":         { "weight": 1, "damM": 0, "damT": 0, "def": 0, "healing": 1, "experience":3, "name": "blue mushroom", "assetpath": "Items/BlueMushroom", "desc": "Glowing mushroom.", "nutrition":5 }
+        "arrow": { "name": "arrow", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
+        "bolt": { "name": "bolt", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
+
+        "bow": { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
+        "crossbow": { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4", "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "dart": { "name": "dart", "assetpath": "Item/TestDart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
+
+        "helmet": { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
+        "ratscalp": { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "Large rat scalp." }
+
     },
 
     "creatures": {
