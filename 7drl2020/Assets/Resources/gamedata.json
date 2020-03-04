@@ -4,51 +4,59 @@
 
         "scroll":           { "name": "Magic scroll", "assetpath": "Item/Scroll", "weight": 1, "minrange": 1, "maxrange": 5, "effects": {"name":"Push"}, "desc": "Magic scroll." },
 
-        "apple":            { "name": "apple", "assetpath": "Item/Apple", "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
-        "bread":            { "name": "bread", "assetpath": "Item/Bread", "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
-        "cheese":           { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
-        "mugofbeer":        { "name": "mug of beer", "assetpath": "Item/MugOfBeer", "weight": 5, "maxrange": 5, "ammo": "mug of beer", "fragile": true, "edible": true, "gainmp": 30, "desc": "A mug of cheap beer." },
-        "flaskofspirits":   { "name": "flask of spirits", "assetpath": "Item/FlaskOfSpirits", "weight": 5, "maxrange": 5, "ammo": "flask of spirits", "fragile": true, "edible": true, "gainmp": 50, "desc": "A flask of spirits." },
-        "greenmushroom":    { "name": "greenmushroom", "assetpath": "Item/GreenMushroom", "weight": 2, "ammo": "greenmushroom", "fragile": true, "edible": true, "gainmp": 0, "gainsanity": -5, "desc": "A green mushroom." },
-        "blackmushroom":    { "name": "blackmushroom", "assetpath": "Item/BlackMushroom", "weight": 2, "ammo": "blackmushroom", "fragile": true, "edible": true, "gainmp": 20, "gainsanity": 5, "desc": "A black mushroom." },
+        "apple":            { "name": "apple", "assetpath": "Item/Apple",   "weight": 1, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 5, "desc": "An apple." },
+        "bread":            { "name": "bread", "assetpath": "Item/Bread",   "weight": 3, "maxrange": 5, "ammo": "apple", "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread." },
+        "cheese":           { "name": "cheese", "assetpath": "Item/Apple",  "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
+        "mugofbeer":        { "name": "mug of beer", "assetpath": "Item/MugOfBeer",             "weight": 5, "maxrange": 5, "ammo": "mug of beer", "fragile": true, "edible": true, "gainmp": 30, "desc": "A mug of cheap beer." },
+        "flaskofspirits":   { "name": "flask of spirits", "assetpath": "Item/FlaskOfSpirits",   "weight": 5, "maxrange": 5, "ammo": "flask of spirits", "fragile": true, "edible": true, "gainmp": 50, "desc": "A flask of spirits." },
+        "greenmushroom":    { "name": "greenmushroom", "assetpath": "Item/GreenMushroom",       "weight": 2, "ammo": "greenmushroom", "fragile": true, "edible": true, "gainmp": 0, "gainsanity": -5, "desc": "A green mushroom." },
+        "blackmushroom":    { "name": "blackmushroom", "assetpath": "Item/BlackMushroom",       "weight": 2, "ammo": "blackmushroom", "fragile": true, "edible": true, "gainmp": 20, "gainsanity": 5, "desc": "A black mushroom." },
 
         "oilflask": { "name": "oil flask", "assetpath": "Item/OilFlask", "weight": 1, "damage": "1d10+4", "ammo": "oilflask", "fragile": true, "edible": true, "gainhp": -10, "gainmp": -5, "gainsanity": -20, "desc": "Lamp oil" },
 
-        "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword", "weight": 6, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
-        "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
-        "mace":          { "name": "mace", "assetpath": "Item/Mace", "weight": 10, "dmg": "1d8+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A mace." },
-        "handaxe":       { "name": "handaxe", "assetpath": "Item/Handaxe", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A handaxe." },
-        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe", "weight": 15, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A pickaxe." },
-        "warhammer":     { "name": "warhammer", "assetpath": "Item/Warhmammer", "weight": 15, "dmg": "2d4+2", "dmgtype": "blunt", "maxrange": 1, "desc": "A warhammer." },
-        "spear":         { "name": "spear", "assetpath": "Item/Spear", "weight": 10, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A spear." },
-        "longspear":     { "name": "longspear", "assetpath": "Item/Longspear", "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing", "desc": "A longer version of spear." },
+        "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword",    "weight": 6, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
+        "sword":         { "name": "sword", "assetpath": "Item/Sword",              "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
+        "mace":          { "name": "mace", "assetpath": "Item/Mace",                "weight": 10, "dmg": "1d8+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A mace." },
+        "handaxe":       { "name": "handaxe", "assetpath": "Item/Handaxe",          "weight": 10, "dmg": "2d4+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A handaxe." },
+        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe",          "weight": 15, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A pickaxe." },
+        "warhammer":     { "name": "warhammer", "assetpath": "Item/Warhmammer",     "weight": 15, "dmg": "2d4+2", "dmgtype": "blunt", "maxrange": 1, "desc": "A warhammer." },
+        "spear":         { "name": "spear", "assetpath": "Item/Spear",              "weight": 10, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A spear." },
+        "longspear":     { "name": "longspear", "assetpath": "Item/Longspear",      "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing", "desc": "A longer version of spear." },
 
-        "arrow":         { "name": "arrow", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
-        "bolt":          { "name": "bolt", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
+        "arrow":         { "name": "arrow", "assetpath": "Item/Arrow",  "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
+        "bolt":          { "name": "bolt", "assetpath": "Item/Arrow",   "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
 
-        "bow":           { "name": "bow", "assetpath": "Item/Bow", "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
-        "crossbow":      { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 15, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
-        "dart":          { "name": "dart", "assetpath": "Item/Dart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
-        "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
+        "bow":           { "name": "bow", "assetpath": "Item/Bow",              "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
+        "crossbow":      { "name": "crossbow", "assetpath": "Item/Crossbow",    "weight": 15, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "dart":          { "name": "dart", "assetpath": "Item/Dart",            "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
+        "javelin":       { "name": "javelin", "assetpath": "Item/Javelin",      "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap", "weight": 4, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
-        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif", "weight": 4, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
-        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet", "weight": 5, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
+        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap",       "weight": 4, "armorslot": "head", "slashingres": 4, "bluntres": 4, "piercingres": 2, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
+        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif",         "weight": 4, "armorslot": "head", "slashingres": 6, "bluntres": 10, "piercingres": 3, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
+        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet",     "weight": 5, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
         "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 2, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
-        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 2, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp",            "weight": 2, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
-        "lamellararmour":           { "name": "lamellar armour", "assetpath": "Item/LamellarArmour", "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Armour consisting of hardened leather laced together." },
-        "studdedleatherarmour":     { "name": "studded leather armour", "assetpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
-        "chainmail":                { "name": "chainmail", "assetpath": "Item/Chainmail", "weight": 15, "armorslot": "body", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Armour made of small metal rings." },
-        "platemail":                { "name": "platemail", "assetpath": "Item/Platemail", "weight": 25, "armorslot": "body", "slashingres": 30, "bluntres": 15, "piercingres": 20, "magicres": 0, "desc": "Armour made of steel plates. I wonder who left it in the basement." },
+        "lamellararmour":           { "name": "lamellar armour", "assetpath": "Item/LamellarArmour",                "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 4, "magicres": 0, "desc": "Armour consisting of hardened leather pieces laced together." },
+        "studdedleatherarmour":     { "name": "studded leather armour", "assetpath": "Item/StuddedLeatherArmour",   "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 5, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
+        "chainmail":                { "name": "chainmail", "assetpath": "Item/Chainmail", "weight": 15, "armorslot": "body", "slashingres": 15, "bluntres": 30, "piercingres": 6, "magicres": 0, "desc": "Armour made of small metal rings." },
+        "platemail":                { "name": "platemail", "assetpath": "Item/Platemail", "weight": 25, "armorslot": "body", "slashingres": 30, "bluntres": 10, "piercingres": 20, "magicres": 0, "desc": "Armour made of steel plates. I wonder who left it in the basement." },
 
-        "leatherboots":             { "name": "leather boots", "assetpath": "Item/LeatherBoots", "weight": 4, "armorslot": "legs", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Pair of boots made of leather." },
-        "chainmailboots":           { "name": "chainmail boots", "assetpath": "Item/ChainmaliBoots", "weight": 5, "armorslot": "legs", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Pair of chainmail boots.." },
-        "platemailboots":           { "name": "platemail boots", "assetpath": "Item/PlatemailBoots", "weight": 7, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." },
+        "leatherboots":             { "name": "leather boots", "assetpath": "Item/LeatherBoots",        "weight": 4, "armorslot": "legs", "slashingres": 4, "bluntres": 4, "piercingres": 2, "magicres": 0, "desc": "Pair of boots made of leather." },
+        "chainmailboots":           { "name": "chainmail boots", "assetpath": "Item/ChainmaliBoots",    "weight": 5, "armorslot": "legs", "slashingres": 6, "bluntres": 10, "piercingres": 3, "magicres": 0, "desc": "Pair of leather boots with added chain protection." },
+        "platemailboots":           { "name": "platemail boots", "assetpath": "Item/PlatemailBoots",    "weight": 7, "armorslot": "legs", "slashingres": 12, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." },
 
-        "tail": { "name": "tail", "assetpath": "Item/Tail", "weight": 1, "dmg": "1d2+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A rats tail." },
-        "scratch": { "name": "scratch", "assetpath": "Item/Scratch", "weight": 1, "dmg": "1d4+2", "dmgtype": "slashing", "maxrange": 1, "desc": "A rats claws." },
-        "teeth": { "name": "teeth", "assetpath": "Item/Teeth", "weight": 1, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A rats teeth." }
+        "tail":             { "name": "tail", "assetpath": "Item/Tail",         "weight": 1, "dmg": "1d2+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A rats tail." },
+        "scratch":          { "name": "scratch", "assetpath": "Item/Scratch",   "weight": 1, "dmg": "1d4+2", "dmgtype": "slashing", "maxrange": 1, "desc": "A rats claws." },
+        "teeth":            { "name": "teeth", "assetpath": "Item/Teeth",       "weight": 1, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A rats teeth." },
+        "sonicblast":       { "name": "sonic blast", "assetpath": "Item/SonicBlast",            "weight": 1, "dmg": "1d2+2", "dmgtype": "magic", "maxrange": 1, "desc": "A loud sonic blast." },
+        "swarmofteeth":     { "name": "swarm of teeth", "assetpath": "Item/SwarmOfTeeth",       "weight": 1, "dmg": "10d2", "dmgtype": "piercing", "maxrange": 1, "desc": "A swarm of rats teeth." },
+        "swarmofclaws":     { "name": "swarm of claws", "assetpath": "Item/SwarmOfClaws",       "weight": 1, "dmg": "10d2", "dmgtype": "slashing", "maxrange": 1, "desc": "A swarm of rats claws." },
+        "sporeprojectile":  { "name": "spore projectile", "assetpath": "Item/SporeProjectile",  "weight": 1, "dmg": "1d8+1", "dmgtype": "magic", "minrange": 2, "maxrange": 4, "desc": "A poisonous spore projectile." },
+        "sporeblast":       { "name": "spore blast", "assetpath": "Item/SporeBlast",            "weight": 1, "dmg": "1d6", "dmgtype": "magic", "maxrange": 1, "desc": "A poisonous spore blast." },
+        "vinestrangle":     { "name": "vine strangle", "assetpath": "Item/VineStrangle",        "weight": 1, "dmg": "2d4", "dmgtype": "blunt", "maxrange": 1, "desc": "A vine rats strangle." },
+        "stonyfist":        { "name": "stony fist", "assetpath": "Item/StonyFist",              "weight": 1, "dmg": "2d4+6", "dmgtype": "blunt", "maxrange": 1, "desc": "A constructs stony fist." },
+        "bodyslam":         { "name": "body slam", "assetpath": "Item/BodySlam",                "weight": 1, "dmg": "1d8+6", "dmgtype": "blunt", "maxrange": 1, "desc": "A constructs stony fist." }
     },
 
     "creatures": {
@@ -57,12 +65,13 @@
         "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 120, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
 
         "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 120, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 110, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "sword", "mace", "tail", "scratch"] },
-        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 80,  "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 60,  "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 2,  "ranged": 10, "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 170, "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 150, "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 110, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "sword", "mace", "spear", "tail", "scratch"] },
+        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 80,  "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["swarmofteeth", "swarmofteeth", "swarmofclaws", "swarmofclaws"] },
+        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 60,  "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "sonicblast", "scratch"] }, 
+        "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 6,  "ranged": 10, "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "sporeprojectile", "sporeblast"] },
+        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 170, "melee": 8,  "ranged": 2,  "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "vinestrangle", "vinestrangle"] },
+        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 150, "melee": 4,  "ranged": 1,  "str": 6, "allowedtraits": ["test"], "weapons": ["stonyfist", "bodyslam", "scratch"] },
+        
         "magmarat":     { "name": "magmarat", "assetpath": "Creatures/MagmaRat",         "maxhp": 20, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 120, "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "airrat":       { "name": "airrat", "assetpath": "Creatures/AirRat",             "maxhp": 8,  "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
@@ -101,20 +110,75 @@
         "0":
             ["apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
             "oilflask", "oilflask", "oilflask",
-            "shortsword", "shortsword", "shortsword", "shortsword",
-            "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart",
+            "sword", "mace", "spear",
+            "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart",
+            "leathercap"
+            ],
+        "1":
+            ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
+            "oilflask", "oilflask",
+            "sword", "sword", "handaxe", "mace", "spear",
+            "arrow", "arrow", "arrow", "arrow", "arrow", "bolt", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "javelin",
+            "leathercap", "leathercap",
+            "leatherboots"
+            ],
+        "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "oilflask",
+            "sword", "handaxe", "mace", "mace", "spear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "dart", "dart", "dart", "javelin", "javelin",
+            "leathercap", "leathercap", "leathercap",
+            "lamellararmour",
+            "leatherboots", "leatherboots"
+            ],
+        "3":
+            ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "oilflask",
+            "sword", "handaxe", "mace", "spear", "spear",
+            "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "dart", "dart", "javelin", "javelin", "javelin",
             "leathercap", "leathercap", "leathercap", "leathercap",
-            "lamellararmour", "lamellararmour",
+            "lamellararmour","lamellararmour",
             "leatherboots", "leatherboots", "leatherboots"
             ],
-        "1": ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits"],
-        "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "3": ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "4": ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "5": ["apple", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "6": ["apple", "bread", "cheese", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "7": ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
-        "8": ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom", "greenmushroom", "blackmushroom"],
-        "9": ["greenmushroom", "blackmushroom", "greenmushroom", "blackmushroom"]
+        "4":
+            ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "sword", "handaxe", "handaxe", "mace", "spear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "javelin", "javelin", "javelin",
+            "chaincoif",
+            "lamellararmour"
+            ],
+        "5":
+            ["apple", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "sword", "handaxe", "mace", "spear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt","javelin", "javelin",
+            "chaincoif", "domedhelmet",
+            "chainmail",
+            "chainmailboots"
+            ],
+        "6":
+            ["apple", "bread", "cheese", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "pickaxe", "warhammer", "longspear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt",
+            "chaincoif", "chaincoif", "domedhelmet",
+            "chainmail", "chainmail",
+            "chainmailboots", "platemailboots"
+            ],
+        "7":
+            ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+            "pickaxe", "warhammer", "longspear",
+            "arrow", "arrow", "arrow", "bolt", "bolt",
+            "chaincoif", "chaincoif", "domedhelmet", "domedhelmet",
+            "chainmail", "chainmail", "platemail",
+            "chainmailboots", "chainmailboots", "platemailboots"
+            ],
+        "8":
+            ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "greenmushroom", "blackmushroom", "blackmushroom",
+            "pickaxe", "warhammer", "longspear",
+            "arrow", "arrow", "bolt",
+            "chaincoif", "domedhelmet",
+            "chainmail", "platemail",
+            "chainmailboots", "platemailboots"
+            ],
+        "9":
+            ["greenmushroom", "greenmushroom", "blackmushroom", "blackmushroom"]
     }
 }
