@@ -274,7 +274,7 @@ namespace Verminator.GameViews
                             var item = gameManager.CurrentFloor.GetItemAt(player.Position);
                             if (item != null)
                             {
-                                gameManager.MessageBuffer.AddMessage(Color.white, "You see here " + item.Data.Name);
+                                gameManager.MessageBuffer.AddMessage(Color.white, "You see " +Utils.GetIndefiniteArticle(item.Data.Name)+" "+ item.Data.Name+" here.");
                             }
                         }
 
