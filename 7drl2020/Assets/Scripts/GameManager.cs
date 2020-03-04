@@ -350,7 +350,7 @@ namespace Verminator
             }
             if (hit) {
                 DamageType dmgType = weapon.DamageType;
-                int dmg = Utils.RollDice(weapon.Damage,true);
+                int dmg = Utils.RollDice(weapon.Damage,true) +attacker.Strength;
                 dmg = dmg*(1-defender.GetResistance(dmgType));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} damage!");
