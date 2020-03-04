@@ -34,7 +34,7 @@ namespace Verminator
             // Clean up previous models
             for (int i = 0; i < GraphicsContainer.transform.childCount; i++)
             {
-                Destroy(GraphicsContainer.transform.GetChild(i));
+                Destroy(GraphicsContainer.transform.GetChild(i).gameObject);
             }
 
             // Create model

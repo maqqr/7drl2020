@@ -11,6 +11,8 @@ namespace Verminator.GameViews
 
         private List<GameObject> guiItems = new List<GameObject>();
 
+        private CharacterSheetUI sheetUI;
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -23,8 +25,10 @@ namespace Verminator.GameViews
         public void OpenView()
         {
             gameManager.inventoryCanvas.SetActive(true);
+            sheetUI = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>();
+            sheetUI.InteractionWindow.SetActive(false);
 
-            var itemListTransform = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>().ItemList.transform;
+            var itemListTransform = sheetUI.ItemList.transform;
             for (int i = 0; i < itemListTransform.childCount; i++)
             {
                 GameObject.Destroy(itemListTransform.GetChild(i).gameObject);
@@ -77,19 +81,31 @@ namespace Verminator.GameViews
 
                 obj.transform.SetParent(sheetUi.ItemList.transform);
                 obj.transform.localScale = Vector3.one;
-                obj.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+                obj.GetComponent<RectTransform>().localPosition = new Vector3(0, 30f * i, 0);
                 guiItems.Add(obj);
 
                 InventoryItem invItem = player.Inventory[i];
                 Data.ItemData item = invItem.ItemData;
 
-                obj.GetComponent<ItemLineUI>().ItemText.text = "- " + (invItem.Count > 1 ? "" + invItem.Count + "x " : "") + item.Name.ToLower();
+                var itemLineUi = obj.GetComponent<ItemLineUI>();
+                itemLineUi.ItemText.text = "- " + (invItem.Count > 1 ? "" + invItem.Count + "x " : "") + item.Name.ToLower();
 
-                obj.GetComponent<ItemLineUI>().OnClick += delegate (PointerEventData eventData)
+                int index = i;
+                itemLineUi.OnClick += delegate (PointerEventData eventData)
                 {
-
+                    OnItemClick(itemLineUi, index);
                 };
             }
+        }
+
+        private void OnItemClick(ItemLineUI itemLineUi, int index)
+        {
+            for (int i = 0; i < guiItems.Count; i++)
+            {
+                guiItems[i].GetComponent<ItemLineUI>().SetSelected(false);
+            }
+            itemLineUi.SetSelected(true);
+            sheetUI.InteractionWindow.SetActive(true);
         }
     }
 }
