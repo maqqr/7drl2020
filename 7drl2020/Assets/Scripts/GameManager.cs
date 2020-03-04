@@ -342,7 +342,7 @@ namespace Verminator
                     slot.SetColor(UnityEngine.Color.gray);
                 }
 
-                if (i < PlayerCreature.EquipSlots.Length && PlayerCreature.EquipSlots[i] != null)
+                if (i < PlayerCreature.EquipSlots.Length)
                 {
                     slot.UpdateGraphic(PlayerCreature.EquipSlots[i]);
                 }
