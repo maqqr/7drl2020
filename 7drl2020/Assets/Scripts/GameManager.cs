@@ -317,7 +317,7 @@ namespace Verminator
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
             Data.ItemData weapon;
             try {
-                weapon = attacker.Inventory[usedSlot].ItemData;
+                weapon = attacker.EquipSlots[usedSlot].ItemData;
             }
             catch {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot}");

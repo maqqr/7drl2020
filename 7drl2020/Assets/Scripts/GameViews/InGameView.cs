@@ -290,6 +290,11 @@ namespace Verminator.GameViews
                         player.Move(pathToPos[0], true);
                         gameManager.AdvanceGameWorld(player.Speed);
                     }
+                    else {
+                        // Failed the combat for some reason
+                        // Have a cooldown to block the message spam
+                        forcedCooldown = 0.5f;
+                    }
                     //gameManager.AdvanceTime(player.Speed);
                 }
 
