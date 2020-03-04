@@ -85,7 +85,7 @@ namespace Verminator
             }
         }
 
-        private void EquipSlotClicked(int index)
+        public void EquipSlotClicked(int index)
         {
             lastUsedSlot = index-1;
             for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
