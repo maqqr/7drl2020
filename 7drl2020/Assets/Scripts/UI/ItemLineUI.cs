@@ -10,6 +10,7 @@ namespace Verminator
         public GameObject Underline;
         public TMPro.TextMeshProUGUI ItemText;
 
+        private bool isSelected = false;
         public event System.Action<PointerEventData> OnClick;
 
         private void Start()
@@ -26,13 +27,22 @@ namespace Verminator
         public void OnPointerExit(PointerEventData eventData)
         {
             //Debug.Log("Mouse exit");
-            Underline.SetActive(false);
+            if (!isSelected)
+            {
+                Underline.SetActive(false);
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             //Debug.Log("Mouse click");
             OnClick?.Invoke(eventData);
+        }
+
+        public void SetSelected(bool isSelected)
+        {
+            this.isSelected = isSelected;
+            Underline.SetActive(isSelected);
         }
     }
 }
