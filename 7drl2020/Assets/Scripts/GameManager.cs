@@ -24,6 +24,8 @@ namespace Verminator
 
         public DungeonFloor CurrentFloor => currentFloorIndex >= 0 && currentFloorIndex < dungeonFloors.Count ? dungeonFloors[currentFloorIndex] : null;
 
+        public Spells Spell = new Spells();
+
         public Vector2Int mouseTile;
         public bool mouseTileChanged;
 
@@ -70,6 +72,7 @@ namespace Verminator
 
             NextDungeonFloor();
             AddNewView(new GameViews.InGameView());
+            Spell.setGameManager(this);
 
             // Spawn player to the current floor
             PlayerCreature = CurrentFloor.GetComponent<DungeonFloor>().SpawnCreature("player", Vector2Int.zero);
@@ -294,6 +297,7 @@ namespace Verminator
 
             Debug.Log($"{attacker.Data.Name} attacks {defender.Data.Name}");
 
+            // TODO: Check for spell usage
             bool hit;
             if(weapon.Ammo!=null && weapon.Ammo != "") {
                 InventoryItem ammo = attacker.GetItemByName(weapon.Ammo);
