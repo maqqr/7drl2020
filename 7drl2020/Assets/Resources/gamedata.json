@@ -12,7 +12,7 @@
         "greenmushroom":    { "name": "greenmushroom", "assetpath": "Item/GreenMushroom", "weight": 2, "ammo": "greenmushroom", "fragile": true, "edible": true, "gainmp": 0, "gainsanity": -5, "desc": "A green mushroom." },
         "blackmushroom":    { "name": "blackmushroom", "assetpath": "Item/BlackMushroom", "weight": 2, "ammo": "blackmushroom", "fragile": true, "edible": true, "gainmp": 20, "gainsanity": 5, "desc": "A black mushroom." },
 
-        "oilflask": { "name": "oil flask", "assetpath": "Item/OilFlask", "weight": 1, "damage": "1d10+4", "minrange": 1, "maxrange": 2, "ammo": "oilflask", "fragile": true, "edible": true, "gainhp": -10, "gainmp": -5, "gainsanity": -20, "desc": "Lamp oil" },
+        "oilflask": { "name": "oil flask", "assetpath": "Item/OilFlask", "weight": 1, "damage": "1d10+4", "ammo": "oilflask", "fragile": true, "edible": true, "gainhp": -10, "gainmp": -5, "gainsanity": -20, "desc": "Lamp oil" },
 
         "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword", "weight": 6, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
         "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
@@ -31,11 +31,11 @@
         "dart":          { "name": "dart", "assetpath": "Item/Dart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
         "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap", "weight": 3, "maxrange": 1, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
-        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif", "weight": 5, "maxrange": 1, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
-        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
-        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 1, "maxrange": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
-        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 3, "maxrange": 1, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
+        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap", "weight": 3, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
+        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif", "weight": 5, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
+        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
+        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 3, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
         "lamellararmour":           { "name": "lamellar armour", "assetpath": "Item/LamellarArmour", "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Armour consisting of hardened leather laced together." },
         "studdedleatherarmour":     { "name": "studded leather armour", "assetpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
@@ -51,7 +51,8 @@
 
     "creatures": {
         "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
-        "testcreature": { "name": "TestCreature", "assetpath": "Creatures/TestCreature", "maxhp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "allowedtraits": ["test"] },
+
+        "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 80, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"] },
 
         "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
         "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"] },
