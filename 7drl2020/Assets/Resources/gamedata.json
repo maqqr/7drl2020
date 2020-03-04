@@ -46,25 +46,27 @@
         "chainmailboots":           { "name": "chainmail boots", "assetpath": "Item/ChainmaliBoots", "weight": 5, "armorslot": "legs", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Pair of chainmail boots.." },
         "platemailboots":           { "name": "platemail boots", "assetpath": "Item/PlatemailBoots", "weight": 7, "armorslot": "legs", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pair of platemail boots. This should keep my feet protected." },
 
-        "tail": { "name": "tail", "assetpath": "Item/Tail", "weight": 1, "dmg": "1d2+1", "dmgtype": "slashing", "maxrange": 1, "ammo": "", "desc": "A rats tail." }
+        "tail": { "name": "tail", "assetpath": "Item/Tail", "weight": 1, "dmg": "1d2+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A rats tail." },
+        "scratch": { "name": "scratch", "assetpath": "Item/Scratch", "weight": 1, "dmg": "1d4+2", "dmgtype": "slashing", "maxrange": 1, "desc": "A rats claws." },
+        "teeth": { "name": "teeth", "assetpath": "Item/Teeth", "weight": 1, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A rats teeth." }
     },
 
     "creatures": {
         "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
 
-        "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 80, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"] },
+        "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 80, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
 
-        "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
-        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"] },
-        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 110, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
-        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 120, "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
-        "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 2,  "ranged": 10, "str": 2, "allowedtraits": ["test"] },
-        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 50,  "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"] },
-        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 70,  "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"] },
-        "magmarat":     { "name": "magmarat", "assetpath": "Creatures/MagmaRat",         "maxhp": 20, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"] },
-        "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 90,  "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"] },
-        "airrat":       { "name": "airrat", "assetpath": "Creatures/AirRat",             "maxhp": 8,  "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] },
-        "waterrat":     { "name": "waterrat", "assetpath": "Creatures/WaterRat",         "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"] }
+        "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "sword", "mace", "tail", "scratch"] },
+        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 110, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 120, "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 2,  "ranged": 10, "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 50,  "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 70,  "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "magmarat":     { "name": "magmarat", "assetpath": "Creatures/MagmaRat",         "maxhp": 20, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 90,  "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "airrat":       { "name": "airrat", "assetpath": "Creatures/AirRat",             "maxhp": 8,  "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "waterrat":     { "name": "waterrat", "assetpath": "Creatures/WaterRat",         "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] }
 
     },
 
