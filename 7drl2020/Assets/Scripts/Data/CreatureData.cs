@@ -37,6 +37,7 @@ namespace Verminator.Data
         public int BaseAggroRange;
 
         public string[] AllowedTraits;
+        public string[] WeaponList;
 
         public string AssetPath;
         public GameObject CreaturePrefab;

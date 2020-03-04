@@ -76,9 +76,21 @@ namespace Verminator.GameViews
             //Debug.Log($"Destroyed {guiItems.Count} gui lines");
             guiItems.Clear();
 
-            var player = gameManager.PlayerCreature;
 
+            var player = gameManager.PlayerCreature;
             var sheetUi = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>();
+
+            bool IsEquipped(InventoryItem item)
+            {
+                for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+                {
+                    if (player.EquipSlots[i] == item)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
 
             // Instantiate items in inventory
             for (int i = 0; i < player.Inventory.Count; i++)
@@ -95,6 +107,11 @@ namespace Verminator.GameViews
 
                 var itemLineUi = obj.GetComponent<ItemLineUI>();
                 itemLineUi.ItemText.text = "- " + (invItem.Count > 1 ? "" + invItem.Count + "x " : "") + item.Name.ToLower();
+
+                if (IsEquipped(invItem))
+                {
+                    itemLineUi.ItemText.text += " [e]";
+                }
 
                 int index = i;
                 itemLineUi.OnClick += delegate (PointerEventData eventData)
@@ -136,7 +153,10 @@ namespace Verminator.GameViews
             gameManager.PlayerCreature.EquipSlots[gameManager.lastUsedSlot] = invItem;
             gameManager.UpdateEquipSlotGraphics();
             UnselectAll();
+            RefreshView();
             sheetUI.InteractionWindow.SetActive(false);
+
+            gameManager.MessageBuffer.AddMessage(Color.white, "You equip the " + invItem.ItemData.Name);
         }
 
         private void OnDropClicked(PointerEventData eventData)
@@ -158,6 +178,8 @@ namespace Verminator.GameViews
             sheetUI.InteractionWindow.SetActive(false);
             UnselectAll();
             RefreshView();
+
+            gameManager.MessageBuffer.AddMessage(Color.white, "You drop the " + invItem.ItemData.Name);
         }
 
         private void OnEatClicked(PointerEventData eventData)

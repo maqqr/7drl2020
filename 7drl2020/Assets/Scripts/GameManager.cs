@@ -162,7 +162,7 @@ namespace Verminator
                     GameObject dungeonFloorObj = new GameObject("Floor" + currentFloorIndex);
                     createdDungeonFloor = dungeonFloorObj.AddComponent<DungeonFloor>();
 
-                    generator.Seed = 234121242;
+                    //generator.Seed = 234121242;
                     generator.SectionContainer = dungeonFloorObj.transform;
                     generator.GenerateLevel();
                     Debug.Log("Last seed: " + generator.Seed);

@@ -85,6 +85,15 @@ namespace Verminator.Data
                     }
                 }
                 creData.AllowedTraits = allowedTraits.ToArray();
+                List<string> weaponList = new List<string>();
+                if (cre.Value["weapons"])
+                {
+                    foreach (var key in cre.Value["weapons"])
+                    {
+                        weaponList.Add(key.Value);
+                    }
+                }
+                creData.WeaponList = weaponList.ToArray();
                 gameData.CreatureData.Add(cre.Key, creData);
             }
 
