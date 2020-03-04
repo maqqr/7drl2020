@@ -15,11 +15,11 @@
         "oilflask": { "name": "oil flask", "assetpath": "Item/OilFlask", "weight": 1, "damage": "1d10+4", "ammo": "oilflask", "fragile": true, "edible": true, "gainhp": -10, "gainmp": -5, "gainsanity": -20, "desc": "Lamp oil" },
 
         "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword", "weight": 6,  "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "Your old and trusty shortsword." },
-        "sword":         { "name": "sword", "assetpath": "Item/Sword",           "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sharp and useful blade to cutting up vermin and bandits alike." },
-        "mace":          { "name": "mace", "assetpath": "Item/Mace",             "weight": 10, "dmg": "1d8+1", "dmgtype": "blunt",    "maxrange": 1, "desc": "A blunt force can kill pests as good as any bladed weapon." },
+        "sword":         { "name": "sword", "assetpath": "Item/Sword",           "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sharp and useful blade for cutting up vermin and bandits alike." },
+        "mace":          { "name": "mace", "assetpath": "Item/Mace",             "weight": 10, "dmg": "1d8+1", "dmgtype": "blunt",    "maxrange": 1, "desc": "Blunt force can kill pests as well as any bladed weapon." },
         "handaxe":       { "name": "handaxe", "assetpath": "Item/Handaxe",       "weight": 10, "dmg": "2d4+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A good axe will chop down rats like firewood." },
-        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe",       "weight": 15, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A heavy-duty miningtool, which can be used to cave in rat skulls." },
-        "warhammer":     { "name": "warhammer", "assetpath": "Item/Warhmammer",  "weight": 15, "dmg": "2d4+2", "dmgtype": "blunt",    "maxrange": 1, "desc": "A weapon of war, useful when smashing up vermin regardless" },
+        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe",       "weight": 15, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A heavy-duty mining tool which can be used to dig through rat skulls." },
+        "warhammer":     { "name": "warhammer", "assetpath": "Item/Warhmammer",  "weight": 15, "dmg": "2d4+2", "dmgtype": "blunt",    "maxrange": 1, "desc": "A weapon of war, useful when smashing up vermin." },
         "spear":         { "name": "spear", "assetpath": "Item/Spear",           "weight": 10, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A spear." },
         "longspear":     { "name": "longspear", "assetpath": "Item/Longspear",   "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing",                "desc": "A long spear for impaling adversaries from a reach of few feet." },
 
@@ -34,7 +34,7 @@
         "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap",       "weight": 4, "armorslot": "head", "slashingres": 4, "bluntres": 4, "piercingres": 2, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
         "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif",         "weight": 4, "armorslot": "head", "slashingres": 6, "bluntres": 10, "piercingres": 3, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
         "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet",     "weight": 5, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
-        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 2, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
+        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 2, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects the wearer from magical damage." },
         "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp",            "weight": 2, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
         "lamellararmour":           { "name": "lamellar armour", "assetpath": "Item/LamellarArmour",                "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 4, "magicres": 0, "desc": "Armour consisting of hardened leather pieces laced together." },
