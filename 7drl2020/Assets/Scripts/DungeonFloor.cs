@@ -16,6 +16,7 @@ namespace Verminator
         private Pathfinding.DungeonGrid pathfindingGrid;
         private Graph graph = new Graph();
         Dictionary<Vector2Int, Node> cache = new Dictionary<Vector2Int, Node>();
+        HashSet<Vector2Int> blockedPositions = new HashSet<Vector2Int>();
 
         public bool IsInitialized { get; private set; }
 
@@ -31,6 +32,11 @@ namespace Verminator
                     Debug.LogError("Two tiles share the same position!");
                 }
                 Tiles.Add(position, tile);
+            }
+
+            foreach (var obj in GetComponentsInChildren<MovementBlocker>())
+            {
+                blockedPositions.Add(Utils.ConvertToTileCoord(obj.transform.position));
             }
 
             UpdatePathfindingGrid();
@@ -219,11 +225,6 @@ namespace Verminator
             }
         }
 
-        public bool IsWalkable(Vector2Int pos)
-        {
-            return true;
-        }
-
         private void CalculateBounds()
         {
             foreach (var key in Tiles.Keys)
@@ -303,6 +304,10 @@ namespace Verminator
                 return false;
             }
 
+            if (blockedPositions.Contains(to))
+            {
+                return false;
+            }
 
             var targetTile = Tiles[to];
             return targetTile.IsWalkable;
