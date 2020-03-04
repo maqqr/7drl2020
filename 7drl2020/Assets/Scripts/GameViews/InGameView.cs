@@ -129,6 +129,21 @@ namespace Verminator.GameViews
                 gameManager.AddNewView(new CharacterSheetView());
             }
 
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                gameManager.EquipSlotClicked(1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                gameManager.EquipSlotClicked(2);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                gameManager.EquipSlotClicked(3);
+            }
+
+
             //if (Utils.IsDown(gameManager.keybindings.PeekLeft))
             //{
             //    gameManager.playerAnim.Peek = -1;
