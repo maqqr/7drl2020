@@ -64,9 +64,8 @@ namespace Verminator
             if (steps < nSteps)
             {
                 if(steps/nSteps>=0.5 && Attacking) {
-                    jumpTo = jumpFrom;
-                    jumpFrom = Position;
-                    Position = jumpTo;
+                    jumpFrom = jumpTo;
+                    jumpTo = Position;
                     Attacking = false;
                 }
                 float xzDist = Vector2.Distance(new Vector2(jumpFrom.x, jumpFrom.y), new Vector2(jumpTo.x, jumpTo.y));
@@ -85,7 +84,7 @@ namespace Verminator
             }
         }
 
-        public bool Move(Vector2Int to)
+        public bool Move(Vector2Int to, bool attackMove = false)
         {
             if (Position != to)
             {
@@ -111,7 +110,7 @@ namespace Verminator
                 jumpTo = to;
                 steps = 0;
 
-                Position = to;
+                if (!attackMove) Position = to;
                 OnMove = true;
                 return true;
             }
@@ -133,7 +132,7 @@ namespace Verminator
                 else if(creatureBlocking == gameManager.PlayerCreature) {
                     Attacking = true;
                     gameManager.Fight(this,gameManager.PlayerCreature);
-                    Move(newPosition);
+                    Move(newPosition, true);
                 }
                 
                 //Position = newPosition;

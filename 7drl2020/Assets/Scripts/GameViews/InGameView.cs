@@ -272,7 +272,7 @@ namespace Verminator.GameViews
                         //gameManager.playerAnim.StartAttackAnimation();
                         if (gameManager.Fight(player, creatureBlocking)) { // TODO: Check for bugs related to pathToPos list
                             player.Attacking = true;
-                            if (player.Move(pathToPos[0])) pathToPos.RemoveAt(0);
+                            player.Move(pathToPos[0],true);
                             gameManager.AdvanceGameWorld(player.Speed);
                         }
                         //gameManager.AdvanceTime(player.Speed);
