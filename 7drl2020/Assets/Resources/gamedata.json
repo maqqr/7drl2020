@@ -18,28 +18,28 @@
         "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
         "mace":          { "name": "mace", "assetpath": "Item/Mace", "weight": 10, "dmg": "1d8+1", "dmgtype": "blunt", "maxrange": 1, "desc": "A mace." },
         "handaxe":       { "name": "handaxe", "assetpath": "Item/Handaxe", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A handaxe." },
-        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe", "weight": 12, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A pickaxe." },
+        "pickaxe":       { "name": "pickaxe", "assetpath": "Item/Pickaxe", "weight": 15, "dmg": "1d8+2", "dmgtype": "piercing", "maxrange": 1, "desc": "A pickaxe." },
         "warhammer":     { "name": "warhammer", "assetpath": "Item/Warhmammer", "weight": 15, "dmg": "2d4+2", "dmgtype": "blunt", "maxrange": 1, "desc": "A warhammer." },
         "spear":         { "name": "spear", "assetpath": "Item/Spear", "weight": 10, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A spear." },
-        "longspear":     { "name": "longspear", "assetpath": "Item/Longspear", "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 2, "desc": "A longer version of spear." },
+        "longspear":     { "name": "longspear", "assetpath": "Item/Longspear", "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing", "desc": "A longer version of spear." },
 
         "arrow":         { "name": "arrow", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
         "bolt":          { "name": "bolt", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
 
         "bow":           { "name": "bow", "assetpath": "Item/Bow", "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
-        "crossbow":      { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 20, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "crossbow":      { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 15, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
         "dart":          { "name": "dart", "assetpath": "Item/Dart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
         "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap", "weight": 3, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
-        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif", "weight": 5, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
-        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet", "weight": 4, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
-        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
-        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 3, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
+        "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap", "weight": 4, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
+        "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif", "weight": 4, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
+        "domedhelmet":   { "name": "domed helmet", "assetpath": "Item/DomedHelmet", "weight": 5, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
+        "antimagicward": { "name": "antimagic ward", "assetpath": "Item/AntimagicWard", "weight": 2, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 2, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
         "lamellararmour":           { "name": "lamellar armour", "assetpath": "Item/LamellarArmour", "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Armour consisting of hardened leather laced together." },
         "studdedleatherarmour":     { "name": "studded leather armour", "assetpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
-        "chainmail":                { "name": "chainmail", "assetpath": "Item/Chainmail", "weight": 12, "armorslot": "body", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Armour made of small metal rings." },
+        "chainmail":                { "name": "chainmail", "assetpath": "Item/Chainmail", "weight": 15, "armorslot": "body", "slashingres": 15, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Armour made of small metal rings." },
         "platemail":                { "name": "platemail", "assetpath": "Item/Platemail", "weight": 25, "armorslot": "body", "slashingres": 30, "bluntres": 15, "piercingres": 20, "magicres": 0, "desc": "Armour made of steel plates. I wonder who left it in the basement." },
 
         "leatherboots":             { "name": "leather boots", "assetpath": "Item/LeatherBoots", "weight": 4, "armorslot": "legs", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Pair of boots made of leather." },
@@ -54,20 +54,19 @@
     "creatures": {
         "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
 
-        "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 80, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 120, "melee": 12, "ranged": 12, "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
 
-        "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 100, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "sword", "mace", "tail", "scratch"] },
-        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 110, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 120, "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "rat":          { "name": "rat", "assetpath": "Creatures/Rat",                   "maxhp": 10, "speed": 120, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratman":       { "name": "ratman", "assetpath": "Creatures/RatMan",             "maxhp": 20, "speed": 110, "melee": 10, "ranged": 10, "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "sword", "mace", "tail", "scratch"] },
+        "swarm":        { "name": "swarm", "assetpath": "Creatures/Swarm",               "maxhp": 20, "speed": 80,  "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "batrat":       { "name": "batrat", "assetpath": "Creatures/Batrat",             "maxhp": 10, "speed": 60,  "melee": 6,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "shroomrat":    { "name": "shroomrat", "assetpath": "Creatures/Shroomrat",       "maxhp": 15, "speed": 100, "melee": 2,  "ranged": 10, "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 50,  "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 70,  "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratvine":      { "name": "ratvine", "assetpath": "Creatures/Ratvine",           "maxhp": 25, "speed": 170, "melee": 6,  "ranged": 2,  "str": 3, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "ratconstruct": { "name": "ratconstruct", "assetpath": "Creatures/RatConstruct", "maxhp": 35, "speed": 150, "melee": 3,  "ranged": 1,  "str": 6, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "magmarat":     { "name": "magmarat", "assetpath": "Creatures/MagmaRat",         "maxhp": 20, "speed": 100, "melee": 4,  "ranged": 4,  "str": 2, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
-        "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 90,  "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
+        "earthrat":     { "name": "earthrat", "assetpath": "Creatures/EarthRat",         "maxhp": 25, "speed": 120, "melee": 4,  "ranged": 4,  "str": 4, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "airrat":       { "name": "airrat", "assetpath": "Creatures/AirRat",             "maxhp": 8,  "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] },
         "waterrat":     { "name": "waterrat", "assetpath": "Creatures/WaterRat",         "maxhp": 10, "speed": 100, "melee": 4,  "ranged": 4,  "str": 1, "allowedtraits": ["test"], "weapons": ["teeth", "tail", "scratch"] }
-
     },
 
     "traits": {
@@ -92,10 +91,10 @@
         "3": ["rat", "rat", "ratman", "swarm", "swarm", "batrat", "batrat"],
         "4": ["rat", "rat", "ratman", "swarm", "batrat", "shroomrat"],
         "5": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine"],
-        "6": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "magmarat", "earthrat", "airrat", "waterrat"],
-        "7": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"],
-        "8": ["rat", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "ratconstruct", "ratconstruct", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"],
-        "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"]
+        "6": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine"],
+        "7": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct"],
+        "8": ["rat", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "ratconstruct", "ratconstruct", "ratconstruct"],
+        "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct"]
     },
 
     "itemspawnlist": {
