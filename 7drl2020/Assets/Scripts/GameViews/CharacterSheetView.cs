@@ -13,6 +13,8 @@ namespace Verminator.GameViews
 
         private CharacterSheetUI sheetUI;
 
+        private int selectedIndex = 0;
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -33,6 +35,10 @@ namespace Verminator.GameViews
             {
                 GameObject.Destroy(itemListTransform.GetChild(i).gameObject);
             }
+
+            sheetUI.Equip.OnClick = OnEquipClicked;
+            sheetUI.Drop.OnClick = OnDropClicked;
+            sheetUI.Eat.OnClick = OnEatClicked;
 
             RefreshView();
         }
@@ -81,7 +87,7 @@ namespace Verminator.GameViews
 
                 obj.transform.SetParent(sheetUi.ItemList.transform);
                 obj.transform.localScale = Vector3.one;
-                obj.GetComponent<RectTransform>().localPosition = new Vector3(0, 30f * i, 0);
+                obj.GetComponent<RectTransform>().localPosition = new Vector3(0, -30f * i, 0);
                 guiItems.Add(obj);
 
                 InventoryItem invItem = player.Inventory[i];
@@ -93,19 +99,70 @@ namespace Verminator.GameViews
                 int index = i;
                 itemLineUi.OnClick += delegate (PointerEventData eventData)
                 {
-                    OnItemClick(itemLineUi, index);
+                    OnItemClicked(itemLineUi, index);
                 };
             }
         }
 
-        private void OnItemClick(ItemLineUI itemLineUi, int index)
+        private void UnselectAll()
         {
             for (int i = 0; i < guiItems.Count; i++)
             {
                 guiItems[i].GetComponent<ItemLineUI>().SetSelected(false);
             }
+        }
+
+        private void OnItemClicked(ItemLineUI itemLineUi, int index)
+        {
+            UnselectAll();
             itemLineUi.SetSelected(true);
             sheetUI.InteractionWindow.SetActive(true);
+            selectedIndex = index;
+        }
+
+        private void OnEquipClicked(PointerEventData eventData)
+        {
+            var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
+
+            // Make sure same item is not equipped to multiple slots by unequipping first
+            for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+            {
+                if (gameManager.PlayerCreature.EquipSlots[i] == invItem)
+                {
+                    gameManager.PlayerCreature.EquipSlots[i] = null;
+                }
+            }
+
+            gameManager.PlayerCreature.EquipSlots[gameManager.lastUsedSlot] = invItem;
+            gameManager.UpdateEquipSlotGraphics();
+            UnselectAll();
+            sheetUI.InteractionWindow.SetActive(false);
+        }
+
+        private void OnDropClicked(PointerEventData eventData)
+        {
+            var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
+            gameManager.PlayerCreature.RemoveItem(invItem, 1);
+            gameManager.CurrentFloor.SpawnItem(invItem.ItemData.Id, gameManager.PlayerCreature.Position);
+
+            // Unequip dropped item
+            for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+            {
+                if (gameManager.PlayerCreature.EquipSlots[i] == invItem)
+                {
+                    gameManager.PlayerCreature.EquipSlots[i] = null;
+                    gameManager.UpdateEquipSlotGraphics();
+                }
+            }
+
+            sheetUI.InteractionWindow.SetActive(false);
+            UnselectAll();
+            RefreshView();
+        }
+
+        private void OnEatClicked(PointerEventData eventData)
+        {
+
         }
     }
 }

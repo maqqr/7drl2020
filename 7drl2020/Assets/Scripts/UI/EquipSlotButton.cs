@@ -37,13 +37,17 @@ namespace Verminator
                 Destroy(GraphicsContainer.transform.GetChild(i).gameObject);
             }
 
-            // Create model
-            var obj = Instantiate(item.ItemData.ItemPrefab, GraphicsContainer.transform);
-
-            foreach (var renderer in obj.GetComponentsInChildren<MeshRenderer>())
+            if (item != null)
             {
-                renderer.gameObject.layer = LayerMask.NameToLayer("UI");
+                // Create model
+                var obj = Instantiate(item.ItemData.ItemPrefab, GraphicsContainer.transform);
+
+                foreach (var renderer in obj.GetComponentsInChildren<MeshRenderer>())
+                {
+                    renderer.gameObject.layer = LayerMask.NameToLayer("UI");
+                }
             }
+
         }
 
         public void SetColor(Color color)
