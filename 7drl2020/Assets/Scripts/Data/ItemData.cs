@@ -32,6 +32,9 @@ namespace Verminator.Data
         public int PiercingRes;
         public int MagicRes;
 
+        public int ManaCost;
+        public List<string> Effects;
+
         public string AssetPath;
         public GameObject ItemPrefab;
     }
