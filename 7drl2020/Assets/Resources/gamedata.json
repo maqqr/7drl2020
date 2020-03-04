@@ -29,7 +29,6 @@
         "dart":          { "name": "dart", "assetpath": "Item/Dart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
         "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "helmet":        { "name": "helmet", "assetpath": "Item/Helmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
         "leathercap":    { "name": "leather cap", "assethpath": "Item/LeatherCap", "weight": 3, "maxrange": 1, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
         "chaincoif":     { "name": "chain coif", "assethpath": "Item/ChainCoif", "weight": 5, "maxrange": 1, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
         "domedhelmet":   { "name": "domed helmet", "assethpath": "Item/DomedHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
@@ -95,15 +94,22 @@
     },
 
     "itemspawnlist": {
-        "0": ["dagger", "bucket", "bluemushroom"],
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": []
+        "0":
+            ["apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
+            "shortsword", "shortsword", "shortsword", "shortsword",
+            "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart" "dart", "dart", "dart",
+            "leathercap", "leathercap", "leathercap", "leathercap",
+            "lamellararmour", "lamellararmour",
+            "leatherboots", "leatherboots", "leatherboots"
+            ],
+        "1": ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits"],
+        "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "3": ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "4": ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "5": ["apple", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "6": ["apple", "bread", "cheese", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "7": ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom"],
+        "8": ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom", "greenmushroom", "blackmushroom"],
+        "9": ["greenmushroom", "blackmushroom", "greenmushroom", "blackmushroom"]
     }
 }
