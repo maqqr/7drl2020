@@ -239,6 +239,11 @@ namespace Verminator
 
             //return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
 
+            if (!cache.ContainsKey(from) || !cache.ContainsKey(to))
+            {
+                return new List<Vector2Int>();
+            }
+
             List<Vector2Int> pathPoints = new List<Vector2Int>();
             var path = graph.GetShortestPath(cache[from], cache[to]);
             for (int i = 0; i < path.nodes.Count; i++)

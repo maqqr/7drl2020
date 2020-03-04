@@ -68,13 +68,15 @@ namespace Verminator.GameViews
         {
             Vector2Int? playerMoveTo = gameManager.TileCoordinateUnderMouse();
             var player = gameManager.PlayerCreature;
-            if (gameManager.mouseTileChanged) {
-                try {
+            if (gameManager.mouseTileChanged)
+            {
+                try
+                {
                     pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
                 }
-                catch {}
+                catch { }
             }
-            if (pathToPos!=null)
+            if (pathToPos != null)
             {
                 for (int ind = 0; ind < pathToPos.Count; ind++)
                 {
@@ -240,33 +242,33 @@ namespace Verminator.GameViews
 
             if (playerMoveTo != null)
             {
-
-                    Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(playerMoveTo.Value);
-                    if (creatureBlocking == null)
+                Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(playerMoveTo.Value);
+                if (creatureBlocking == null)
+                {
+                    // Get the path to the desired location
+                    pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
+                    if (pathToPos != null && pathToPos.Count > 0)
                     {
-                        // Get the path to the desired location
-                        pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
-                        if (pathToPos != null)
+                        //player.Position = pathToPos[0];
+                        if (player.Move(pathToPos[0]))
                         {
-                            //player.Position = pathToPos[0];
-                            if (player.Move(pathToPos[0]))
+                            pathToPos.RemoveAt(0);
+                            gameManager.AdvanceGameWorld(player.Speed);
+
+                            // This is just for debugging:
+                            var item = gameManager.CurrentFloor.GetItemAt(player.Position);
+                            if (item != null)
                             {
-                                pathToPos.RemoveAt(0);
-                                gameManager.AdvanceGameWorld(player.Speed);
-
-                                // This is just for debugging:
-                                var item = gameManager.CurrentFloor.GetItemAt(player.Position);
-                                if (item != null)
-                                {
-                                    Debug.Log("Item under player: " + item.Data.Name);
-                                }
+                                Debug.Log("Item under player: " + item.Data.Name);
                             }
-
                         }
 
                     }
-                    else if (creatureBlocking != player)
-                    {
+
+                }
+                else if (creatureBlocking != player)
+                {
+
                         //gameManager.playerAnim.StartAttackAnimation();
                         if (gameManager.Fight(player, creatureBlocking)) { // TODO: Check for bugs related to pathToPos list
                             player.Attacking = true;
@@ -274,9 +276,9 @@ namespace Verminator.GameViews
                             gameManager.AdvanceGameWorld(player.Speed);
                         }
                         //gameManager.AdvanceTime(player.Speed);
-                        
-                    }
-            
+
+                }
+
             }
         }
     }

@@ -1140,6 +1140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemList: {fileID: 8015342588992021296}
+  InteractionWindow: {fileID: 8263514707077360825}
+  Equip: {fileID: 3692849298749984211}
+  Drop: {fileID: 8666489211968233987}
+  Eat: {fileID: 7165560518629390040}
 --- !u!1 &4117957879425918777
 GameObject:
   m_ObjectHideFlags: 0
