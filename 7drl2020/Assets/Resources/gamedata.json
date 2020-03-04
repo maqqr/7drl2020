@@ -7,6 +7,8 @@
         "cheese":           { "name": "cheese", "assetpath": "Item/Apple", "weight": 5, "maxrange": 5, "ammo": "cheese", "fragile": true, "edible": true, "gainhp": 50, "desc": "A cheese wheel." },
         "mugofbeer":        { "name": "mug of beer", "assetpath": "Item/MugOfBeer", "weight": 5, "maxrange": 5, "ammo": "mug of beer", "fragile": true, "edible": true, "gainmp": 30, "desc": "A mug of cheap beer." },
         "flaskofspirits":   { "name": "flask of spirits", "assetpath": "Item/FlaskOfSpirits", "weight": 5, "maxrange": 5, "ammo": "flask of spirits", "fragile": true, "edible": true, "gainmp": 50, "desc": "A flask of spirits." },
+        "greenmushroom":    { "name": "greenmushroom", "assetpath": "Item/GreenMushroom", "weight": 2, "ammo": "greenmushroom", "fragile": true, "edible": true, "gainmp": 0, "gainsanity": -5, "desc": "A green mushroom." },
+        "blackmushroom":    { "name": "blackmushroom", "assetpath": "Item/BlackMushroom", "weight": 2, "ammo": "blackmushroom", "fragile": true, "edible": true, "gainmp": 20, "gainsanity": 5, "desc": "A black mushroom." },
 
         "shortsword":    { "name": "shortsword", "assetpath": "Item/Shortsword", "weight": 6, "dmg": "1d6+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
         "sword":         { "name": "sword", "assetpath": "Item/Sword", "weight": 10, "dmg": "1d8+1", "dmgtype": "slashing", "maxrange": 1, "desc": "A sword." },
@@ -17,20 +19,20 @@
         "spear":         { "name": "spear", "assetpath": "Item/Spear", "weight": 10, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 1, "desc": "A spear." },
         "longspear":     { "name": "longspear", "assetpath": "Item/Longspear", "weight": 15, "dmg": "1d8+1", "dmgtype": "piercing", "maxrange": 2, "desc": "A longer version of spear." },
 
-        "arrow":         { "name": "arrow", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
-        "bolt":          { "name": "bolt", "assetpath": "Item/TestArrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
+        "arrow":         { "name": "arrow", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "An arrow." },
+        "bolt":          { "name": "bolt", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt", "fragile": true, "desc": "An bolt." },
 
-        "bow":           { "name": "bow", "assetpath": "Item/TestBow", "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
-        "crossbow":      { "name": "crossbow", "assetpath": "Item/TestCrossbow", "weight": 20, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
-        "dart":          { "name": "dart", "assetpath": "Item/TestDart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
+        "bow":           { "name": "bow", "assetpath": "Item/Bow", "weight": 10, "dmg": "1d8+2", "minrange": 2, "dmgtype": "piercing", "maxrange": 10, "ammo": "arrow", "desc": "A bow." },
+        "crossbow":      { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 20, "dmg": "1d10+4","minrange": 2,  "dmgtype": "piercing", "maxrange": 10, "ammo": "bolt", "desc": "A crossbow." },
+        "dart":          { "name": "dart", "assetpath": "Item/Dart", "weight": 2, "dmg": "1d4+1", "dmgtype": "piercing", "maxrange": 5, "ammo": "dart", "fragile": true, "desc": "A dart." },
         "javelin":       { "name": "javelin", "assetpath": "Item/Javelin", "weight": 4, "dmg": "1d6+2", "dmgtype": "piercing", "maxrange": 7, "ammo": "javelin", "fragile": true, "desc": "A javelin." },
 
-        "helmet":        { "name": "helmet", "assetpath": "Item/TestHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
+        "helmet":        { "name": "helmet", "assetpath": "Item/Helmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "A helmet." },
         "leathercap":    { "name": "leather cap", "assethpath": "Item/LeatherCap", "weight": 3, "maxrange": 1, "armorslot": "head", "slashingres": 4, "bluntres": 5, "piercingres": 0, "magicres": 0, "desc": "Comfy, but not so stylish head protection." },
         "chaincoif":     { "name": "chain coif", "assethpath": "Item/ChainCoif", "weight": 5, "maxrange": 1, "armorslot": "head", "slashingres": 6, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Hood of chains for head and neck protection." },
         "domedhelmet":   { "name": "domed helmet", "assethpath": "Item/DomedHelmet", "weight": 4, "maxrange": 1, "armorslot": "head", "slashingres": 8, "bluntres": 5, "piercingres": 5, "magicres": 0, "desc": "Pointed metal helmet." },
         "antimagicward": { "name": "antimagic ward", "assethpath": "Item/AntimagicWard", "weight": 1, "maxrange": 1, "armorslot": "head", "slashingres": 0, "bluntres": 0, "piercingres": 0, "magicres": 25, "desc": "Magical ward that protects wearer from magical damage." },
-        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/TestRatscalp", "weight": 3, "maxrange": 1, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
+        "ratscalp":      { "name": "ratscalp", "assetpath": "Item/Ratscalp", "weight": 3, "maxrange": 1, "edible": true, "gainmp": 5, "gainsanity": -5, "armorslot": "head", "slashingres": 3, "bluntres": 3, "piercingres": 3, "magicres": 20, "desc": "A large rat's scalp." },
 
         "lamellararmour":           { "name": "lamellar armour", "assethpath": "Item/LamellarArmour", "weight": 10, "armorslot": "body", "slashingres": 10, "bluntres": 10, "piercingres": 0, "magicres": 0, "desc": "Armour consisting of hardened leather laced together." },
         "studdedleatherarmour":     { "name": "studded leather armour", "assethpath": "Item/StuddedLeatherArmour", "weight": 10, "armorslot": "body", "slashingres": 8, "bluntres": 8, "piercingres": 0, "magicres": 0, "desc": "Leather armour studded with decorative metal studs." },
@@ -78,10 +80,28 @@
     },
 
     "spawnlist": {
-        "0": ["testcreature"]
+        "0": ["rat", "rat", "rat", "rat", "swarm", "swarm"],
+        "1": ["rat", "rat", "rat", "swarm", "batrat"],
+        "2": ["rat", "rat", "swarm", "batrat"],
+        "3": ["rat", "rat", "ratman", "swarm", "swarm", "batrat", "batrat"],
+        "4": ["rat", "rat", "ratman", "swarm", "batrat", "shroomrat"],
+        "5": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine"],
+        "6": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "magmarat", "earthrat", "airrat", "waterrat"],
+        "7": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"],
+        "8": ["rat", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "ratconstruct", "ratconstruct", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"],
+        "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "magmarat", "earthrat", "airrat", "waterrat"]
     },
 
     "itemspawnlist": {
-        "0": ["dagger", "bucket", "bluemushroom"]
+        "0": ["dagger", "bucket", "bluemushroom"],
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": []
     }
 }
