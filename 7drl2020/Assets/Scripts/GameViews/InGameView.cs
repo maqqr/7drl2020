@@ -95,7 +95,7 @@ namespace Verminator.GameViews
             var player = gameManager.PlayerCreature;
 
             // This is just for testing: move player to where the mouse was clicked
-            if (Input.GetMouseButtonDown(0) && !player.OnMove)
+            if (Input.GetMouseButton(0) && !player.OnMove)
             {
                 playerMoveTo = gameManager.TileCoordinateUnderMouse();
             }
@@ -268,9 +268,10 @@ namespace Verminator.GameViews
                     else if (creatureBlocking != player)
                     {
                         //gameManager.playerAnim.StartAttackAnimation();
-                        if (gameManager.Fight(player, creatureBlocking)) {
+                        if (gameManager.Fight(player, creatureBlocking)) { // TODO: Check for bugs related to pathToPos list
+                            player.Attacking = true;
+                            if (player.Move(pathToPos[0])) pathToPos.RemoveAt(0);
                             gameManager.AdvanceGameWorld(player.Speed);
-                            forcedCooldown = 1.0f; // Add a small delay to prevent too fast attack spam
                         }
                         //gameManager.AdvanceTime(player.Speed);
                         

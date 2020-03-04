@@ -32,6 +32,7 @@ namespace Verminator
         float paraHeight = 0.387f;
 
         public bool OnMove = false;
+        public bool Attacking = false;
 
 
         public string Name => "Nameless";
@@ -62,6 +63,12 @@ namespace Verminator
         {
             if (steps < nSteps)
             {
+                if(steps/nSteps>=0.5 && Attacking) {
+                    jumpTo = jumpFrom;
+                    jumpFrom = Position;
+                    Position = jumpTo;
+                    Attacking = false;
+                }
                 float xzDist = Vector2.Distance(new Vector2(jumpFrom.x, jumpFrom.y), new Vector2(jumpTo.x, jumpTo.y));
                 Vector2 curXZ = jumpFrom;
                 float curY = 0f;
@@ -119,7 +126,16 @@ namespace Verminator
 
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {
-                Move(newPosition);
+                Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(newPosition);
+                if(creatureBlocking == null) {
+                    Move(newPosition);
+                }
+                else if(creatureBlocking == gameManager.PlayerCreature) {
+                    Attacking = true;
+                    gameManager.Fight(this,gameManager.PlayerCreature);
+                    Move(newPosition);
+                }
+                
                 //Position = newPosition;
             }
         }
