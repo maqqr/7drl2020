@@ -257,8 +257,17 @@ namespace Verminator
 
             if (string.IsNullOrEmpty(itemSpawnPoint.SpawnItem))
             {
-                Debug.LogError("Trying to spawn empty item. Item spawn point is missing item name.");
-                return;
+                //Debug.LogError("Trying to spawn empty item. Item spawn point is missing item name.");
+                //return;
+                if (!Data.GameData.Instance.ItemSpawnList.ContainsKey(currentFloorIndex))
+                {
+                    Debug.LogError("Item spawn list missing for floor " + currentFloorIndex);
+                    return;
+                }
+
+                var itemKeyList = Data.GameData.Instance.ItemSpawnList[currentFloorIndex];
+                int index = UnityEngine.Random.Range(0, itemKeyList.Length);
+                CurrentFloor.SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position));
             }
             else
             {
