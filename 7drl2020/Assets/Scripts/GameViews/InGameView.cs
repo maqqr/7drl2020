@@ -110,7 +110,7 @@ namespace Verminator.GameViews
                     if (player.AddItem(item.Data))
                     {
                         gameManager.CurrentFloor.DestroyItem(item);
-                        Debug.Log("Picked up: " + item.Data.Name);
+                        gameManager.MessageBuffer.AddMessage(Color.white, "Picked up " + item.Data.Name);
 
                         // Equip it instantly. This is only for debugging
                         //player.EquipSlots[0] = player.Inventory[0];
@@ -118,7 +118,7 @@ namespace Verminator.GameViews
                     }
                     else
                     {
-                        Debug.Log("Failed to pick up " + item.Data.Name);
+                        gameManager.MessageBuffer.AddMessage(Color.white, "Cannot pick up " + item.Data.Name+". You are carrying too much.");
                     }
                 }
             }
