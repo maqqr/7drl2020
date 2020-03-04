@@ -33,12 +33,13 @@ namespace Verminator
 
         public bool OnMove = false;
         public bool Attacking = false;
-
+        private int hp;
+        private int mp;
 
         public string Name => "Nameless";
 
-        public int Hp { get; set; }
-        public int Mp { get; set; }
+        public int Hp { get => hp; set => hp = Mathf.Clamp(value, 0, MaxHp); }
+        public int Mp { get => mp; set => mp = Mathf.Clamp(value, 0, MaxMp); }
         public int MaxHp => Data.BaseMaxHp;
         public int MaxMp => Data.BaseMaxMp;
         public int Strength => Data.BaseStr;
@@ -63,7 +64,8 @@ namespace Verminator
         {
             if (steps < nSteps)
             {
-                if(steps/nSteps>=0.5 && Attacking) {
+                if (steps / nSteps >= 0.5 && Attacking)
+                {
                     jumpFrom = jumpTo;
                     jumpTo = Position;
                     Attacking = false;
@@ -73,13 +75,14 @@ namespace Verminator
                 float curY = 0f;
 
                 curXZ = Vector2.Lerp(curXZ, jumpTo, steps / (float)nSteps);
-                curY = -paraHeight * (Vector2.Distance(curXZ,jumpFrom)) * (Vector2.Distance(curXZ,jumpTo)) / (-0.25f * xzDist * xzDist);
+                curY = -paraHeight * (Vector2.Distance(curXZ, jumpFrom)) * (Vector2.Distance(curXZ, jumpTo)) / (-0.25f * xzDist * xzDist);
 
                 transform.position = new Vector3(curXZ.x + 0.5f, curY, curXZ.y + 0.5f);
 
                 steps += Time.deltaTime * jumpAnimationSpeed;
             }
-            else {
+            else
+            {
                 OnMove = false;
             }
         }
@@ -90,22 +93,27 @@ namespace Verminator
             {
                 RaycastHit hit;
                 // If moving diagonally, check if there exists a manhattan-like path
-                if (Vector2.Distance(Position,to)>1){
+                if (Vector2.Distance(Position, to) > 1)
+                {
                     bool success = false;
-                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
-                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x,Position.y)), out hit, 1f)) {
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(to.x, Position.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f))
+                    {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(to.x, Position.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(to.x, Position.y)), out hit, 1f))
+                        {
                             success = true;
                         }
                     }
-                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f)) {
-                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(Position.x,to.y)), out hit, 1f)) {
+                    if (!Physics.Raycast(Utils.ConvertToUnityCoord(Position), Utils.ConvertToUnityCoord(new Vector2Int(Position.x, to.y)) - Utils.ConvertToUnityCoord(Position), out hit, 1f))
+                    {
+                        if (!Physics.Raycast(Utils.ConvertToUnityCoord(new Vector2Int(Position.x, to.y)), Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(new Vector2Int(Position.x, to.y)), out hit, 1f))
+                        {
                             success = true;
                         }
                     }
                     if (!success) return false;
                 }
-                
-                
+
+
                 jumpFrom = Position;
                 jumpTo = to;
                 steps = 0;
@@ -126,20 +134,23 @@ namespace Verminator
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {
                 Creature creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(newPosition);
-                if(creatureBlocking == null) {
+                if (creatureBlocking == null)
+                {
                     Move(newPosition);
                 }
-                else if(creatureBlocking == gameManager.PlayerCreature) {
+                else if (creatureBlocking == gameManager.PlayerCreature)
+                {
                     Attacking = true;
-                    gameManager.Fight(this,gameManager.PlayerCreature);
+                    gameManager.Fight(this, gameManager.PlayerCreature);
                     Move(newPosition, true);
                 }
-                
+
                 //Position = newPosition;
             }
         }
 
-        public bool AddItem(Data.ItemData newItem) {
+        public bool AddItem(Data.ItemData newItem)
+        {
 
             // TODO: check if inventory is full or if the creature can hold the item
 
@@ -167,9 +178,11 @@ namespace Verminator
             }
         }
 
-        public InventoryItem GetItemByName(string itemName) {
-            foreach (InventoryItem item in Inventory) {
-                if(item.ItemData.Name == itemName) return item;
+        public InventoryItem GetItemByName(string itemName)
+        {
+            foreach (InventoryItem item in Inventory)
+            {
+                if (item.ItemData.Name == itemName) return item;
             }
             return null;
         }

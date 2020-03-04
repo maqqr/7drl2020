@@ -7,6 +7,8 @@ namespace Verminator
 {
     public class InteractionButton : MonoBehaviour, IPointerClickHandler
     {
+        public TMPro.TextMeshProUGUI Text;
+
         public System.Action<PointerEventData> OnClick;
 
         public void OnPointerClick(PointerEventData eventData)

@@ -118,7 +118,7 @@ namespace Verminator.GameViews
                     }
                     else
                     {
-                        gameManager.MessageBuffer.AddMessage(Color.white, "Cannot pick up " + item.Data.Name+". You are carrying too much.");
+                        gameManager.MessageBuffer.AddMessage(Color.white, "Cannot pick up " + item.Data.Name + ". You are carrying too much.");
                     }
                 }
             }
@@ -283,15 +283,14 @@ namespace Verminator.GameViews
                 }
                 else if (creatureBlocking != player)
                 {
-
-                        //gameManager.playerAnim.StartAttackAnimation();
-                        if (gameManager.Fight(player, creatureBlocking)) { // TODO: Check for bugs related to pathToPos list
-                            player.Attacking = true;
-                            player.Move(pathToPos[0],true);
-                            gameManager.AdvanceGameWorld(player.Speed);
-                        }
-                        //gameManager.AdvanceTime(player.Speed);
-
+                    //gameManager.playerAnim.StartAttackAnimation();
+                    if (gameManager.Fight(player, creatureBlocking))
+                    { // TODO: Check for bugs related to pathToPos list
+                        player.Attacking = true;
+                        player.Move(pathToPos[0], true);
+                        gameManager.AdvanceGameWorld(player.Speed);
+                    }
+                    //gameManager.AdvanceTime(player.Speed);
                 }
 
             }

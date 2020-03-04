@@ -70,6 +70,12 @@ namespace Verminator
             }
             return false;
         }
+
+        public static string FixFont(string msg)
+        {
+            return msg.Replace('0', 'o');
+        }
+
         public static int RollDice(string dmg,bool pos = false) {
             int result = 0;
             string[] parts = dmg.Split('d');

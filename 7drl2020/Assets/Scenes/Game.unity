@@ -4473,6 +4473,10 @@ MonoBehaviour:
   UIEquipSlots: {fileID: 1086642260}
   lastUsedSlot: 0
   MessageBuffer: {fileID: 0}
+  MaxLampOil: 100
+  CurrentLampOil: 25
+  MaxSanity: 100
+  CurrentSanity: 100
 --- !u!4 &1073530841
 Transform:
   m_ObjectHideFlags: 0

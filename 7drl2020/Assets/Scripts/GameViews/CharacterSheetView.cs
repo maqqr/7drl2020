@@ -135,11 +135,25 @@ namespace Verminator.GameViews
             itemLineUi.SetSelected(true);
             sheetUI.InteractionWindow.SetActive(true);
             selectedIndex = index;
+
+            var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
+            sheetUI.Equip.Text.text = invItem.ItemData.Id == "oilflask" ? "Use" : "Equip";
         }
 
         private void OnEquipClicked(PointerEventData eventData)
         {
             var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
+
+            if (invItem.ItemData.Id == "oilflask")
+            {
+                // Consume oil instead of equipping
+                int gainOil = 10;
+                gameManager.CurrentLampOil = Mathf.Min(gameManager.MaxLampOil, gameManager.CurrentLampOil + gainOil);
+                int percent = (int)(100.0f * (gameManager.CurrentLampOil / (float)gameManager.MaxLampOil));
+                gameManager.MessageBuffer.AddMessage(Color.white, Utils.FixFont($"You put the oil into your lantern. Your lantern is now {percent}% filled."));
+                gameManager.PlayerCreature.RemoveItem(invItem, 1);
+                return;
+            }
 
             // Make sure same item is not equipped to multiple slots by unequipping first
             for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
@@ -156,7 +170,7 @@ namespace Verminator.GameViews
             RefreshView();
             sheetUI.InteractionWindow.SetActive(false);
 
-            gameManager.MessageBuffer.AddMessage(Color.white, "You equip the " + invItem.ItemData.Name);
+            gameManager.MessageBuffer.AddMessage(Color.white, "You equip the " + invItem.ItemData.Name + ".");
         }
 
         private void OnDropClicked(PointerEventData eventData)
@@ -179,12 +193,51 @@ namespace Verminator.GameViews
             UnselectAll();
             RefreshView();
 
-            gameManager.MessageBuffer.AddMessage(Color.white, "You drop the " + invItem.ItemData.Name);
+            gameManager.MessageBuffer.AddMessage(Color.white, "You drop the " + invItem.ItemData.Name + ".");
         }
 
         private void OnEatClicked(PointerEventData eventData)
         {
+            var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
 
+            if (!invItem.ItemData.IsEdible)
+            {
+                gameManager.MessageBuffer.AddMessage(Color.white, "You lick the " + invItem.ItemData.Name + ". Nothing happens.");
+                sheetUI.InteractionWindow.SetActive(false);
+                UnselectAll();
+                RefreshView();
+                return;
+            }
+
+            // Unequip eaten item
+            for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+            {
+                if (gameManager.PlayerCreature.EquipSlots[i] == invItem)
+                {
+                    gameManager.PlayerCreature.EquipSlots[i] = null;
+                    gameManager.UpdateEquipSlotGraphics();
+                }
+            }
+
+            gameManager.PlayerCreature.RemoveItem(invItem, 1);
+
+            sheetUI.InteractionWindow.SetActive(false);
+            UnselectAll();
+            RefreshView();
+
+            string eff = "";
+            if (invItem.ItemData.GainHealth > 0) eff += "You gain some health. ";
+            if (invItem.ItemData.GainHealth < 0) eff += "You lose some health. ";
+            if (invItem.ItemData.GainMana > 0) eff += "You gain some mana. ";
+            if (invItem.ItemData.GainMana < 0) eff += "You lose some mana. ";
+            if (invItem.ItemData.GainSanity > 0) eff += "You regain some sanity. ";
+            if (invItem.ItemData.GainSanity < 0) eff += "You lose some sanity. ";
+
+            gameManager.PlayerCreature.Hp += invItem.ItemData.GainHealth;
+            gameManager.PlayerCreature.Mp += invItem.ItemData.GainMana;
+            gameManager.GainSanity(invItem.ItemData.GainSanity);
+
+            gameManager.MessageBuffer.AddMessage(Color.white, "You consume the " + invItem.ItemData.Name + ". " + eff);
         }
     }
 }

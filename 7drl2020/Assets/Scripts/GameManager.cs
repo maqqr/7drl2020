@@ -35,6 +35,22 @@ namespace Verminator
 
         public MessageBuffer MessageBuffer;
 
+        public int MaxLampOil = 100;
+        public int CurrentLampOil = 25;
+        public int MaxSanity = 100;
+        public int CurrentSanity = 100;
+
+
+        public void GainLampOil(int amount)
+        {
+            CurrentLampOil = Mathf.Clamp(CurrentLampOil + amount, 0, MaxLampOil);
+        }
+
+        public void GainSanity(int amount)
+        {
+            CurrentSanity = Mathf.Clamp(CurrentSanity + amount, 0, MaxSanity);
+        }
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);
@@ -80,6 +96,10 @@ namespace Verminator
             PlayerCreature = CurrentFloor.GetComponent<DungeonFloor>().SpawnCreature("player", Vector2Int.zero);
             PlayerCreature.gameObject.transform.parent = null;
 
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["shortsword"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["oilflask"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bread"]);
+
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
 
             UpdateEquipSlotGraphics();
@@ -90,7 +110,7 @@ namespace Verminator
             }
 
             MessageBuffer = FindObjectOfType<MessageBuffer>();
-            MessageBuffer.AddMessage(Color.green, "Hello world");
+            MessageBuffer.AddMessage(Color.green, "You enter the tavern's cellar.");
         }
 
         public void EquipSlotClicked(int index)
@@ -171,7 +191,7 @@ namespace Verminator
                     if (IsDungeonValid(createdDungeonFloor))
                     {
                         dungeonFloors.Add(createdDungeonFloor);
-                        createdDungeonFloor.Initialize(this);
+                        //createdDungeonFloor.Initialize(this);
                         break;
                     }
                     else
@@ -450,6 +470,11 @@ namespace Verminator
 
         private void Update()
         {
+            if (!CurrentFloor.IsInitialized)
+            {
+                CurrentFloor.Initialize(this);
+            }
+
             Vector2Int tile = TileCoordinateUnderMouse();
             mouseTileChanged = tile != mouseTile;
             mouseTile = tile;

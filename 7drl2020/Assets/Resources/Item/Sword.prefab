@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4080649094951727666}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8630623175603395106}
@@ -131,7 +131,8 @@ MonoBehaviour:
     MinRange: 0
     MaxRange: 0
     Damage: 
-    DamageType: 
+    DamageTypeStr: 
+    DamageType: 0
     IsEdible: 0
     GainHealth: 0
     GainMana: 0
@@ -142,6 +143,8 @@ MonoBehaviour:
     BluntRes: 0
     PiercingRes: 0
     MagicRes: 0
+    ManaCost: 0
+    Effects: []
     AssetPath: 
     ItemPrefab: {fileID: 0}
   Position: {x: 0, y: 0}

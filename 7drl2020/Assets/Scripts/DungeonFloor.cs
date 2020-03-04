@@ -17,6 +17,8 @@ namespace Verminator
         private Graph graph = new Graph();
         Dictionary<Vector2Int, Node> cache = new Dictionary<Vector2Int, Node>();
 
+        public bool IsInitialized { get; private set; }
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -32,6 +34,7 @@ namespace Verminator
             }
 
             UpdatePathfindingGrid();
+            IsInitialized = true;
         }
 
         public Creature SpawnCreature(string id, Vector2Int spawnCoordinate) // creature id is defined in json
