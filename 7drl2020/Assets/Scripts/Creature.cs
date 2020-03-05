@@ -132,7 +132,14 @@ namespace Verminator
                 float curY = 0f;
 
                 curXZ = Vector2.Lerp(curXZ, jumpTo, steps / (float)nSteps);
-                curY = -paraHeight * (Vector2.Distance(curXZ, jumpFrom)) * (Vector2.Distance(curXZ, jumpTo)) / (-0.25f * xzDist * xzDist);
+                if (xzDist != 0)
+                {
+                    curY = -paraHeight * (Vector2.Distance(curXZ, jumpFrom)) * (Vector2.Distance(curXZ, jumpTo)) / (-0.25f * xzDist * xzDist);
+                }
+                else
+                {
+                    curY = 0.0f;
+                }
 
                 transform.position = new Vector3(curXZ.x + 0.5f, curY, curXZ.y + 0.5f);
 
