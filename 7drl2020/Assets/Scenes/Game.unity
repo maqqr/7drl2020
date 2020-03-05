@@ -4457,8 +4457,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65832119d48f724abcfea8ac2fee9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelGeneratorPrefab: {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e,
-    type: 3}
+  levelGeneratorPrefabs:
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
+  - {fileID: 8771874120735121635, guid: 056a04d94a358f84f9c0c3a3f2764b1e, type: 3}
   debugSphere: {fileID: 1677087128}
   itemLineUIPrefab: {fileID: 6632074114666674880, guid: 473680341605c3942aaa091cb6c65f04,
     type: 3}
