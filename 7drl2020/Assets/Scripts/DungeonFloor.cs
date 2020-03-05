@@ -124,17 +124,22 @@ namespace Verminator
 
         public Creature GetCreatureAt(Vector2Int position, bool includePlayer = true)
         {
+            if (includePlayer && gameManager.PlayerCreature.Position == position)
+            {
+                return gameManager.PlayerCreature;
+            }
+
+            if (!includePlayer && gameManager.PlayerCreature.Position == position)
+            {
+                return null;
+            }
+
             foreach (var creature in Creatures)
             {
                 if (creature.Position == position)
                 {
                     return creature;
                 }
-            }
-
-            if (includePlayer && gameManager.PlayerCreature.Position == position)
-            {
-                return gameManager.PlayerCreature;
             }
 
             return null;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -70,6 +71,8 @@ namespace Verminator.GameViews
             var player = gameManager.PlayerCreature;
             if (gameManager.mouseTileChanged)
             {
+                UpdateEnemyStatWindow();
+
                 try
                 {
                     pathToPos = gameManager.CurrentFloor.FindPath(player.Position, playerMoveTo.Value);
@@ -88,6 +91,18 @@ namespace Verminator.GameViews
                     }
                     catch { }
                 }
+            }
+        }
+
+        private void UpdateEnemyStatWindow()
+        {
+            var enemy = gameManager.CurrentFloor.GetCreatureAt(gameManager.TileCoordinateUnderMouse(), includePlayer: false);
+            gameManager.EnemyStatsWindow.SetActive(enemy != null);
+            if (enemy != null)
+            {
+                var cre = enemy.GetComponent<Creature>();
+                gameManager.EnemyStatsName.GetComponent<TMPro.TextMeshProUGUI>().text = cre.Name;
+                gameManager.EnemyStatsDesc.GetComponent<TMPro.TextMeshProUGUI>().text = cre.Desc;
             }
         }
 
