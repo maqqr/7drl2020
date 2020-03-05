@@ -218,33 +218,6 @@ namespace Verminator
                         Destroy(dungeonFloorObj);
                     }
                 }
-
-                // Dungeon was generated, spawn some monsters next
-                var enemySpawnPoints = CurrentFloor.gameObject.transform.GetComponentsInChildren<CreatureSpawnPoint>();
-                Debug.Log("Creature spawn point count: " + enemySpawnPoints.Length);
-                for (int i = 0; i < enemySpawnPoints.Length; i++)
-                {
-                    var cre = SpawnCreatureAtSpawnPoint(enemySpawnPoints[i]);
-                    if (cre != null)
-                    {
-                        cre.AddTrait(cre.GetRandomTrait());
-
-                        int muts = UnityEngine.Random.Range(0, 3);
-                        for (int m = 0; m < muts; m++)
-                        {
-                            cre.AddTrait(cre.GetRandomMutation());
-                        }
-                        cre.Hp = cre.MaxHp; // Mutations may change max hp, fix current hp
-                    }
-                }
-
-                // Spawn items in dungeon
-                var itemSpawnPoints = CurrentFloor.gameObject.transform.GetComponentsInChildren<ItemSpawnPoint>();
-                Debug.Log("Item spawn point count: " + itemSpawnPoints.Length);
-                for (int i = 0; i < itemSpawnPoints.Length; i++)
-                {
-                    SpawnItemAtSpawnPoint(itemSpawnPoints[i]);
-                }
             }
             else
             {
@@ -280,57 +253,7 @@ namespace Verminator
             //}
         }
 
-        private Creature SpawnCreatureAtSpawnPoint(CreatureSpawnPoint creatureSpawnPoint)
-        {
-            if (!(UnityEngine.Random.Range(1, 101) <= creatureSpawnPoint.SpawnChance))
-            {
-                return null;
-            }
-
-            if (string.IsNullOrEmpty(creatureSpawnPoint.SpawnCreature))
-            {
-                if (!Data.GameData.Instance.SpawnList.ContainsKey(currentFloorIndex))
-                {
-                    Debug.LogError("Spawn list missing for floor " + currentFloorIndex);
-                    return null;
-                }
-
-                var creatureKeyList = Data.GameData.Instance.SpawnList[currentFloorIndex];
-                int index = UnityEngine.Random.Range(0, creatureKeyList.Length);
-                return CurrentFloor.SpawnCreature(creatureKeyList[index], Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
-            }
-            else
-            {
-                return CurrentFloor.SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
-            }
-        }
-
-        private void SpawnItemAtSpawnPoint(ItemSpawnPoint itemSpawnPoint)
-        {
-            if (!(UnityEngine.Random.Range(1, 101) <= itemSpawnPoint.SpawnChance))
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(itemSpawnPoint.SpawnItem))
-            {
-                //Debug.LogError("Trying to spawn empty item. Item spawn point is missing item name.");
-                //return;
-                if (!Data.GameData.Instance.ItemSpawnList.ContainsKey(currentFloorIndex))
-                {
-                    Debug.LogError("Item spawn list missing for floor " + currentFloorIndex);
-                    return;
-                }
-
-                var itemKeyList = Data.GameData.Instance.ItemSpawnList[currentFloorIndex];
-                int index = UnityEngine.Random.Range(0, itemKeyList.Length);
-                CurrentFloor.SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
-            }
-            else
-            {
-                CurrentFloor.SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
-            }
-        }
+        
 
         public bool Fight(Creature attacker, Creature defender)
         {
@@ -510,7 +433,7 @@ namespace Verminator
         {
             if (!CurrentFloor.IsInitialized)
             {
-                CurrentFloor.Initialize(this);
+                CurrentFloor.Initialize(this, currentFloorIndex);
             }
 
             Vector2Int tile = TileCoordinateUnderMouse();
