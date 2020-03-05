@@ -92,6 +92,22 @@ namespace Verminator.GameViews
                 return false;
             }
 
+            string ArmorName(ArmorSlot slot)
+            {
+                if (player.ArmorSlots[slot] != null)
+                {
+                    return player.ArmorSlots[slot].ItemData.Name;
+                }
+                return "Nothing";
+            }
+
+            // Update equipment text
+            string equipmentDesc = "";
+            equipmentDesc += "Head:\n - " + ArmorName(ArmorSlot.Head) + "\n";
+            equipmentDesc += "Body:\n - " + ArmorName(ArmorSlot.Body) + "\n";
+            equipmentDesc += "Feet:\n - " + ArmorName(ArmorSlot.Legs) + "\n";
+            sheetUi.EquipmentText.text = equipmentDesc;
+
             // Instantiate items in inventory
             for (int i = 0; i < player.Inventory.Count; i++)
             {
@@ -155,17 +171,34 @@ namespace Verminator.GameViews
                 return;
             }
 
-            // Make sure same item is not equipped to multiple slots by unequipping first
-            for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+            if (invItem.ItemData.IsArmor)
             {
-                if (gameManager.PlayerCreature.EquipSlots[i] == invItem)
+                // Make sure same item is not equipped to armor slots before hand
+                var makeNull = new List<ArmorSlot>();
+                foreach (var kv in gameManager.PlayerCreature.ArmorSlots)
                 {
-                    gameManager.PlayerCreature.EquipSlots[i] = null;
+                    if (kv.Value == invItem)
+                    {
+                        makeNull.Add(kv.Key);
+                    }
                 }
+                makeNull.ForEach(s => gameManager.PlayerCreature.ArmorSlots[s] = null);
+                gameManager.PlayerCreature.ArmorSlots[invItem.ItemData.GetArmorSlot()] = invItem;
+            }
+            else
+            {
+                // Make sure same item is not equipped to multiple slots by unequipping first
+                for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
+                {
+                    if (gameManager.PlayerCreature.EquipSlots[i] == invItem)
+                    {
+                        gameManager.PlayerCreature.EquipSlots[i] = null;
+                    }
+                }
+                gameManager.PlayerCreature.EquipSlots[gameManager.lastUsedSlot] = invItem;
+                gameManager.UpdateEquipSlotGraphics();
             }
 
-            gameManager.PlayerCreature.EquipSlots[gameManager.lastUsedSlot] = invItem;
-            gameManager.UpdateEquipSlotGraphics();
             UnselectAll();
             RefreshView();
             sheetUI.InteractionWindow.SetActive(false);

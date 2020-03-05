@@ -40,6 +40,11 @@ namespace Verminator.Data
         public int BaseInt;
         public int BaseAggroRange;
 
+        public int BaseSlashingRes;
+        public int BaseBluntRes;
+        public int BasePiercingRes;
+        public int BaseMagicRes;
+
         public string[] AllowedTraits;
         public string[] WeaponList;
 

@@ -13,5 +13,7 @@ namespace Verminator
         public InteractionButton Equip;
         public InteractionButton Drop;
         public InteractionButton Eat;
+
+        public TMPro.TextMeshProUGUI EquipmentText;
     }
 }

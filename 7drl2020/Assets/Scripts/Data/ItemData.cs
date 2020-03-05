@@ -37,5 +37,12 @@ namespace Verminator.Data
 
         public string AssetPath;
         public GameObject ItemPrefab;
+
+        public bool IsArmor => ArmorSlot != "";
+
+        public ArmorSlot GetArmorSlot()
+        {
+            return (ArmorSlot)System.Enum.Parse(typeof(ArmorSlot), ArmorSlot, true);
+        }
     }
 }

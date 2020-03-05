@@ -73,6 +73,10 @@ namespace Verminator.Data
                     BaseRangedSkill = cre.Value["ranged"].AsInt,
                     BaseStr = cre.Value["str"].AsInt,
                     BaseInt = cre.Value["int"] != null ? cre.Value["int"].AsInt : 0,
+                    BaseSlashingRes = GetDefault(0, "slashingres", cre),
+                    BaseBluntRes = GetDefault(0, "bluntres", cre),
+                    BasePiercingRes = GetDefault(0, "piercingres", cre),
+                    BaseMagicRes = GetDefault(0, "magicres", cre),
                     BaseAggroRange = cre.Value["aggrorange"] != null ? cre.Value["aggrorange"].AsInt : 0,
                     CreaturePrefab = Resources.Load<GameObject>(cre.Value["assetpath"])
                 };

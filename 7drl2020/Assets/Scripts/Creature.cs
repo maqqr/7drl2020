@@ -13,6 +13,13 @@ namespace Verminator
         Magic
     }
 
+    public enum ArmorSlot
+    {
+        Head,
+        Body,
+        Legs
+    }
+
     public class Creature : MonoBehaviour
     {
         [HideInInspector] public Data.CreatureData Data; // Static creature data shared by all creature of this type
@@ -26,6 +33,8 @@ namespace Verminator
         public List<Data.TraitData> Mutations = new List<Data.TraitData>();
 
         public InventoryItem[] EquipSlots = new InventoryItem[3]; // These are refereces to items in inventory
+
+        public Dictionary<ArmorSlot, InventoryItem> ArmorSlots = new Dictionary<ArmorSlot, InventoryItem>() { { ArmorSlot.Head, null }, { ArmorSlot.Body, null }, { ArmorSlot.Legs, null } };
 
         public Quaternion targetRotation;
 
@@ -82,6 +91,7 @@ namespace Verminator
 
         public int GetResistance(DamageType damageType)
         {
+            // TODO
             return 0;
         }
 
@@ -229,11 +239,19 @@ namespace Verminator
                 return;
             }
 
+            // TODO: color changes?
+
             transform.localScale *= traitData.ModelScaleMultiplier;
 
             if (traitData.IsTrait)
             {
                 CurrentTrait = traitData;
+                return;
+            }
+
+            if (Mutations.Select(m => m.Id).Contains(traitData.Id))
+            {
+                Debug.LogWarning($"Tried to add mutation '{traitData.Id}' second time for '{name}'.");
                 return;
             }
 
@@ -278,7 +296,8 @@ namespace Verminator
         public Data.TraitData GetRandomTrait(bool isTrait = true)
         {
             // TODO: check allowed traits
-            var allowedKeys = Verminator.Data.GameData.Instance.TraitData.Values.Where(t => t.IsTrait == isTrait).Select(t => t.Id).ToArray();
+            //var allowedKeys = Verminator.Data.GameData.Instance.TraitData.Values.Where(t => t.IsTrait == isTrait).Select(t => t.Id).ToArray();
+            var allowedKeys = Data.AllowedTraits;
 
             if (allowedKeys.Length == 0)
             {
