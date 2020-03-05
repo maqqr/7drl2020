@@ -92,8 +92,22 @@ namespace Verminator
 
         public int GetResistance(DamageType damageType)
         {
-            // TODO
-            return 0;
+            int armorBonus = 0;
+            foreach (var slot in ArmorSlots)
+            {
+                if (slot.Value != null)
+                {
+                    armorBonus += slot.Value.ItemData.GetResistance(damageType);
+                }
+            }
+
+            int traitBonus = 0;
+            if (CurrentTrait != null) traitBonus += CurrentTrait.GetResistanceBonus(damageType);
+            foreach (var mut in Mutations)
+            {
+                traitBonus += mut.GetResistanceBonus(damageType);
+            }
+            return Data.GetBaseResistance(damageType) + traitBonus + armorBonus;
         }
 
         private void Start()

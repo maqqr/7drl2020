@@ -192,6 +192,9 @@ namespace Verminator.GameViews
                 int percent = (int)(100.0f * (gameManager.CurrentLampOil / (float)gameManager.MaxLampOil));
                 gameManager.MessageBuffer.AddMessage(Color.white, Utils.FixFont($"You put the oil into your lantern. Your lantern is now {percent}% filled."));
                 gameManager.PlayerCreature.RemoveItem(invItem, 1);
+                UnselectAll();
+                RefreshView();
+                sheetUI.InteractionWindow.SetActive(false);
                 return;
             }
 

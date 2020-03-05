@@ -217,7 +217,12 @@ namespace Verminator
                     if (cre != null)
                     {
                         cre.AddTrait(cre.GetRandomTrait());
-                        cre.AddTrait(cre.GetRandomMutation());
+
+                        int muts = UnityEngine.Random.Range(0, 3);
+                        for (int m = 0; m < muts; m++)
+                        {
+                            cre.AddTrait(cre.GetRandomMutation());
+                        }
                     }
                 }
 
@@ -325,14 +330,13 @@ namespace Verminator
                 return false;
             }
 
-
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
             Data.ItemData weapon;
             try {
                 weapon = attacker.EquipSlots[usedSlot].ItemData;
             }
             catch {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot}");
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot+1}");
                 return false;
             }
             int dist = (int)Vector2.Distance(attacker.Position,defender.Position);
@@ -363,9 +367,9 @@ namespace Verminator
             if (hit) {
                 DamageType dmgType = weapon.DamageType;
                 int dmg = Utils.RollDice(weapon.Damage,true) +attacker.Strength;
-                dmg = dmg*(1-defender.GetResistance(dmgType));
+                dmg = (int)(dmg * (1 - defender.GetResistance(dmgType)/100.0f));
                 defender.Hp -= dmg;
-                MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} damage!");
+                MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
             }
             else {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} misses!");
