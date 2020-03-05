@@ -23,6 +23,8 @@ namespace Verminator
 
         public InventoryItem[] EquipSlots = new InventoryItem[3]; // These are refereces to items in inventory
 
+        public Quaternion targetRotation;
+
         // Jump variables:
         Vector2Int jumpFrom;
         Vector2Int jumpTo;
@@ -62,6 +64,8 @@ namespace Verminator
 
         private void Update()
         {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 8f * Time.deltaTime);
+
             if (steps < nSteps)
             {
                 if (steps / nSteps >= 0.5 && Attacking)
@@ -113,6 +117,7 @@ namespace Verminator
                     if (!success) return false;
                 }
 
+                targetRotation = Quaternion.LookRotation(Utils.ConvertToUnityCoord(to) - Utils.ConvertToUnityCoord(Position), Vector3.up);
 
                 jumpFrom = Position;
                 jumpTo = to;
@@ -120,6 +125,7 @@ namespace Verminator
 
                 if (!attackMove) Position = to;
                 OnMove = true;
+
                 return true;
             }
             return false;
