@@ -82,6 +82,17 @@ namespace Verminator.GameViews
 
             bool IsEquipped(InventoryItem item)
             {
+                if (item.ItemData.IsArmor)
+                {
+                    foreach (var kv in player.ArmorSlots)
+                    {
+                        if (kv.Value == item)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
                 for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)
                 {
                     if (player.EquipSlots[i] == item)
@@ -156,6 +167,19 @@ namespace Verminator.GameViews
             sheetUI.Equip.Text.text = invItem.ItemData.Id == "oilflask" ? "Use" : "Equip";
         }
 
+        private void RemoveArmor(InventoryItem invItem)
+        {
+            var makeNull = new List<ArmorSlot>();
+            foreach (var kv in gameManager.PlayerCreature.ArmorSlots)
+            {
+                if (kv.Value == invItem)
+                {
+                    makeNull.Add(kv.Key);
+                }
+            }
+            makeNull.ForEach(s => gameManager.PlayerCreature.ArmorSlots[s] = null);
+        }
+
         private void OnEquipClicked(PointerEventData eventData)
         {
             var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
@@ -173,16 +197,7 @@ namespace Verminator.GameViews
 
             if (invItem.ItemData.IsArmor)
             {
-                // Make sure same item is not equipped to armor slots before hand
-                var makeNull = new List<ArmorSlot>();
-                foreach (var kv in gameManager.PlayerCreature.ArmorSlots)
-                {
-                    if (kv.Value == invItem)
-                    {
-                        makeNull.Add(kv.Key);
-                    }
-                }
-                makeNull.ForEach(s => gameManager.PlayerCreature.ArmorSlots[s] = null);
+                RemoveArmor(invItem); // Make sure same item is not equipped to another armor slot
                 gameManager.PlayerCreature.ArmorSlots[invItem.ItemData.GetArmorSlot()] = invItem;
             }
             else
@@ -222,6 +237,9 @@ namespace Verminator.GameViews
                 }
             }
 
+            // Unequip dropped armor
+            RemoveArmor(invItem);
+
             sheetUI.InteractionWindow.SetActive(false);
             UnselectAll();
             RefreshView();
@@ -251,6 +269,7 @@ namespace Verminator.GameViews
                     gameManager.UpdateEquipSlotGraphics();
                 }
             }
+            RemoveArmor(invItem);
 
             gameManager.PlayerCreature.RemoveItem(invItem, 1);
 

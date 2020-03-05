@@ -81,22 +81,20 @@ namespace Verminator.Data
                     CreaturePrefab = Resources.Load<GameObject>(cre.Value["assetpath"])
                 };
                 List<string> allowedTraits = new List<string>();
-                if (cre.Value["allowedtraits"])
+                foreach (var key in cre.Value["allowedtraits"])
                 {
-                    foreach (var key in cre.Value["allowedtraits"])
-                    {
-                        allowedTraits.Add(key.Value);
-                    }
+                    allowedTraits.Add(key.Value);
                 }
+
                 creData.AllowedTraits = allowedTraits.ToArray();
                 List<string> weaponList = new List<string>();
-                if (cre.Value["weapons"])
+                //if (cre.Value["weapons"])
+                //{
+                foreach (var key in cre.Value["weapons"])
                 {
-                    foreach (var key in cre.Value["weapons"])
-                    {
-                        weaponList.Add(key.Value);
-                    }
+                    weaponList.Add(key.Value);
                 }
+                //}
                 creData.WeaponList = weaponList.ToArray();
                 gameData.CreatureData.Add(cre.Key, creData);
             }
