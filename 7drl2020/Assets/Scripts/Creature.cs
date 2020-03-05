@@ -297,7 +297,7 @@ namespace Verminator
         {
             // TODO: check allowed traits
             //var allowedKeys = Verminator.Data.GameData.Instance.TraitData.Values.Where(t => t.IsTrait == isTrait).Select(t => t.Id).ToArray();
-            var allowedKeys = Data.AllowedTraits;
+            var allowedKeys = Data.AllowedTraits.Where(k => Verminator.Data.GameData.Instance.TraitData[k].IsTrait == isTrait).ToArray();
 
             if (allowedKeys.Length == 0)
             {
