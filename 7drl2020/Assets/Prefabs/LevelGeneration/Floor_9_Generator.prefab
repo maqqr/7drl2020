@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1310140778933783920}
   - component: {fileID: 8771874120735121635}
   m_Layer: 0
-  m_Name: BasicGenerator
+  m_Name: Floor_9_Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,16 +48,14 @@ MonoBehaviour:
   MaxLevelSize: 50
   MaxAllowedOrder: 12
   Sections:
-  - {fileID: 7823329940223043184, guid: d17a4ddf94d5eab40b1938601cbca7c2, type: 3}
+  - {fileID: 7823329940223043184, guid: 21d0df2b351fedf46bfd66cb973637c6, type: 3}
   - {fileID: 7823329940223043184, guid: 97ba7409e2f783245a47f7472c66fbff, type: 3}
   - {fileID: 7823329940223043184, guid: 88b7e5fa894523546af9cb10a18329ee, type: 3}
   - {fileID: 7823329940223043184, guid: b54e59987eeb91b46891c72eb4c571d9, type: 3}
-  - {fileID: 7823329940223043184, guid: 0b50cd938e932cd46bdb8434e85f75ee, type: 3}
-  - {fileID: 7823329940223043184, guid: 194934fa85d87f5488a4e7402199c532, type: 3}
   - {fileID: 7823329940223043184, guid: 265473835f0a6b94c83640e46f288986, type: 3}
-  - {fileID: 7823329940223043184, guid: 47c3bd00d548cad4486ae146ba1e3f31, type: 3}
-  - {fileID: 7823329940223043184, guid: f0ecc7b3693ec9a43b9a55e3e166268b, type: 3}
-  - {fileID: 7823329940223043184, guid: c4f66fff7a4d2864aad558611ed2e4e3, type: 3}
+  - {fileID: 7823329940223043184, guid: 194934fa85d87f5488a4e7402199c532, type: 3}
+  - {fileID: 7823329940223043184, guid: 215880fbeb30c1c498983afc0b72ac08, type: 3}
+  - {fileID: 7823329940223043184, guid: 38a9ffb422bdafd4bbbd8ccf4fddcc0f, type: 3}
   DeadEnds:
   - {fileID: 1769625825286644012, guid: a007c4e6f331dba4ebf3b3c048ef4af5, type: 3}
   InitialSectionTags:
