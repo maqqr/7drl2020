@@ -61,6 +61,21 @@ MonoBehaviour:
     CreaturePrefab: {fileID: 0}
   TimeElapsed: 0
   Position: {x: 0, y: 0}
+  CurrentTrait:
+    Id: 
+    Name: 
+    MaxHpBonus: 0
+    StrBonus: 0
+    MeleeBonus: 0
+    RangedBonus: 0
+    ModelScaleMultiplier: 0
+    AggroRangeModifier: 0
+    SlashingResBonus: 0
+    BluntResBonus: 0
+    PiercingResBonus: 0
+    MagicResBonus: 0
+    ModelAssetPath: 
+  Mutations: []
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   OnMove: 0
   Attacking: 0
@@ -71,6 +86,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492680831802613786}
     m_Modifications:
+    - target: {fileID: -8433852292410904730, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7969259749374095015, guid: b15e93c5ba78b8448851264cb2dca348,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -81,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e07a9238916bade44a183f239f295edd, type: 2}
+    - target: {fileID: -6325941024942584244, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b15e93c5ba78b8448851264cb2dca348,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -136,6 +161,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3431144489116915148, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2272398707622114341, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594511566681200323, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: b15e93c5ba78b8448851264cb2dca348,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -166,6 +206,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e07a9238916bade44a183f239f295edd, type: 2}
+    - target: {fileID: 5128878715281303365, guid: b15e93c5ba78b8448851264cb2dca348,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8902632358175349227, guid: b15e93c5ba78b8448851264cb2dca348,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

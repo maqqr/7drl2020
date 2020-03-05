@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Verminator
 {
@@ -21,6 +22,9 @@ namespace Verminator
         public Vector2Int Position; // Creature's position in tile coordinates
         public List<InventoryItem> Inventory = new List<InventoryItem>();
 
+        public Data.TraitData CurrentTrait = null;
+        public List<Data.TraitData> Mutations = new List<Data.TraitData>();
+
         public InventoryItem[] EquipSlots = new InventoryItem[3]; // These are refereces to items in inventory
 
         public Quaternion targetRotation;
@@ -38,7 +42,7 @@ namespace Verminator
         private int hp;
         private int mp;
 
-        public string Name => "Nameless";
+        public string Name => (CurrentTrait != null ? CurrentTrait.Name + " " : "") + Data.Name;
 
         public int Hp { get => hp; set => hp = Mathf.Clamp(value, 0, MaxHp); }
         public int Mp { get => mp; set => mp = Mathf.Clamp(value, 0, MaxMp); }
@@ -191,6 +195,80 @@ namespace Verminator
                 if (item.ItemData.Name == itemName) return item;
             }
             return null;
+        }
+
+        public void AddTrait(Data.TraitData traitData)
+        {
+            if (traitData == null)
+            {
+                Debug.LogWarning("Tried to add null trait");
+                return;
+            }
+
+            transform.localScale *= traitData.ModelScaleMultiplier;
+
+            if (traitData.IsTrait)
+            {
+                CurrentTrait = traitData;
+                return;
+            }
+
+            Mutations.Add(traitData);
+
+            // Enable 3D model
+            if (traitData.ModelAssetPath.Length > 0)
+            {
+                // TODO
+                bool found = false;
+                var searchingFor = Data.Name.Substring(0, 1).ToUpperInvariant() + Data.Name.Substring(1) + traitData.ModelAssetPath;
+
+                //for (int i = 0; i < transform.childCount; i++)
+                //{
+                //    var obj = transform.GetChild(i);
+                //    if (obj.gameObject.name == searchingFor)
+                //    {
+                //        obj.gameObject.SetActive(true);
+                //        found = true;
+                //        break;
+                //    }
+                //}
+
+                Transform[] trs = GetComponentsInChildren<Transform>(true);
+                foreach (Transform t in trs)
+                {
+                    if (t.gameObject.name == searchingFor)
+                    {
+                        t.gameObject.SetActive(true);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Debug.LogWarning($"Could not find trait model '{searchingFor}' for {gameObject.name}");
+                }
+            }
+        }
+
+        public Data.TraitData GetRandomTrait(bool isTrait = true)
+        {
+            // TODO: check allowed traits
+            var allowedKeys = Verminator.Data.GameData.Instance.TraitData.Values.Where(t => t.IsTrait == isTrait).Select(t => t.Id).ToArray();
+
+            if (allowedKeys.Length == 0)
+            {
+                return null;
+            }
+
+            int index = Random.Range(0, allowedKeys.Length);
+            var key = allowedKeys[index];
+            return Verminator.Data.GameData.Instance.TraitData[key];
+        }
+
+        public Data.TraitData GetRandomMutation()
+        {
+            return GetRandomTrait(false);
         }
     }
 }

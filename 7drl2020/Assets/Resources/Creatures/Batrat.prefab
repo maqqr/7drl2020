@@ -61,6 +61,21 @@ MonoBehaviour:
     CreaturePrefab: {fileID: 0}
   TimeElapsed: 0
   Position: {x: 0, y: 0}
+  CurrentTrait:
+    Id: 
+    Name: 
+    MaxHpBonus: 0
+    StrBonus: 0
+    MeleeBonus: 0
+    RangedBonus: 0
+    ModelScaleMultiplier: 0
+    AggroRangeModifier: 0
+    SlashingResBonus: 0
+    BluntResBonus: 0
+    PiercingResBonus: 0
+    MagicResBonus: 0
+    ModelAssetPath: 
+  Mutations: []
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   OnMove: 0
   Attacking: 0
@@ -151,6 +166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492680831802613786}
     m_Modifications:
+    - target: {fileID: -8838064752052456871, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -6999208260045270363, guid: 2cdc4465e9be7994b8f427d8c923aee4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -246,11 +266,36 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e07a9238916bade44a183f239f295edd, type: 2}
+    - target: {fileID: 2230592964439515078, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618468771735434489, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755298988848355521, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5758357728433509364, guid: 2cdc4465e9be7994b8f427d8c923aee4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e07a9238916bade44a183f239f295edd, type: 2}
+    - target: {fileID: 7102205013666309306, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727258242914420901, guid: 2cdc4465e9be7994b8f427d8c923aee4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cdc4465e9be7994b8f427d8c923aee4, type: 3}
 --- !u!4 &2544252558862900169 stripped

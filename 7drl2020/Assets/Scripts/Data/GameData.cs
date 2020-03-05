@@ -101,6 +101,7 @@ namespace Verminator.Data
             {
                 var traitData = new TraitData()
                 {
+                    Id = trait.Key,
                     Name = trait.Value["name"],
                     ModelAssetPath = trait.Value["modelassetpath"],
                     MaxHpBonus = GetDefault(0, "hpbonus", trait),

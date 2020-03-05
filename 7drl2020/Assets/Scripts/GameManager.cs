@@ -12,6 +12,10 @@ namespace Verminator
         public GameObject itemLineUIPrefab;
         public GameObject inventoryCanvas;
 
+        public GameObject EnemyStatsWindow;
+        public GameObject EnemyStatsName;
+        public GameObject EnemyStatsDesc;
+
         public int currentFloorIndex = -1;
         private List<DungeonFloor> dungeonFloors = new List<DungeonFloor>();
         private Stack<GameViews.IGameView> gameViews = new Stack<GameViews.IGameView>();
@@ -206,7 +210,12 @@ namespace Verminator
                 Debug.Log("Creature spawn point count: " + enemySpawnPoints.Length);
                 for (int i = 0; i < enemySpawnPoints.Length; i++)
                 {
-                    SpawnCreatureAtSpawnPoint(enemySpawnPoints[i]);
+                    var cre = SpawnCreatureAtSpawnPoint(enemySpawnPoints[i]);
+                    if (cre != null)
+                    {
+                        cre.AddTrait(cre.GetRandomTrait());
+                        cre.AddTrait(cre.GetRandomMutation());
+                    }
                 }
 
                 // Spawn items in dungeon
@@ -251,11 +260,11 @@ namespace Verminator
             //}
         }
 
-        private void SpawnCreatureAtSpawnPoint(CreatureSpawnPoint creatureSpawnPoint)
+        private Creature SpawnCreatureAtSpawnPoint(CreatureSpawnPoint creatureSpawnPoint)
         {
             if (!(UnityEngine.Random.Range(1, 101) <= creatureSpawnPoint.SpawnChance))
             {
-                return;
+                return null;
             }
 
             if (string.IsNullOrEmpty(creatureSpawnPoint.SpawnCreature))
@@ -263,16 +272,16 @@ namespace Verminator
                 if (!Data.GameData.Instance.SpawnList.ContainsKey(currentFloorIndex))
                 {
                     Debug.LogError("Spawn list missing for floor " + currentFloorIndex);
-                    return;
+                    return null;
                 }
 
                 var creatureKeyList = Data.GameData.Instance.SpawnList[currentFloorIndex];
                 int index = UnityEngine.Random.Range(0, creatureKeyList.Length);
-                CurrentFloor.SpawnCreature(creatureKeyList[index], Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
+                return CurrentFloor.SpawnCreature(creatureKeyList[index], Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
             }
             else
             {
-                CurrentFloor.SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
+                return CurrentFloor.SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
             }
         }
 

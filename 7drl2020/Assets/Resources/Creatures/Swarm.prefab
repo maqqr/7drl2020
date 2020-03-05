@@ -61,6 +61,21 @@ MonoBehaviour:
     CreaturePrefab: {fileID: 0}
   TimeElapsed: 0
   Position: {x: 0, y: 0}
+  CurrentTrait:
+    Id: 
+    Name: 
+    MaxHpBonus: 0
+    StrBonus: 0
+    MeleeBonus: 0
+    RangedBonus: 0
+    ModelScaleMultiplier: 0
+    AggroRangeModifier: 0
+    SlashingResBonus: 0
+    BluntResBonus: 0
+    PiercingResBonus: 0
+    MagicResBonus: 0
+    ModelAssetPath: 
+  Mutations: []
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   OnMove: 0
   Attacking: 0
@@ -141,6 +156,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e07a9238916bade44a183f239f295edd, type: 2}
+    - target: {fileID: 5425013990061363714, guid: d67fc6f110dc29c49a94c52c7fdf48f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6241321567002663410, guid: d67fc6f110dc29c49a94c52c7fdf48f1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

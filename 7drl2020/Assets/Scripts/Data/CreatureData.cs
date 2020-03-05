@@ -7,6 +7,7 @@ namespace Verminator.Data
     [System.Serializable]
     public class TraitData
     {
+        public string Id;
         public string Name;
         public int MaxHpBonus;
         public int StrBonus;
@@ -21,6 +22,8 @@ namespace Verminator.Data
         public int MagicResBonus;
 
         public string ModelAssetPath;
+
+        public bool IsTrait => ModelAssetPath == "";
     }
 
     [System.Serializable]
