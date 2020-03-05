@@ -106,6 +106,11 @@ namespace Verminator
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["studdedleatherarmour"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["ratscalp"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["flaskofspirits"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bow"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.EquipSlots[0] = PlayerCreature.Inventory[0];
 
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
