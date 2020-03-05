@@ -40,6 +40,7 @@ namespace Verminator.GameViews
             sheetUI.Drop.OnClick = OnDropClicked;
             sheetUI.Eat.OnClick = OnEatClicked;
 
+            HideItemDesc();
             RefreshView();
         }
 
@@ -119,6 +120,16 @@ namespace Verminator.GameViews
             equipmentDesc += "Feet:\n - " + ArmorName(ArmorSlot.Legs) + "\n";
             sheetUi.EquipmentText.text = equipmentDesc;
 
+            // Update player stats
+            sheetUI.StrengthText.text = Utils.FixFont(player.Strength.ToString());
+            sheetUI.IntelligenceText.text = Utils.FixFont(player.Intelligence.ToString());
+            sheetUI.MeleeText.text = Utils.FixFont(player.MeleeSkill.ToString());
+            sheetUI.RangedText.text = Utils.FixFont(player.RangedSkill.ToString());
+            sheetUI.SlashingText.text = Utils.FixFont(player.GetResistance(DamageType.Slashing).ToString() + "%");
+            sheetUI.BluntText.text = Utils.FixFont(player.GetResistance(DamageType.Blunt).ToString() + "%");
+            sheetUI.PiercingText.text = Utils.FixFont(player.GetResistance(DamageType.Piercing).ToString() + "%");
+            sheetUI.MagicText.text = Utils.FixFont(player.GetResistance(DamageType.Magic).ToString() + "%");
+
             // Instantiate items in inventory
             for (int i = 0; i < player.Inventory.Count; i++)
             {
@@ -145,7 +156,43 @@ namespace Verminator.GameViews
                 {
                     OnItemClicked(itemLineUi, index);
                 };
+                itemLineUi.OnEnter += delegate (PointerEventData eventData)
+                {
+                    ShowItemDesc(index);
+                };
+                itemLineUi.OnExit += delegate (PointerEventData eventData)
+                {
+                    HideItemDesc();
+                };
             }
+        }
+
+        private void ShowItemDesc(int index)
+        {
+            sheetUI.DescWindow.SetActive(true);
+
+            var invItem = gameManager.PlayerCreature.Inventory[index];
+            sheetUI.DescWindowTitle.text = invItem.ItemData.Name;
+
+            string msg = "";
+            if (!invItem.ItemData.IsArmor)
+            {
+                msg += Utils.FixFont("Damage: " + invItem.ItemData.Damage + " " + invItem.ItemData.DamageType.ToString().ToLower() + "\n");
+                msg += Utils.FixFont("Range: " + invItem.ItemData.MinRange + " - " + invItem.ItemData.MaxRange + " tiles\n\n");
+            }
+            else
+            {
+                msg += "Resistances:\n";
+                msg += Utils.FixFont("Slashing: " + invItem.ItemData.SlashingRes + "  Blunt: " + invItem.ItemData.BluntRes + "\n");
+                msg += Utils.FixFont("Piercing: " + invItem.ItemData.PiercingRes + "  Magic: " + invItem.ItemData.MagicRes + "\n\n");
+            }
+            msg += invItem.ItemData.Description;
+            sheetUI.DescWindowText.text = msg;
+        }
+
+        private void HideItemDesc()
+        {
+            sheetUI.DescWindow.SetActive(false);
         }
 
         private void UnselectAll()

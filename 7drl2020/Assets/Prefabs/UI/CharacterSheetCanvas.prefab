@@ -902,8 +902,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -919,7 +919,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 18
+  m_firstOverflowCharacterIndex: 22
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -948,7 +948,7 @@ MonoBehaviour:
     spaceCount: 14
     wordCount: 15
     linkCount: 0
-    lineCount: 5
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1644,6 +1644,17 @@ MonoBehaviour:
   Drop: {fileID: 8666489211968233987}
   Eat: {fileID: 7165560518629390040}
   EquipmentText: {fileID: 4888971675937645138}
+  StrengthText: {fileID: 4117957880099260541}
+  IntelligenceText: {fileID: 4117957879640996292}
+  MeleeText: {fileID: 4117957879341479262}
+  RangedText: {fileID: 4117957881092417599}
+  SlashingText: {fileID: 5871152527935068596}
+  BluntText: {fileID: 7299570886438038546}
+  PiercingText: {fileID: 5336640873443092557}
+  MagicText: {fileID: 6020849454795560544}
+  DescWindowTitle: {fileID: 5243184912136581581}
+  DescWindowText: {fileID: 2123167590359876099}
+  DescWindow: {fileID: 6093506860707278678}
 --- !u!1 &4117957879425918777
 GameObject:
   m_ObjectHideFlags: 0

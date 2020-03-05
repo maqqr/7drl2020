@@ -13,6 +13,9 @@ namespace Verminator
         private bool isSelected = false;
         public event System.Action<PointerEventData> OnClick;
 
+        public event System.Action<PointerEventData> OnEnter;
+        public event System.Action<PointerEventData> OnExit;
+
         private void Start()
         {
             Underline.SetActive(false);
@@ -22,6 +25,7 @@ namespace Verminator
         {
             //Debug.Log("Mouse enter");
             Underline.SetActive(true);
+            OnEnter?.Invoke(eventData);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -31,6 +35,7 @@ namespace Verminator
             {
                 Underline.SetActive(false);
             }
+            OnExit?.Invoke(eventData);
         }
 
         public void OnPointerClick(PointerEventData eventData)
