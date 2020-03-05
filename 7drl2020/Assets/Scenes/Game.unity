@@ -9102,7 +9102,7 @@ PrefabInstance:
     - target: {fileID: 3781767971894658243, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -27.699997
+      value: -13.600006
       objectReference: {fileID: 0}
     - target: {fileID: 4797913744104513784, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}
@@ -9138,11 +9138,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360715827856632536, guid: 9d421d4384bbc464188baddcd0ccac24,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.300003
       objectReference: {fileID: 0}
     - target: {fileID: 5362263042208351754, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}

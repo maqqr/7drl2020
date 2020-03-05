@@ -25,6 +25,20 @@ namespace Verminator.Data
         public string ModelAssetPath;
 
         public bool IsTrait => ModelAssetPath == "";
+
+        public int GetResistanceBonus(DamageType type)
+        {
+            switch (type)
+            {
+                case DamageType.Slashing: return SlashingResBonus;
+                case DamageType.Blunt: return BluntResBonus;
+                case DamageType.Piercing: return PiercingResBonus;
+                case DamageType.Magic: return MagicResBonus;
+                default:
+                    break;
+            }
+            return 0;
+        }
     }
 
     [System.Serializable]
@@ -50,5 +64,19 @@ namespace Verminator.Data
 
         public string AssetPath;
         public GameObject CreaturePrefab;
+
+        public int GetBaseResistance(DamageType type)
+        {
+            switch (type)
+            {
+                case DamageType.Slashing: return BaseSlashingRes;
+                case DamageType.Blunt: return BaseBluntRes;
+                case DamageType.Piercing: return BasePiercingRes;
+                case DamageType.Magic: return BaseMagicRes;
+                default:
+                    break;
+            }
+            return 0;
+        }
     }
 }

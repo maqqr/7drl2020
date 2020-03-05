@@ -44,5 +44,19 @@ namespace Verminator.Data
         {
             return (ArmorSlot)System.Enum.Parse(typeof(ArmorSlot), ArmorSlot, true);
         }
+
+        public int GetResistance(DamageType type)
+        {
+            switch (type)
+            {
+                case DamageType.Slashing: return SlashingRes;
+                case DamageType.Blunt: return BluntRes;
+                case DamageType.Piercing: return PiercingRes;
+                case DamageType.Magic: return MagicRes;
+                default:
+                    break;
+            }
+            return 0;
+        }
     }
 }

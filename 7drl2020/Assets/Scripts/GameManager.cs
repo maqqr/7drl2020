@@ -217,7 +217,12 @@ namespace Verminator
                     if (cre != null)
                     {
                         cre.AddTrait(cre.GetRandomTrait());
-                        cre.AddTrait(cre.GetRandomMutation());
+
+                        int muts = UnityEngine.Random.Range(0, 3);
+                        for (int m = 0; m < muts; m++)
+                        {
+                            cre.AddTrait(cre.GetRandomMutation());
+                        }
                     }
                 }
 
