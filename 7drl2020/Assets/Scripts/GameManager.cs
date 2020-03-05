@@ -224,8 +224,8 @@ namespace Verminator
                         {
                             cre.AddTrait(cre.GetRandomMutation());
                         }
+                        cre.Hp = cre.MaxHp; // Mutations may change max hp, fix current hp
                     }
-                    cre.Hp = cre.MaxHp; // Mutations may change max hp, fix current hp
                 }
 
                 // Spawn items in dungeon
