@@ -110,14 +110,14 @@
     },
 
     "spawnlist": {
-        "0": ["rat", "rat", "rat", "rat", "swarm", "swarm"],
-        "1": ["rat", "rat", "rat", "swarm", "batrat"],
-        "2": ["rat", "rat", "swarm", "batrat"],
-        "3": ["rat", "rat", "ratman", "swarm", "swarm", "batrat", "batrat"],
-        "4": ["rat", "rat", "ratman", "swarm", "batrat", "shroomrat"],
+        "0": ["rat", "rat", "rat", "rat", "rat", "rat", "rat", "rat", "swarm", "swarm", "swarm", "swarm", "batrat"],
+        "1": ["rat", "rat", "rat", "rat", "rat", "swarm", "swarm", "swarm", "batrat", "batrat", "batrat", "ratman"],
+        "2": ["rat", "rat", "rat", "swarm", "swarm", "batrat", "batrat", "ratman"],
+        "3": ["rat", "rat", "ratman", "swarm", "swarm", "batrat", "batrat", "shroomrat"],
+        "4": ["rat", "rat", "ratman", "swarm", "batrat", "shroomrat", "rat", "rat", "ratman", "swarm", "batrat", "shroomrat", "ratvine"],
         "5": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine"],
-        "6": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine"],
-        "7": ["rat", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct"],
+        "6": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine"],
+        "7": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct"],
         "8": ["rat", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "ratconstruct", "ratconstruct", "ratconstruct"],
         "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct"]
     },
