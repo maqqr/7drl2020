@@ -275,7 +275,7 @@ namespace Verminator.GameViews
         {
             var invItem = gameManager.PlayerCreature.Inventory[selectedIndex];
             gameManager.PlayerCreature.RemoveItem(invItem, 1);
-            gameManager.CurrentFloor.SpawnItem(invItem.ItemData.Id, gameManager.PlayerCreature.Position);
+            gameManager.CurrentFloor.SpawnItem(invItem.ItemData.Id, gameManager.PlayerCreature.Position, null);
 
             // Unequip dropped item
             for (int i = 0; i < gameManager.PlayerCreature.EquipSlots.Length; i++)

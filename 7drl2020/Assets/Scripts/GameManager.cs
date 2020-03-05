@@ -16,6 +16,10 @@ namespace Verminator
         public GameObject EnemyStatsName;
         public GameObject EnemyStatsDesc;
 
+        public TMPro.TextMeshProUGUI HpText;
+        public TMPro.TextMeshProUGUI MpText;
+        public TMPro.TextMeshProUGUI SanityText;
+
         public int currentFloorIndex = -1;
         private List<DungeonFloor> dungeonFloors = new List<DungeonFloor>();
         private Stack<GameViews.IGameView> gameViews = new Stack<GameViews.IGameView>();
@@ -116,6 +120,7 @@ namespace Verminator
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
 
             UpdateEquipSlotGraphics();
+            UpdatePlayerStatsUI();
 
             for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
             {
@@ -319,11 +324,11 @@ namespace Verminator
 
                 var itemKeyList = Data.GameData.Instance.ItemSpawnList[currentFloorIndex];
                 int index = UnityEngine.Random.Range(0, itemKeyList.Length);
-                CurrentFloor.SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position));
+                CurrentFloor.SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
             }
             else
             {
-                CurrentFloor.SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position));
+                CurrentFloor.SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
             }
         }
 
@@ -411,6 +416,13 @@ namespace Verminator
             }
         }
 
+        public void UpdatePlayerStatsUI()
+        {
+            HpText.text = Utils.FixFont($"HP: {PlayerCreature.Hp}/{PlayerCreature.MaxHp}");
+            MpText.text = Utils.FixFont($"MP: {PlayerCreature.Mp}/{PlayerCreature.MaxMp}");
+            SanityText.text = Utils.FixFont($"Sanity: {CurrentSanity}/{MaxSanity}");
+        }
+
         public void PreviousDungeonFloor()
         {
             if (currentFloorIndex == 0)
@@ -485,6 +497,8 @@ namespace Verminator
                 Debug.Log($"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
             }
+
+            UpdatePlayerStatsUI();
 
             //AdjustNutrition(-1);
             //UpdateHunger();

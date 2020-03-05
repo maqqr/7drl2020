@@ -83,7 +83,7 @@ namespace Verminator
             Destroy(creature.gameObject);
         }
 
-        public Item SpawnItem(string id, Vector2Int spawnCoordinate) // item id is defined in json
+        public Item SpawnItem(string id, Vector2Int spawnCoordinate, Transform freePlacement) // item id is defined in json
         {
             if (!Data.GameData.Instance.ItemData.ContainsKey(id))
             {
@@ -101,6 +101,13 @@ namespace Verminator
 
             GameObject itemObject = Instantiate(data.ItemPrefab, Utils.ConvertToUnityCoord(spawnCoordinate), Quaternion.identity);
             itemObject.transform.position = Utils.ConvertToUnityCoord(spawnCoordinate);
+
+            if (freePlacement != null)
+            {
+                itemObject.transform.position = freePlacement.position;
+                itemObject.transform.rotation = freePlacement.rotation;
+            }
+
             itemObject.transform.parent = transform;
 
             Item item = itemObject.GetComponent<Item>();

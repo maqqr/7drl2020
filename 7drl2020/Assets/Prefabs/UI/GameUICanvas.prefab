@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9051140395461216481}
   - component: {fileID: 9058255222171605967}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: MpValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1943917868189480790}
   - component: {fileID: 8810210958176690913}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PlayerStatWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 6420496300065646880}
   - component: {fileID: 5472173823659208772}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: SanityValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 7910050449555243987}
   - component: {fileID: 5616289312478530689}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HpValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -4475,6 +4475,9 @@ MonoBehaviour:
   EnemyStatsWindow: {fileID: 1704219697343611461}
   EnemyStatsName: {fileID: 1704219697343611460}
   EnemyStatsDesc: {fileID: 1704219697343611459}
+  HpText: {fileID: 1352076704}
+  MpText: {fileID: 1383663641}
+  SanityText: {fileID: 1346412757}
   currentFloorIndex: -1
   PlayerCreature: {fileID: 0}
   ShoeMesh: {fileID: 2840823874903811969, guid: eb199ff82e45059468d98239d2727d2f,
@@ -5299,6 +5302,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335805526}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1346412757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5472173823659208772, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704219697343611458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1350293023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5378,6 +5393,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350293023}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1352076704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616289312478530689, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704219697343611458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1383663641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9058255222171605967, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704219697343611458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383876310
 GameObject:
   m_ObjectHideFlags: 0
@@ -8903,10 +8942,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 15822764344659616, guid: 9d421d4384bbc464188baddcd0ccac24,
+        type: 3}
+      propertyPath: m_Name
+      value: MpValue
+      objectReference: {fileID: 0}
     - target: {fileID: 113088847133189596, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765655805829527984, guid: 9d421d4384bbc464188baddcd0ccac24,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerStatWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209977174811313859, guid: 9d421d4384bbc464188baddcd0ccac24,
+        type: 3}
+      propertyPath: m_Name
+      value: SanityValue
       objectReference: {fileID: 0}
     - target: {fileID: 1450597681041604220, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}
@@ -9111,7 +9165,12 @@ PrefabInstance:
     - target: {fileID: 3781767971894658243, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -13.600006
+      value: -19.199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930441519793780858, guid: 9d421d4384bbc464188baddcd0ccac24,
+        type: 3}
+      propertyPath: m_Name
+      value: HpValue
       objectReference: {fileID: 0}
     - target: {fileID: 4797913744104513784, guid: 9d421d4384bbc464188baddcd0ccac24,
         type: 3}

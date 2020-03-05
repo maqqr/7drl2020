@@ -9,5 +9,7 @@ namespace Verminator
         public int SpawnChance = 50;
 
         public string SpawnItem = "";
+
+        public bool FreePlacement = false;
     }
 }
