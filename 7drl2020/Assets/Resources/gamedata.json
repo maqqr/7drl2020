@@ -63,7 +63,7 @@
     },
 
     "creatures": {
-        "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 8, "ranged": 8, "str": 2, "int": 0 },
+        "player":       { "name": "Player", "assetpath": "Creatures/Player", "maxhp": 100, "maxmp": 10, "speed": 100, "melee": 10, "ranged": 10, "str": 2, "int": 2 },
 
         "queen":        { "name": "Queen Rat", "assetpath": "Creatures/QueenRat", "maxhp": 250, "speed": 120, "melee": 12, "ranged": 12, "str": 6, "slashingres": 20, "bluntres": 20, "piercingres": 20, "magicres": 20, "allowedtraits": ["bigteeth", "boils", "cunning", "extralimbs", "extratail", "eyeless", "gassy", "horns", "instability", "oily", "scalyskin", "scarred", "sneaky", "spikyskin", "tough"], "weapons": ["teeth", "tail", "scratch"] },
 
@@ -108,7 +108,7 @@
     },
 
     "spawnlist": {
-        "0": ["rat", "swarm", "batrat", "ratman", "shroomrat", "ratvine", "ratconstruct"],
+        "0": ["rat", "rat", "rat", "rat", "rat", "rat", "rat", "rat", "swarm", "swarm", "swarm", "swarm", "batrat"],
         "1": ["rat", "rat", "rat", "rat", "rat", "swarm", "swarm", "swarm", "batrat", "batrat", "batrat", "ratman"],
         "2": ["rat", "rat", "rat", "swarm", "swarm", "batrat", "batrat", "ratman"],
         "3": ["rat", "rat", "ratman", "swarm", "swarm", "batrat", "batrat", "shroomrat"],
@@ -117,8 +117,7 @@
         "6": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine"],
         "7": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratvine", "ratconstruct"],
         "8": ["rat", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct", "ratconstruct", "ratconstruct", "ratconstruct"],
-        "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct"],
-        "10": ["rat", "rat", "rat", "rat", "rat", "rat", "rat", "rat", "swarm", "swarm", "swarm", "swarm", "batrat"]
+        "9": ["rat", "ratman", "ratman", "ratman", "swarm", "batrat", "shroomrat", "shroomrat", "ratvine", "ratvine", "ratconstruct"]
     },
 
     "itemspawnlist": {
