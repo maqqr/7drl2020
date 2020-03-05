@@ -355,6 +355,7 @@ namespace Verminator
                 if (ammo != null) {
                     hit = UnityEngine.Random.Range(0,20)+1<=attacker.RangedSkill;
                     attacker.RemoveItem(ammo,1);
+                    UpdateEquipSlotGraphics();
                 }
                 else {
                     MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no ammo {weapon.Ammo}");
