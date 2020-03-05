@@ -330,7 +330,6 @@ namespace Verminator
                 return false;
             }
 
-
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
             Data.ItemData weapon;
             try {
@@ -368,9 +367,9 @@ namespace Verminator
             if (hit) {
                 DamageType dmgType = weapon.DamageType;
                 int dmg = Utils.RollDice(weapon.Damage,true) +attacker.Strength;
-                dmg = dmg*(1-defender.GetResistance(dmgType));
+                dmg = (int)(dmg * (1 - defender.GetResistance(dmgType)/100.0f));
                 defender.Hp -= dmg;
-                MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} damage!");
+                MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
             }
             else {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} misses!");
