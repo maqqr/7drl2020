@@ -234,6 +234,14 @@ namespace Verminator
             if (item.Count == 0)
             {
                 Inventory.Remove(item);
+
+                for (int i = 0; i < EquipSlots.Length; i++)
+                {
+                    if (EquipSlots[i] == item)
+                    {
+                        EquipSlots[i] = null;
+                    }
+                }
             }
         }
 
