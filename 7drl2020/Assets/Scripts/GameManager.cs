@@ -336,7 +336,7 @@ namespace Verminator
                 weapon = attacker.EquipSlots[usedSlot].ItemData;
             }
             catch {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot}");
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot+1}");
                 return false;
             }
             int dist = (int)Vector2.Distance(attacker.Position,defender.Position);
