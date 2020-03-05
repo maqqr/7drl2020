@@ -55,15 +55,15 @@ namespace Verminator
 
         public int Hp { get => hp; set => hp = Mathf.Clamp(value, 0, MaxHp); }
         public int Mp { get => mp; set => mp = Mathf.Clamp(value, 0, MaxMp); }
-        public int MaxHp => Data.BaseMaxHp;
+        public int MaxHp => Data.BaseMaxHp + (CurrentTrait != null ? CurrentTrait.MaxHpBonus : 0) + Mutations.Select(m => m.MaxHpBonus).Sum();
         public int MaxMp => Data.BaseMaxMp;
-        public int Strength => Data.BaseStr;
+        public int Strength => Data.BaseStr + (CurrentTrait != null ? CurrentTrait.StrBonus : 0) + Mutations.Select(m => m.StrBonus).Sum();
         public int Intelligence => Data.BaseInt;
-        public int MeleeSkill => Data.BaseMeleeSkill;
-        public int RangedSkill => Data.BaseRangedSkill;
-        public int AggroRange => Data.BaseAggroRange;
+        public int MeleeSkill => Data.BaseMeleeSkill + (CurrentTrait != null ? CurrentTrait.MeleeBonus : 0) + Mutations.Select(m => m.MeleeBonus).Sum();
+        public int RangedSkill => Data.BaseRangedSkill + (CurrentTrait != null ? CurrentTrait.RangedBonus : 0) + Mutations.Select(m => m.RangedBonus).Sum();
+        public int AggroRange => Data.BaseAggroRange + (CurrentTrait != null ? CurrentTrait.AggroRangeModifier : 0) + Mutations.Select(m => m.AggroRangeModifier).Sum();
 
-        public int Speed => 1000;
+        public int Speed => Data.BaseSpeed;
 
         public string Desc
         {
