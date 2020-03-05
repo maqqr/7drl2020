@@ -103,6 +103,7 @@ namespace Verminator.Data
                 {
                     Id = trait.Key,
                     Name = trait.Value["name"],
+                    Description = trait.Value["desc"] != null ? (string)trait.Value["desc"] : "",
                     ModelAssetPath = trait.Value["modelassetpath"],
                     MaxHpBonus = GetDefault(0, "hpbonus", trait),
                     StrBonus = GetDefault(0, "strbonus", trait),

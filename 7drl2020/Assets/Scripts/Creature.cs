@@ -56,6 +56,30 @@ namespace Verminator
 
         public int Speed => 1000;
 
+        public string Desc
+        {
+            get
+            {
+                string msg = "";
+
+                msg += Utils.FixFont($"HP: {Hp} / {MaxHp}\n");
+                msg += Utils.FixFont($"Str: {Strength}\n");
+                msg += Utils.FixFont($"Melee: {MeleeSkill}\n");
+
+                msg += "\n";
+
+                if (CurrentTrait != null)
+                {
+                    msg += "Trait: " + CurrentTrait.Name + "\n - " + CurrentTrait.Description + "\n\n";
+                }
+                foreach(var mutation in Mutations)
+                {
+                    msg += mutation.Name + "\n - " + mutation.Description + "\n";
+                }
+                return msg;
+            }
+        }
+
         public int GetResistance(DamageType damageType)
         {
             return 0;

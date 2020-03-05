@@ -9,6 +9,7 @@ namespace Verminator.Data
     {
         public string Id;
         public string Name;
+        public string Description;
         public int MaxHpBonus;
         public int StrBonus;
         public int MeleeBonus;
