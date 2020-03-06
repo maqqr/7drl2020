@@ -31,7 +31,7 @@ namespace Verminator.GameViews
             sheetUI = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>();
             sheetUI.InteractionWindow.SetActive(false);
 
-            sheetUI.StatIncreased += StatIncreaseClicked;
+            sheetUI.StatIncreased = StatIncreaseClicked;
 
             sheetUI.LevelUpButtons.SetActive(gameManager.PointsToSpend > 0);
 
@@ -51,16 +51,19 @@ namespace Verminator.GameViews
 
         private void StatIncreaseClicked(int index)
         {
-            switch(index)
+            if (gameManager.PointsToSpend > 0)
             {
-                case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; break;
-                case 1: gameManager.PlayerCreature.Data.BaseStr += 1; break;
-                case 2: gameManager.PlayerCreature.Data.BaseInt += 1; break;
-                case 3: gameManager.PlayerCreature.Data.BaseMeleeSkill += 1; break;
-                case 4: gameManager.PlayerCreature.Data.BaseRangedSkill += 1; break;
-            }
+                switch (index)
+                {
+                    case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; break;
+                    case 1: gameManager.PlayerCreature.Data.BaseStr += 1; break;
+                    case 2: gameManager.PlayerCreature.Data.BaseInt += 1; break;
+                    case 3: gameManager.PlayerCreature.Data.BaseMeleeSkill += 1; break;
+                    case 4: gameManager.PlayerCreature.Data.BaseRangedSkill += 1; break;
+                }
 
-            gameManager.PointsToSpend--;
+                gameManager.PointsToSpend--;
+            }
             sheetUI.LevelUpButtons.SetActive(gameManager.PointsToSpend > 0);
             RefreshView();
         }
