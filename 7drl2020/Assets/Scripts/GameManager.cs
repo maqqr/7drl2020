@@ -11,6 +11,8 @@ namespace Verminator
         public GameObject debugSphere;
         public GameObject itemLineUIPrefab;
         public GameObject inventoryCanvas;
+        public GameObject pickupItemLinePrefab;
+        public GameObject pickupList;
 
         public GameObject EnemyStatsWindow;
         public GameObject EnemyStatsName;

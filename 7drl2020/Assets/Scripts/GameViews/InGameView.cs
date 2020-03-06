@@ -19,6 +19,8 @@ namespace Verminator.GameViews
 
         private List<Vector2Int> pathToPos;
 
+        public List<GameObject> pickupList = new List<GameObject>();
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -65,6 +67,47 @@ namespace Verminator.GameViews
             return false;
         }
 
+        private void UpdateItemPickupList()
+        {
+            foreach (var item in pickupList)
+            {
+                GameObject.Destroy(item);
+            }
+            pickupList.Clear();
+
+            int i = 0;
+            PickupItemLineUI CreateLine(float x, string text)
+            {
+                var obj = GameObject.Instantiate(gameManager.pickupItemLinePrefab);
+                obj.transform.SetParent(gameManager.pickupList.transform);
+                obj.transform.localScale = Vector3.one;
+                obj.transform.localRotation = Quaternion.identity;
+                obj.GetComponent<RectTransform>().localPosition = new Vector3(x, -40 * i, 0);
+                var ui = obj.GetComponentInChildren<PickupItemLineUI>();
+                ui.ItemText.text = text;
+                i++;
+                pickupList.Add(obj);
+                return ui;
+            }
+
+            var items = gameManager.CurrentFloor.GetItemsAt(gameManager.PlayerCreature.Position);
+            if (items.Count > 0)
+            {
+                var title = CreateLine(0f, "Items here:");
+                GameObject.Destroy(title.GetComponent<UnityEngine.UI.Button>());
+                foreach (var item in items)
+                {
+                    var line = CreateLine(20f, item.Data.Name);
+                    Item pickup = item;
+                    line.OnClick += delegate
+                    {
+                        Debug.Log("Pickup by mouse");
+                        PickupItem(pickup);
+                    };
+                }
+            }
+        }
+
         private void DrawPath()
         {
             Vector2Int? playerMoveTo = gameManager.TileCoordinateUnderMouse();
@@ -106,12 +149,44 @@ namespace Verminator.GameViews
             }
         }
 
+        private void PickupItem(Item item)
+        {
+            if (gameManager.PlayerCreature.AddItem(item.Data))
+            {
+                gameManager.CurrentFloor.DestroyItem(item);
+                gameManager.MessageBuffer.AddMessage(Color.white, "Picked up " + item.Data.Name);
+
+                // Equip it instantly. This is only for debugging
+                //player.EquipSlots[0] = player.Inventory[0];
+                //gameManager.UpdateEquipSlotGraphics();
+            }
+            else
+            {
+                gameManager.MessageBuffer.AddMessage(Color.white, "Cannot pick up " + item.Data.Name + ". You are carrying too much.");
+            }
+        }
+
         private void HandlePlayerInput()
         {
             Vector2Int? playerMoveTo = null;
             var player = gameManager.PlayerCreature;
 
-            // This is just for testing: move player to where the mouse was clicked
+            if (Input.GetMouseButtonDown(0))
+            {
+                // This is a dirty hack, but Unity UI refuses to cooperate
+                foreach (var itemLine in pickupList)
+                {
+                    var lineUi = itemLine.GetComponent<PickupItemLineUI>();
+                    if (lineUi.IsMouseOver)
+                    {
+                        lineUi.SimulateClick();
+                        forcedCooldown = 0.2f;
+                        UpdateItemPickupList();
+                        return;
+                    }
+                }
+            }
+
             if (Input.GetMouseButton(0) && !player.OnMove)
             {
                 playerMoveTo = gameManager.TileCoordinateUnderMouse();
@@ -122,19 +197,7 @@ namespace Verminator.GameViews
                 var item = gameManager.CurrentFloor.GetItemAt(player.Position);
                 if (item != null)
                 {
-                    if (player.AddItem(item.Data))
-                    {
-                        gameManager.CurrentFloor.DestroyItem(item);
-                        gameManager.MessageBuffer.AddMessage(Color.white, "Picked up " + item.Data.Name);
-
-                        // Equip it instantly. This is only for debugging
-                        //player.EquipSlots[0] = player.Inventory[0];
-                        //gameManager.UpdateEquipSlotGraphics();
-                    }
-                    else
-                    {
-                        gameManager.MessageBuffer.AddMessage(Color.white, "Cannot pick up " + item.Data.Name + ". You are carrying too much.");
-                    }
+                    PickupItem(item);
                 }
             }
 
@@ -289,7 +352,7 @@ namespace Verminator.GameViews
                             var item = gameManager.CurrentFloor.GetItemAt(player.Position);
                             if (item != null)
                             {
-                                gameManager.MessageBuffer.AddMessage(Color.white, "You see " +Utils.GetIndefiniteArticle(item.Data.Name)+" "+ item.Data.Name+" here.");
+                                gameManager.MessageBuffer.AddMessage(Color.white, "You see " + Utils.GetIndefiniteArticle(item.Data.Name) + " " + item.Data.Name + " here.");
                             }
                         }
 
@@ -305,7 +368,8 @@ namespace Verminator.GameViews
                         player.Move(pathToPos[0], true);
                         gameManager.AdvanceGameWorld(player.Speed);
                     }
-                    else {
+                    else
+                    {
                         // Failed the combat for some reason
                         // Have a cooldown to block the message spam
                         forcedCooldown = 0.5f;
@@ -313,6 +377,7 @@ namespace Verminator.GameViews
                     //gameManager.AdvanceTime(player.Speed);
                 }
 
+                UpdateItemPickupList();
             }
         }
     }
