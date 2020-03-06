@@ -32,6 +32,7 @@ namespace Verminator.GameViews
 
         public void OpenView()
         {
+            gameManager.InventoryPressed = OpenInventory;
         }
 
         public void CloseView()
@@ -67,13 +68,18 @@ namespace Verminator.GameViews
             return false;
         }
 
-        private void UpdateItemPickupList()
+        private void HideItemPickupList()
         {
             foreach (var item in pickupList)
             {
                 GameObject.Destroy(item);
             }
             pickupList.Clear();
+        }
+
+        private void UpdateItemPickupList()
+        {
+            HideItemPickupList();
 
             int i = 0;
             PickupItemLineUI CreateLine(float x, string text)
@@ -106,6 +112,13 @@ namespace Verminator.GameViews
                     };
                 }
             }
+        }
+
+        private void OpenInventory()
+        {
+            forcedCooldown = 0.2f;
+            HideItemPickupList();
+            gameManager.AddNewView(new CharacterSheetView());
         }
 
         private void DrawPath()
@@ -171,6 +184,7 @@ namespace Verminator.GameViews
             Vector2Int? playerMoveTo = null;
             var player = gameManager.PlayerCreature;
 
+            // Pick up item using the item list in left top corner
             if (Input.GetMouseButtonDown(0))
             {
                 // This is a dirty hack, but Unity UI refuses to cooperate
@@ -187,9 +201,20 @@ namespace Verminator.GameViews
                 }
             }
 
+            // Move the player on mouse click
             if (Input.GetMouseButton(0) && !player.OnMove)
             {
-                playerMoveTo = gameManager.TileCoordinateUnderMouse();
+                var pointer = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+                pointer.position = Input.mousePosition;
+                var raycastResults = new List<UnityEngine.EventSystems.RaycastResult>();
+                UnityEngine.EventSystems.EventSystem.current.RaycastAll(pointer, raycastResults);
+                bool cursorOverUIStuff = raycastResults.Count > 0;
+
+                if (!cursorOverUIStuff)
+                {
+                    playerMoveTo = gameManager.TileCoordinateUnderMouse();
+                }
+
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -204,7 +229,8 @@ namespace Verminator.GameViews
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                gameManager.AddNewView(new CharacterSheetView());
+                OpenInventory();
+                return;
             }
 
 

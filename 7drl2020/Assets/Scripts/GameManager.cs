@@ -52,6 +52,8 @@ namespace Verminator
         public int PlayerLevel = 1;
         public int PointsToSpend = 0;
 
+        public Action InventoryPressed;
+
         public void GainLampOil(int amount)
         {
             CurrentLampOil = Mathf.Clamp(CurrentLampOil + amount, 0, MaxLampOil);
@@ -60,6 +62,12 @@ namespace Verminator
         public void GainSanity(int amount)
         {
             CurrentSanity = Mathf.Clamp(CurrentSanity + amount, 0, MaxSanity);
+        }
+
+        public void InventoryButtonPressed()
+        {
+            Debug.Log("inventory pressed");
+            InventoryPressed?.Invoke();
         }
 
         public void DrawShoe(Vector3 position, Quaternion rotation)

@@ -16,6 +16,8 @@ namespace Verminator.GameViews
 
         private int selectedIndex = 0;
 
+        private bool closeRequested = false;
+
         public void Initialize(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -27,6 +29,8 @@ namespace Verminator.GameViews
 
         public void OpenView()
         {
+            gameManager.InventoryPressed = delegate { closeRequested = true; };
+
             gameManager.inventoryCanvas.SetActive(true);
             sheetUI = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>();
             sheetUI.InteractionWindow.SetActive(false);
@@ -89,7 +93,7 @@ namespace Verminator.GameViews
             //}
 
             //return Utils.IsPressed(gameManager.keybindings.OpenInventory) || gameManager.playerCreature.Hp < 1;
-            return Input.GetKeyDown(KeyCode.I);
+            return Input.GetKeyDown(KeyCode.I) || closeRequested;
         }
 
         private void RefreshView()
