@@ -60,6 +60,9 @@ namespace Verminator
                          Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(new Vector2Int(target.Position.x+i,target.Position.y+j));
                          hitCreature.Hp -= aoedmg;
                          gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {aoedmg} damage from the fire.");
+
+                         var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Firesquare"));
+                         eff.transform.position = Utils.ConvertToUnityCoord(target.Position + new Vector2Int(i, j));
                     }
                     catch {
                         continue;
