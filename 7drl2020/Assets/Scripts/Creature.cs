@@ -69,6 +69,8 @@ namespace Verminator
 
         public int Stun = 0;
 
+        public int Poison = 0;
+
         public string Desc
         {
             get
@@ -207,6 +209,10 @@ namespace Verminator
             if (this.Stun>0) {
                 this.Stun -=1;
                 return;
+            }
+            if (this.Poison >0) {
+                this.hp -= this.Poison;
+                this.Poison --;
             }
             Vector2Int newPosition;
             if (!Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), this.AggroRange)) {

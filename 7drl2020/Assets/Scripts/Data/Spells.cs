@@ -78,6 +78,23 @@ namespace Verminator
             caster.Hp += heal;
         }
 
+        public void PoisonBeam (Creature target, Creature caster, string dmg) {
+            int roll = Utils.RollDice(dmg);
+            List<Vector2Int> path = Utils.Line(caster.Position,target.Position);
+            foreach (Vector2Int tile in path) {
+                try {
+                    Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(tile);
+                    if (hitCreature != null) {
+                        hitCreature.Poison += roll;
+                        gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} was hit by poison.");
+                    }
+                }
+                catch {
+                    continue;
+                }
+            }
+        }
+
         public bool Cast(string effect, Creature caster, Creature target, string dmg) {
             switch(effect) {
                 case "Push": {
@@ -91,6 +108,10 @@ namespace Verminator
                 }
                 case "Leechlife": {
                     LeechLife(target,caster,dmg);
+                    return true;
+                }
+                case "Poisonbeam" :{
+                    PoisonBeam(target,caster,dmg);
                     return true;
                 }
                 default: {
