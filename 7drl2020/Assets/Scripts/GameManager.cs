@@ -299,6 +299,17 @@ namespace Verminator
                 Debug.LogError(nameof(Fight) + ": " + msg);
                 return false;
             }
+            // Check if an unblocked path exists.
+            List<Vector2Int> path = Utils.Line(attacker.Position,defender.Position);
+            foreach (Vector2Int tile in path) {
+                try {
+                    if (!CurrentFloor.Tiles[tile].IsWalkable) return false;
+                }
+                catch {
+                    return false;
+                }
+                
+            }
 
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
             Data.ItemData weapon;
