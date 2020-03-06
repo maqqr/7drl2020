@@ -328,6 +328,8 @@ MonoBehaviour:
   - corridor
   - room
   - boss
+  - upstairs
+  - downstairs
   Exits: {fileID: 3944501970560906972}
   Bounds: {fileID: 9113771138660008157}
   DeadEndChance: 0

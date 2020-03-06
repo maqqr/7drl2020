@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tags:
-  - stairs
+  - downstairs
   CreatesTags:
   - corridor
   Exits: {fileID: 3944501970560906972}
