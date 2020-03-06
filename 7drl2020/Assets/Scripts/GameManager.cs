@@ -503,8 +503,8 @@ namespace Verminator
             {
                 GameWinTimer -= Time.deltaTime;
                 if (GameWinTimer <= 0f)
-                { 
-                    // TODO: win the game
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(2);
                 }
             }
 
