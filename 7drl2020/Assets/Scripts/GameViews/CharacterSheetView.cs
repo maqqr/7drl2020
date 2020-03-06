@@ -59,7 +59,7 @@ namespace Verminator.GameViews
             {
                 switch (index)
                 {
-                    case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; break;
+                    case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; gameManager.PlayerCreature.Hp += 10; break;
                     case 1: gameManager.PlayerCreature.Data.BaseStr += 1; break;
                     case 2: gameManager.PlayerCreature.Data.BaseInt += 1; break;
                     case 3: gameManager.PlayerCreature.Data.BaseMeleeSkill += 1; break;
@@ -324,6 +324,8 @@ namespace Verminator.GameViews
             UnselectAll();
             RefreshView();
 
+            gameManager.UpdateEquipSlotGraphics();
+
             gameManager.MessageBuffer.AddMessage(Color.white, "You drop the " + invItem.ItemData.Name + ".");
         }
 
@@ -368,6 +370,8 @@ namespace Verminator.GameViews
             gameManager.PlayerCreature.Hp += invItem.ItemData.GainHealth;
             gameManager.PlayerCreature.Mp += invItem.ItemData.GainMana;
             gameManager.GainSanity(invItem.ItemData.GainSanity);
+
+            gameManager.UpdatePlayerStatsUI();
 
             gameManager.MessageBuffer.AddMessage(Color.white, "You consume the " + invItem.ItemData.Name + ". " + eff);
         }
