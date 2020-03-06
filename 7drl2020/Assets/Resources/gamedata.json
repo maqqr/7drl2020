@@ -124,9 +124,9 @@
         "0":
             ["apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
             "oilflask", "oilflask", "oilflask",
-            "sword", "mace", "spear",
+            "sword", "mace", "sword", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart",
-            "leathercap"
+            "leathercap", "leathercap"
             ],
         "1":
             ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
