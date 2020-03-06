@@ -208,8 +208,14 @@ namespace Verminator
                 this.Stun -=1;
                 return;
             }
+            Vector2Int newPosition;
+            if (!Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), Vector2.Distance(this.Position,gameManager.PlayerCreature.Position))) {
+                newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
+            }
+            else {
+                newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+            }
 
-            var newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
 
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {
