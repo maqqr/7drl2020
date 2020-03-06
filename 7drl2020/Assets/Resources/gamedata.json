@@ -24,10 +24,10 @@
         "arrow": { "name": "arrow", "assetpath": "Item/Arrow", "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "arrow", "fragile": true, "desc": "A pointy stick with rat whisker fletchings." },
         "bolt":  { "name": "bolt", "assetpath": "Item/Arrow",  "weight": 1, "dmgtype": "piercing", "maxrange": 3, "ammo": "bolt",  "fragile": true, "desc": "A hard and sturdy wooden bolt." },
 
-        "bow":      { "name": "bow", "assetpath": "Item/Bow",           "weight": 10, "dmg": "1d8+2",  "dmgtype": "piercing", "minrange": 2, "maxrange": 10, "ammo": "arrow",                    "desc": "A bow. Hard to use in small confines of corridors, but keeps the rats from getting to biting distance." },
-        "crossbow": { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 15, "dmg": "1d10+4", "dmgtype": "piercing", "minrange": 2, "maxrange": 10, "ammo": "bolt",                     "desc": "A crossbow. One can make even the bigger rats suffer with a well aimed bolt." },
-        "dart":     { "name": "dart", "assetpath": "Item/Dart",         "weight": 2,  "dmg": "1d4+1",  "dmgtype": "piercing",                "maxrange": 5,  "ammo": "dart", "fragile": true,    "desc": "A small metal dart. Will stick to rats when thrown with enough force." },
-        "javelin":  { "name": "javelin", "assetpath": "Item/Javelin",   "weight": 4,  "dmg": "1d6+2",  "dmgtype": "piercing",                "maxrange": 7,  "ammo": "javelin", "fragile": true, "desc": "A javelin for spearing rats at range." },
+        "bow":      { "name": "bow", "assetpath": "Item/Bow",           "weight": 10, "dmg": "2d8+8",   "dmgtype": "piercing", "minrange": 2, "maxrange": 10, "ammo": "arrow",                    "desc": "A bow. Hard to use in small confines of corridors, but keeps the rats from getting to biting distance." },
+        "crossbow": { "name": "crossbow", "assetpath": "Item/Crossbow", "weight": 15, "dmg": "2d10+10", "dmgtype": "piercing", "minrange": 2, "maxrange": 10, "ammo": "bolt",                     "desc": "A crossbow. One can make even the bigger rats suffer with a well aimed bolt." },
+        "dart":     { "name": "dart", "assetpath": "Item/Dart",         "weight": 2,  "dmg": "2d4+4",   "dmgtype": "piercing",                "maxrange": 5,  "ammo": "dart", "fragile": true,    "desc": "A small metal dart. Will stick to rats when thrown with enough force." },
+        "javelin":  { "name": "javelin", "assetpath": "Item/Javelin",   "weight": 4,  "dmg": "2d6+6",   "dmgtype": "piercing",                "maxrange": 7,  "ammo": "javelin", "fragile": true, "desc": "A javelin for spearing rats at range." },
 
         "leathercap":    { "name": "leather cap", "assetpath": "Item/LeatherCap",       "weight": 4, "armorslot": "head", "slashingres": 4, "bluntres": 4,  "piercingres": 2, "magicres": 0,  "desc": "A comfy and stylish head protection." },
         "chaincoif":     { "name": "chain coif", "assetpath": "Item/ChainCoif",         "weight": 4, "armorslot": "head", "slashingres": 6, "bluntres": 10, "piercingres": 3, "magicres": 0,  "desc": "A hood of chains for head and neck protection." },
@@ -122,24 +122,26 @@
 
     "itemspawnlist": {
         "0":
-            ["apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
+            ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
             "oilflask", "oilflask", "oilflask",
-            "sword", "mace", "spear",
+            "sword", "mace", "sword", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart",
-            "leathercap"
+            "leathercap", "leathercap"
             ],
         "1":
             ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
             "oilflask", "oilflask",
             "sword", "sword", "handaxe", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "arrow", "bolt", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "javelin",
-            "leathercap", "leathercap",
+            "crossbow",
+            "leathercap",
             "leatherboots"
             ],
-        "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
+        "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "oilflask",
             "sword", "handaxe", "mace", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "dart", "dart", "dart", "javelin", "javelin",
+            "crossbow", "crossbow",
             "leathercap", "leathercap", "leathercap",
             "lamellararmour",
             "leatherboots", "leatherboots"
@@ -149,6 +151,7 @@
             "oilflask",
             "sword", "handaxe", "mace", "spear", "spear",
             "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "dart", "dart", "javelin", "javelin", "javelin",
+            "crossbow", "crossbow",
             "leathercap", "leathercap", "leathercap", "leathercap",
             "lamellararmour","lamellararmour",
             "leatherboots", "leatherboots", "leatherboots"
@@ -157,6 +160,7 @@
             ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "sword", "handaxe", "handaxe", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "javelin", "javelin", "javelin",
+            "crossbow",
             "chaincoif",
             "lamellararmour"
             ],
@@ -170,29 +174,29 @@
             ],
         "6":
             ["apple", "bread", "cheese", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
-            "pickaxe", "warhammer", "longspear",
-            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt",
+            "pickaxe", "warhammer", "longspear", "longspear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt", "bolt",
             "chaincoif", "chaincoif", "domedhelmet",
             "chainmail", "chainmail",
             "chainmailboots", "platemailboots"
             ],
         "7":
             ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
-            "pickaxe", "warhammer", "longspear",
-            "arrow", "arrow", "arrow", "bolt", "bolt",
+            "pickaxe", "warhammer", "warhammer", "longspear",
+            "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt",
             "chaincoif", "chaincoif", "domedhelmet", "domedhelmet",
             "chainmail", "chainmail", "platemail",
             "chainmailboots", "chainmailboots", "platemailboots"
             ],
         "8":
             ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "greenmushroom", "blackmushroom", "blackmushroom",
-            "pickaxe", "warhammer", "longspear",
+            "warhammer", "longspear",
             "arrow", "arrow", "bolt",
             "chaincoif", "domedhelmet",
             "chainmail", "platemail",
             "chainmailboots", "platemailboots"
             ],
         "9":
-            ["greenmushroom", "greenmushroom", "blackmushroom", "blackmushroom"]
+            ["greenmushroom", "blackmushroom", "blackmushroom"]
     }
 }
