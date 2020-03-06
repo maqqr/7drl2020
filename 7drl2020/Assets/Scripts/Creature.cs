@@ -209,7 +209,7 @@ namespace Verminator
                 return;
             }
 
-            var newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+            var newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
 
             if (gameManager.CurrentFloor.IsWalkableFrom(Position, newPosition))
             {

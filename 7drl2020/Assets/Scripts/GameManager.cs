@@ -350,7 +350,14 @@ namespace Verminator
             if (hit)
             {
                 DamageType dmgType = weapon.DamageType;
-                int dmg = Utils.RollDice(weapon.Damage, true) + attacker.Strength;
+                string dmgdice = weapon.Damage;
+                if (attacker.Data.Name.Contains("swarm")) {
+                    int missingHp = 10-(attacker.MaxHp - attacker.Hp)/2;
+                    dmgdice = missingHp.ToString() + 'd'+weapon.Damage.Split('d')[1];
+                    Debug.Log(weapon.Damage.Split('d')[1]);
+                    Debug.Log("Swarm rolls with "+dmgdice);
+                }
+                int dmg = Utils.RollDice(dmgdice, true) + attacker.Strength;
                 dmg = (int)(dmg * (1 - defender.GetResistance(dmgType) / 100.0f));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
