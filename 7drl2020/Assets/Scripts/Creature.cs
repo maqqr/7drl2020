@@ -49,6 +49,7 @@ namespace Verminator
         public bool OnMove = false;
         public bool Attacking = false;
         private int hp;
+        public int BaseHpBonus = 0;
         private int mp;
 
         public System.Action OnMovementAnimationEnd;
@@ -57,7 +58,7 @@ namespace Verminator
 
         public int Hp { get => hp; set => hp = Mathf.Clamp(value, 0, MaxHp); }
         public int Mp { get => mp; set => mp = Mathf.Clamp(value, 0, MaxMp); }
-        public int MaxHp => Data.BaseMaxHp + (CurrentTrait != null ? CurrentTrait.MaxHpBonus : 0) + Mutations.Select(m => m.MaxHpBonus).Sum();
+        public int MaxHp => BaseHpBonus + Data.BaseMaxHp + (CurrentTrait != null ? CurrentTrait.MaxHpBonus : 0) + Mutations.Select(m => m.MaxHpBonus).Sum();
         public int MaxMp => Data.BaseMaxMp;
         public int Strength => Data.BaseStr + (CurrentTrait != null ? CurrentTrait.StrBonus : 0) + Mutations.Select(m => m.StrBonus).Sum();
         public int Intelligence => Data.BaseInt;
