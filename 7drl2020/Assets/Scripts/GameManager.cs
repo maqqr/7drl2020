@@ -467,6 +467,16 @@ namespace Verminator
             {
                 Debug.Log($"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
+
+                if (creature.Data.Id == "queen")
+                {
+                    GameWinTimer = 3f;
+                }
+
+                if (creature.Data.Id == "player")
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+                }
             }
 
             UpdatePlayerStatsUI();
