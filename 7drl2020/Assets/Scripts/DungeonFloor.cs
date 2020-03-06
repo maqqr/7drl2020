@@ -43,6 +43,10 @@ namespace Verminator
                     {
                         cre.AddTrait(cre.GetRandomMutation());
                     }
+                    if (cre.MaxHp < 1)
+                    {
+                        cre.BaseHpBonus = -cre.MaxHp + 1;
+                    }
                     cre.Hp = cre.MaxHp; // Mutations may change max hp, fix current hp
                 }
             }
