@@ -12,6 +12,11 @@ namespace Verminator
             this.gameManager = gameManager;
         }
         public void Push(Creature caster ,Creature creature,string dmg, float dist = 3) {
+
+            var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Push"));
+            eff.transform.position = Utils.ConvertToUnityCoord(caster.Position) + new Vector3(0f, 0.6f, 0f);
+            eff.transform.rotation = Quaternion.LookRotation(creature.transform.position - caster.transform.position);
+
             // Get the direction where the creature is pushed to
             Vector2 dir = creature.Position-caster.Position;
             dir = dir.normalized;
@@ -55,6 +60,9 @@ namespace Verminator
                          Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(new Vector2Int(target.Position.x+i,target.Position.y+j));
                          hitCreature.Hp -= aoedmg;
                          gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {aoedmg} damage from the fire.");
+
+                         var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Firesquare"));
+                         eff.transform.position = Utils.ConvertToUnityCoord(target.Position + new Vector2Int(i, j));
                     }
                     catch {
                         continue;
