@@ -66,3 +66,6 @@ MonoBehaviour:
   - Tag: stairs
     MinAmount: 1
     MaxAmount: 1
+  - Tag: boss
+    MinAmount: 0
+    MaxAmount: 0

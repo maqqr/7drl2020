@@ -159,6 +159,17 @@ namespace Verminator.GameViews
                 var cre = enemy.GetComponent<Creature>();
                 gameManager.EnemyStatsName.GetComponent<TMPro.TextMeshProUGUI>().text = cre.Name;
                 gameManager.EnemyStatsDesc.GetComponent<TMPro.TextMeshProUGUI>().text = cre.Desc;
+
+                var rect = gameManager.EnemyStatsWindow.GetComponent<RectTransform>();
+
+                var mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                bool onRightSide = mousePos.x < 0.5f;
+
+                Debug.Log("right side: " + onRightSide + " mousepos: " + mousePos);
+
+                rect.anchorMin = onRightSide ? new Vector2(1, 1) : new Vector2(0, 1);
+                rect.anchorMax = onRightSide ? new Vector2(1, 1) : new Vector2(0, 1);
+                rect.pivot = onRightSide ? new Vector2(1, 1) : new Vector2(0, 1);
             }
         }
 
