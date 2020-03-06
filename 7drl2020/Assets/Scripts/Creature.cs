@@ -73,8 +73,8 @@ namespace Verminator
 
                 msg += Utils.FixFont($"HP: {Hp} / {MaxHp}  Str: {Strength} Melee: {MeleeSkill}\n\n");
                 msg += Utils.FixFont($"Resistances:\n");
-                msg += Utils.FixFont($"Slashing: {GetResistance(DamageType.Slashing)}, Blunt: {GetResistance(DamageType.Blunt)}\n");
-                msg += Utils.FixFont($"Piercing: {GetResistance(DamageType.Piercing)}, Magic: {GetResistance(DamageType.Magic)}\n");
+                msg += Utils.FixFont($"Slashing: {GetResistance(DamageType.Slashing)}%, Blunt: {GetResistance(DamageType.Blunt)}%\n");
+                msg += Utils.FixFont($"Piercing: {GetResistance(DamageType.Piercing)}%, Magic: {GetResistance(DamageType.Magic)}%\n");
 
                 msg += "\n";
 

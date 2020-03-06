@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -30,6 +31,10 @@ namespace Verminator.GameViews
             sheetUI = gameManager.inventoryCanvas.GetComponent<CharacterSheetUI>();
             sheetUI.InteractionWindow.SetActive(false);
 
+            sheetUI.StatIncreased += StatIncreaseClicked;
+
+            sheetUI.LevelUpButtons.SetActive(gameManager.PointsToSpend > 0);
+
             var itemListTransform = sheetUI.ItemList.transform;
             for (int i = 0; i < itemListTransform.childCount; i++)
             {
@@ -41,6 +46,22 @@ namespace Verminator.GameViews
             sheetUI.Eat.OnClick = OnEatClicked;
 
             HideItemDesc();
+            RefreshView();
+        }
+
+        private void StatIncreaseClicked(int index)
+        {
+            switch(index)
+            {
+                case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; break;
+                case 1: gameManager.PlayerCreature.Data.BaseStr += 1; break;
+                case 2: gameManager.PlayerCreature.Data.BaseInt += 1; break;
+                case 3: gameManager.PlayerCreature.Data.BaseMeleeSkill += 1; break;
+                case 4: gameManager.PlayerCreature.Data.BaseRangedSkill += 1; break;
+            }
+
+            gameManager.PointsToSpend--;
+            sheetUI.LevelUpButtons.SetActive(gameManager.PointsToSpend > 0);
             RefreshView();
         }
 
@@ -121,10 +142,12 @@ namespace Verminator.GameViews
             sheetUi.EquipmentText.text = equipmentDesc;
 
             // Update player stats
+            sheetUI.HpText.text = Utils.FixFont($"{player.Hp}/{player.MaxHp}");
             sheetUI.StrengthText.text = Utils.FixFont(player.Strength.ToString());
             sheetUI.IntelligenceText.text = Utils.FixFont(player.Intelligence.ToString());
             sheetUI.MeleeText.text = Utils.FixFont(player.MeleeSkill.ToString());
             sheetUI.RangedText.text = Utils.FixFont(player.RangedSkill.ToString());
+            sheetUI.LevelText.text = Utils.FixFont(gameManager.PlayerLevel.ToString());
             sheetUI.SlashingText.text = Utils.FixFont(player.GetResistance(DamageType.Slashing).ToString() + "%");
             sheetUI.BluntText.text = Utils.FixFont(player.GetResistance(DamageType.Blunt).ToString() + "%");
             sheetUI.PiercingText.text = Utils.FixFont(player.GetResistance(DamageType.Piercing).ToString() + "%");

@@ -4492,6 +4492,8 @@ MonoBehaviour:
   CurrentLampOil: 25
   MaxSanity: 100
   CurrentSanity: 100
+  PlayerLevel: 1
+  PointsToSpend: 0
 --- !u!4 &1073530841
 Transform:
   m_ObjectHideFlags: 0

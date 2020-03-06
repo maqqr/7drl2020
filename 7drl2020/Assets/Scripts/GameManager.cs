@@ -39,7 +39,7 @@ namespace Verminator
 
         public GameObject UIEquipSlots;
 
-        public int lastUsedSlot=0;
+        public int lastUsedSlot = 0;
 
         public MessageBuffer MessageBuffer;
 
@@ -47,7 +47,8 @@ namespace Verminator
         public int CurrentLampOil = 25;
         public int MaxSanity = 100;
         public int CurrentSanity = 100;
-
+        public int PlayerLevel = 1;
+        public int PointsToSpend = 0;
 
         public void GainLampOil(int amount)
         {
@@ -96,6 +97,9 @@ namespace Verminator
         {
             Data.GameData.LoadData();
 
+            MessageBuffer = FindObjectOfType<MessageBuffer>();
+            MessageBuffer.AddMessage(Color.green, "You enter the tavern's cellar.");
+
             NextDungeonFloor();
             AddNewView(new GameViews.InGameView());
             Spell.setGameManager(this);
@@ -126,21 +130,20 @@ namespace Verminator
             {
                 UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>().OnClick += EquipSlotClicked;
             }
-
-            MessageBuffer = FindObjectOfType<MessageBuffer>();
-            MessageBuffer.AddMessage(Color.green, "You enter the tavern's cellar.");
         }
 
         public void EquipSlotClicked(int index)
         {
-            lastUsedSlot = index-1;
+            lastUsedSlot = index - 1;
             for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
             {
                 var slot = UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>();
-                if (i==lastUsedSlot) {
+                if (i == lastUsedSlot)
+                {
                     slot.SetColor(UnityEngine.Color.red);
                 }
-                else {
+                else
+                {
                     slot.SetColor(UnityEngine.Color.gray);
                 }
             }
@@ -175,6 +178,14 @@ namespace Verminator
 
             // Go up one level
             currentFloorIndex++;
+
+            // Go up one level (player character levels up)
+            if (currentFloorIndex > 0)
+            {
+                PlayerLevel++;
+                PointsToSpend++;
+                MessageBuffer.AddMessage(Color.green, "Level up! Open your character sheet to assign one point to your attributes.");
+            }
 
             // Generate dungeon if it does not exist
             if (currentFloorIndex >= dungeonFloors.Count)
@@ -253,7 +264,7 @@ namespace Verminator
             //}
         }
 
-        
+
 
         public bool Fight(Creature attacker, Creature defender)
         {
@@ -267,15 +278,18 @@ namespace Verminator
 
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
             Data.ItemData weapon;
-            try {
+            try
+            {
                 weapon = attacker.EquipSlots[usedSlot].ItemData;
             }
-            catch {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot+1}");
+            catch
+            {
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot + 1}");
                 return false;
             }
-            int dist = (int)Vector2.Distance(attacker.Position,defender.Position);
-            if(dist<weapon.MinRange || dist>weapon.MaxRange) {
+            int dist = (int)Vector2.Distance(attacker.Position, defender.Position);
+            if (dist < weapon.MinRange || dist > weapon.MaxRange)
+            {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} can't attack at this distance");
                 return false;
             }
@@ -284,30 +298,36 @@ namespace Verminator
 
             // TODO: Check for spell usage
             bool hit;
-            if(weapon.Ammo!=null && weapon.Ammo != "") {
+            if (weapon.Ammo != null && weapon.Ammo != "")
+            {
                 InventoryItem ammo = attacker.GetItemByName(weapon.Ammo);
-                if (ammo != null) {
-                    hit = UnityEngine.Random.Range(0,20)+1<=attacker.RangedSkill;
-                    attacker.RemoveItem(ammo,1);
+                if (ammo != null)
+                {
+                    hit = UnityEngine.Random.Range(0, 20) + 1 <= attacker.RangedSkill;
+                    attacker.RemoveItem(ammo, 1);
                     UpdateEquipSlotGraphics();
                 }
-                else {
+                else
+                {
                     MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no ammo {weapon.Ammo}");
                     return false;
                 }
-                
+
             }
-            else {
-                hit = UnityEngine.Random.Range(0,20)+1<=attacker.MeleeSkill;
+            else
+            {
+                hit = UnityEngine.Random.Range(0, 20) + 1 <= attacker.MeleeSkill;
             }
-            if (hit) {
+            if (hit)
+            {
                 DamageType dmgType = weapon.DamageType;
-                int dmg = Utils.RollDice(weapon.Damage,true) +attacker.Strength;
-                dmg = (int)(dmg * (1 - defender.GetResistance(dmgType)/100.0f));
+                int dmg = Utils.RollDice(weapon.Damage, true) + attacker.Strength;
+                dmg = (int)(dmg * (1 - defender.GetResistance(dmgType) / 100.0f));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
             }
-            else {
+            else
+            {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} misses!");
             }
             return true;
@@ -325,10 +345,12 @@ namespace Verminator
             {
                 var slot = UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>();
                 slot.SetNumber(i + 1);
-                if (i==lastUsedSlot) {
+                if (i == lastUsedSlot)
+                {
                     slot.SetColor(UnityEngine.Color.red);
                 }
-                else {
+                else
+                {
                     slot.SetColor(UnityEngine.Color.gray);
                 }
 
@@ -403,7 +425,8 @@ namespace Verminator
                 {
                     continue;
                 }
-                if (creature.Hp <=0) {
+                if (creature.Hp <= 0)
+                {
                     dyingCritters.Add(creature);
                     continue;
                 }
@@ -416,7 +439,8 @@ namespace Verminator
                     creature.AIUpdate(this);
                 }
             }
-            foreach (var creature in dyingCritters) {
+            foreach (var creature in dyingCritters)
+            {
                 Debug.Log($"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
             }
