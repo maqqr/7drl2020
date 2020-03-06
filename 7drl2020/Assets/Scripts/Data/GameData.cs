@@ -54,6 +54,7 @@ namespace Verminator.Data
                     PiercingRes = GetDefault(0, "piercingres", item),
                     MagicRes = GetDefault(0, "magicres", item),
                     ArmorSlot = item.Value["armorslot"] != null ? (string)item.Value["armorslot"] : "",
+                    Effect = item.Value["effect"] != null ? (string)item.Value["effect"] : "",
                     ItemPrefab = Resources.Load<GameObject>(item.Value["assetpath"])
                 };
                 itemData.DamageType = (DamageType)System.Enum.Parse(typeof(DamageType), itemData.DamageTypeStr, true);
