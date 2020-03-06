@@ -121,6 +121,8 @@ namespace Verminator
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.EquipSlots[0] = PlayerCreature.Inventory[0];
 
+            PlayerCreature.OnMovementAnimationEnd = OnPlayerMoveAnimationEnd;
+
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
 
             UpdateEquipSlotGraphics();
@@ -129,6 +131,16 @@ namespace Verminator
             for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
             {
                 UIEquipSlots.transform.GetChild(i).GetComponent<EquipSlotButton>().OnClick += EquipSlotClicked;
+            }
+        }
+
+        private void OnPlayerMoveAnimationEnd()
+        {
+            Debug.Log("Anim end");
+            if (CurrentFloor.IsDownstairsTile(PlayerCreature.Position))
+            {
+                MessageBuffer.AddMessage(Color.white, "You go down the stairs deeper into the cellar.");
+                NextDungeonFloor();
             }
         }
 

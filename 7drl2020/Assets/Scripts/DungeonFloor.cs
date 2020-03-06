@@ -17,6 +17,7 @@ namespace Verminator
         private Graph graph = new Graph();
         Dictionary<Vector2Int, Node> cache = new Dictionary<Vector2Int, Node>();
         HashSet<Vector2Int> blockedPositions = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> downstairPoints = new HashSet<Vector2Int>();
 
         private int currentFloorIndex = -1;
 
@@ -54,6 +55,7 @@ namespace Verminator
                 SpawnItemAtSpawnPoint(itemSpawnPoints[i]);
             }
 
+            // Find and put tiles into dictionary
             foreach (var tile in GetComponentsInChildren<Tile>())
             {
                 var position = Utils.ConvertToTileCoord(tile.gameObject.transform.position);
@@ -64,10 +66,18 @@ namespace Verminator
                 Tiles.Add(position, tile);
             }
 
+            // Find movement blockers
             foreach (var obj in GetComponentsInChildren<MovementBlocker>())
             {
                 blockedPositions.Add(Utils.ConvertToTileCoord(obj.transform.position));
             }
+
+            // Find downstairs
+            foreach (var obj in GetComponentsInChildren<DownstairPoint>())
+            {
+                downstairPoints.Add(Utils.ConvertToTileCoord(obj.transform.position));
+            }
+            Debug.Log($"Found {downstairPoints.Count} downstairs");
 
             UpdatePathfindingGrid();
             IsInitialized = true;
@@ -266,6 +276,11 @@ namespace Verminator
                 return Tiles[position];
             }
             return null;
+        }
+
+        public bool IsDownstairsTile(Vector2Int position)
+        {
+            return downstairPoints.Contains(position);
         }
 
         public void UpdatePathfindingGrid()

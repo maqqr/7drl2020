@@ -51,6 +51,8 @@ namespace Verminator
         private int hp;
         private int mp;
 
+        public System.Action OnMovementAnimationEnd;
+
         public string Name => (CurrentTrait != null ? CurrentTrait.Name + " " : "") + Data.Name;
 
         public int Hp { get => hp; set => hp = Mathf.Clamp(value, 0, MaxHp); }
@@ -144,6 +146,11 @@ namespace Verminator
                 transform.position = new Vector3(curXZ.x + 0.5f, curY, curXZ.y + 0.5f);
 
                 steps += Time.deltaTime * jumpAnimationSpeed;
+
+                if (steps >= nSteps)
+                {
+                    OnMovementAnimationEnd?.Invoke();
+                }
             }
             else
             {
