@@ -30,17 +30,19 @@ namespace Verminator
                     hitCreature.Hp -= hitdmg;
                     Debug.Log($"{hitCreature.Data.Name} takes {hitdmg} damage from the collision.");
                     Debug.Log($"{creature.Position+dir*(i-1)}");
-                    creature.Move(Utils.ConvertToTileCoord(creature.Position+dir*(i-1)));
-                    break;
+                    Vector2 newPos = creature.Position + dir * (i - 1);
+                    creature.Move(Utils.ConvertToTileCoord(new Vector3(newPos.x, 0f, newPos.y)));
+                    return;
                 }
                 if (collided && hit.distance<=i) {
-                    Debug.Log("Push was obstructed");
-                    creature.Move(Utils.ConvertToTileCoord(creature.Position+dir*(i-1)));
+                    Debug.Log("Push was obstructed " + i);
+                    Vector2 newPos = creature.Position + dir * (i - 1);
+                    creature.Move(Utils.ConvertToTileCoord(new Vector3(newPos.x, 0f, newPos.y)));
                     Debug.Log($"{creature.Position+dir*(i-1)}");
-                    break;
+                    return;
                 }
             }
-            creature.Move(Utils.ConvertToTileCoord(targetTile));
+            creature.Move(Utils.ConvertToTileCoord(new Vector3(targetTile.x, 0f, targetTile.y)));
         }
 
         public bool Cast(string effect, Creature caster, Creature target, string dmg) {
