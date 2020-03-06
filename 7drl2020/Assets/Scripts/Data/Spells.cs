@@ -16,20 +16,21 @@ namespace Verminator
             Vector2 dir = creature.Position-caster.Position;
             dir = dir.normalized;
             Vector2 targetTile = creature.Position + dir*dist;
-            Debug.DrawRay(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),UnityEngine.Color.red,2f);
+            Debug.DrawRay(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y)*dist,UnityEngine.Color.red,2f);
             RaycastHit hit;
             // Check if the pushed creature hit a wall
             bool collided = Physics.Raycast(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),out hit,dist);
             int hitdmg = Utils.RollDice(dmg,true);
             creature.Hp -= hitdmg;
-            Debug.Log($"{creature.Data.Name} takes {hitdmg} damage from getting pushed.");
+            creature.Stun +=1;
+            gameManager.MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} takes {hitdmg} damage from getting pushed.");
             // Creatures don't block raycasts. Check if a creature was hit.
             for(float i = 0;i<=dist;i++) {
                 Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(Utils.ConvertToTileCoord(creature.Position+dir*i));
                 if (hitCreature != null) {
                     hitCreature.Hp -= hitdmg;
-                    Debug.Log($"{hitCreature.Data.Name} takes {hitdmg} damage from the collision.");
-                    Debug.Log($"{creature.Position+dir*(i-1)}");
+                    hitCreature.Stun +=1;
+                    gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {hitdmg} damage from the collision.");
                     Vector2 newPos = creature.Position + dir * (i - 1);
                     creature.Move(Utils.ConvertToTileCoord(new Vector3(newPos.x, 0f, newPos.y)));
                     return;
@@ -38,11 +39,28 @@ namespace Verminator
                     Debug.Log("Push was obstructed " + i);
                     Vector2 newPos = creature.Position + dir * (i - 1);
                     creature.Move(Utils.ConvertToTileCoord(new Vector3(newPos.x, 0f, newPos.y)));
-                    Debug.Log($"{creature.Position+dir*(i-1)}");
                     return;
                 }
             }
             creature.Move(Utils.ConvertToTileCoord(new Vector3(targetTile.x, 0f, targetTile.y)));
+        }
+
+        public void Firesquare (Creature target, string dmg, int aoedmg = 3) {
+            int hitdmg = Utils.RollDice(dmg,true);
+            target.Hp -= hitdmg;
+            gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg} damage from the fire.");
+            for (int i = -1;i<=1;i++) {
+                for (int j =-1;j<=1;j++) {
+                    try {
+                         Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(new Vector2Int(target.Position.x+i,target.Position.y+j));
+                         hitCreature.Hp -= aoedmg;
+                         gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {aoedmg} damage from the fire.");
+                    }
+                    catch {
+                        continue;
+                    }
+                }
+            }
         }
 
         public bool Cast(string effect, Creature caster, Creature target, string dmg) {
@@ -50,6 +68,10 @@ namespace Verminator
                 case "Push": {
                     Debug.Log("Casting Push");
                     Push(caster,target,dmg);
+                    return true;
+                }
+                case "Firesquare" : {
+                    Firesquare(target,dmg);
                     return true;
                 }
                 default: {
