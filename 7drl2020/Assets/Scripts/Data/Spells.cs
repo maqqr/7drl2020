@@ -11,7 +11,8 @@ namespace Verminator
         public void setGameManager(GameManager gameManager) {
             this.gameManager = gameManager;
         }
-        public void Push(Creature creature, Vector2 dir, float dist,string dmg) {
+        public void Push(Creature caster ,Creature creature,  float dist,string dmg) {
+            Vector2 dir = creature.Position-caster.Position;
             Vector2 targetTile = creature.Position + dir*dist;
             RaycastHit hit;
             bool collided = Physics.Raycast(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),out hit,dist);
