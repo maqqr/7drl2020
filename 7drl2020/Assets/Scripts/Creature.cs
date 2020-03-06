@@ -216,7 +216,19 @@ namespace Verminator
             }
             Vector2Int newPosition;
             if (!Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), this.AggroRange)) {
-                newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
+                // Use ranged attacks if at disposal
+                int weaponOfChoice = Random.Range(0,4);
+                int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position,gameManager.PlayerCreature.Position));
+                if (dist <= this.EquipSlots[weaponOfChoice].ItemData.MaxRange && dist >= this.EquipSlots[weaponOfChoice].ItemData.MinRange) {
+                    gameManager.Fight(this,gameManager.PlayerCreature);
+                    return;
+                }
+                else {
+                    newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
+                }
+
+                
+                
             }
             else {
                 newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
