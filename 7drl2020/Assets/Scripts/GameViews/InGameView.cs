@@ -385,6 +385,7 @@ namespace Verminator.GameViews
                         creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(pathToPos[0]);
                         if (creatureBlocking != null) {
                             gameManager.MessageBuffer.AddMessage(Color.white, creatureBlocking.Data.Name + " is blocking the way.");
+                            forcedCooldown =1f;
                             return;
                         }
                         if (player.Move(pathToPos[0]))
