@@ -321,6 +321,11 @@ namespace Verminator
             MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} attacks {defender.Data.Name}");
 
             // TODO: Check for spell usage
+            if (weapon.DamageTypeStr=="magic") {
+                return Spell.Cast(weapon.Effect,attacker,defender,weapon.Damage);
+            }
+
+
             bool hit;
             if (weapon.Ammo != null && weapon.Ammo != "")
             {

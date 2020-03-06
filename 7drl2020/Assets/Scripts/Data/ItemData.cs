@@ -33,7 +33,7 @@ namespace Verminator.Data
         public int MagicRes;
 
         public int ManaCost;
-        public List<string> Effects;
+        public string Effect;
 
         public string AssetPath;
         public GameObject ItemPrefab;
