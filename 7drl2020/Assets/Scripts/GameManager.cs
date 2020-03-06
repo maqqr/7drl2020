@@ -52,6 +52,8 @@ namespace Verminator
         public int PlayerLevel = 1;
         public int PointsToSpend = 0;
 
+        public float GameWinTimer = 0f; // Small delay after defeating the queen
+
         public Action InventoryPressed;
 
         public void GainLampOil(int amount)
@@ -480,6 +482,15 @@ namespace Verminator
             if (!CurrentFloor.IsInitialized)
             {
                 CurrentFloor.Initialize(this, currentFloorIndex);
+            }
+
+            if (GameWinTimer > 0f)
+            {
+                GameWinTimer -= Time.deltaTime;
+                if (GameWinTimer <= 0f)
+                { 
+                    // TODO: win the game
+                }
             }
 
             Vector2Int tile = TileCoordinateUnderMouse();

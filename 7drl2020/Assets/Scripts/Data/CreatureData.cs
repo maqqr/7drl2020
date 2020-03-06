@@ -44,6 +44,7 @@ namespace Verminator.Data
     [System.Serializable]
     public class CreatureData
     {
+        public string Id;
         public string Name;
         public int BaseMaxHp;
         public int BaseMaxMp;

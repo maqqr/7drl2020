@@ -295,11 +295,12 @@ namespace Verminator
             Mutations.Add(traitData);
 
             // Enable 3D model
-            if (traitData.ModelAssetPath.Length > 0)
+            if (traitData.ModelAssetPath.Length > 0 && traitData.ModelAssetPath != "Empty")
             {
                 // TODO
                 bool found = false;
-                var searchingFor = Data.Name.Substring(0, 1).ToUpperInvariant() + Data.Name.Substring(1) + traitData.ModelAssetPath;
+
+                var searchingFor = Data.Id.Substring(0, 1).ToUpperInvariant() + Data.Id.Substring(1) + traitData.ModelAssetPath;
 
                 //for (int i = 0; i < transform.childCount; i++)
                 //{

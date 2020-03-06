@@ -64,6 +64,7 @@ namespace Verminator.Data
             {
                 var creData = new CreatureData()
                 {
+                    Id = cre.Key,
                     Name = cre.Value["name"],
                     AssetPath = cre.Value["assetpath"],
                     BaseMaxHp = cre.Value["maxhp"].AsInt,
