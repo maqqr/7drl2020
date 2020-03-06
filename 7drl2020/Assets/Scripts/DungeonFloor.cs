@@ -100,11 +100,11 @@ namespace Verminator
 
                 var creatureKeyList = Data.GameData.Instance.SpawnList[currentFloorIndex];
                 int index = UnityEngine.Random.Range(0, creatureKeyList.Length);
-                return SpawnCreature(creatureKeyList[index], Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
+                return SpawnCreature(creatureKeyList[index], Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position), true);
             }
             else
             {
-                return SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position));
+                return SpawnCreature(creatureSpawnPoint.SpawnCreature, Utils.ConvertToTileCoord(creatureSpawnPoint.transform.position), true);
             }
         }
 
@@ -135,7 +135,7 @@ namespace Verminator
             }
         }
 
-        public Creature SpawnCreature(string id, Vector2Int spawnCoordinate) // creature id is defined in json
+        public Creature SpawnCreature(string id, Vector2Int spawnCoordinate, bool spawnEnemyWeapons = false) // creature id is defined in json
         {
             if (!Data.GameData.Instance.CreatureData.ContainsKey(id))
             {
@@ -158,7 +158,27 @@ namespace Verminator
             Creature creature = creatureObject.GetComponent<Creature>();
             creature.Data = data;
             creature.Hp = creature.MaxHp;
+            creature.Mp = creature.MaxMp;
             creature.Position = spawnCoordinate;
+
+            if (spawnEnemyWeapons)
+            {
+                var weaponList = new List<string>(creature.Data.WeaponList);
+                int n = weaponList.Count;
+                while (n > 1)
+                {
+                    n--;
+                    int k = UnityEngine.Random.Range(0, n);
+                    string value = weaponList[k];
+                    weaponList[k] = weaponList[n];
+                    weaponList[n] = value;
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    creature.AddItem(Data.GameData.Instance.ItemData[weaponList[i]]);
+                    creature.EquipSlots[i] = creature.Inventory[creature.Inventory.Count-1];
+                }
+            }
 
             Creatures.Add(creature);
             return creature;
@@ -323,7 +343,7 @@ namespace Verminator
                     var neighbourPos = node.Position + delta;
                     if (cache.ContainsKey(neighbourPos))
                     {
-                        var neighbour = cache[neighbourPos];;
+                        var neighbour = cache[neighbourPos]; ;
 
                         if (IsWalkableFrom(node.Position, neighbourPos))
                         {
