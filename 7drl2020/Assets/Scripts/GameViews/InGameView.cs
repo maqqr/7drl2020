@@ -257,6 +257,18 @@ namespace Verminator.GameViews
             {
                 gameManager.EquipSlotClicked(3);
             }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                gameManager.EquipSlotClicked(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                gameManager.EquipSlotClicked(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                gameManager.EquipSlotClicked(3);
+            }
 
 
             //if (Utils.IsDown(gameManager.keybindings.PeekLeft))
