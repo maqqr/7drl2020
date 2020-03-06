@@ -380,6 +380,13 @@ namespace Verminator.GameViews
                     if (pathToPos != null && pathToPos.Count > 0)
                     {
                         //player.Position = pathToPos[0];
+                        // Stop if the pathing goes through a creature
+                        // TODO: Invisible creatures don't block the way
+                        creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(pathToPos[0]);
+                        if (creatureBlocking != null) {
+                            gameManager.MessageBuffer.AddMessage(Color.white, creatureBlocking.Data.Name + " is blocking the way.");
+                            return;
+                        }
                         if (player.Move(pathToPos[0]))
                         {
                             pathToPos.RemoveAt(0);

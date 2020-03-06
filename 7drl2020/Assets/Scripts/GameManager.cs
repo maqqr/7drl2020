@@ -470,7 +470,7 @@ namespace Verminator
             }
             foreach (var creature in dyingCritters)
             {
-                Debug.Log($"{creature.Data.Name} dies!");
+                MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
 
                 if (creature.Data.Id == "queen")
