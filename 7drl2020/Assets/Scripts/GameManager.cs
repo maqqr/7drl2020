@@ -131,6 +131,7 @@ namespace Verminator
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["firescroll"]);
             PlayerCreature.EquipSlots[0] = PlayerCreature.Inventory[0];
 
             PlayerCreature.OnMovementAnimationEnd = OnPlayerMoveAnimationEnd;
