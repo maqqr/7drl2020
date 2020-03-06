@@ -67,6 +67,8 @@ namespace Verminator
 
         public int Speed => Data.BaseSpeed;
 
+        public int Stun = 0;
+
         public string Desc
         {
             get
@@ -201,6 +203,11 @@ namespace Verminator
         public void AIUpdate(GameManager gameManager)
         {
             // TODO: make proper AI
+
+            if (this.Stun>0) {
+                this.Stun -=1;
+                return;
+            }
 
             var newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
 

@@ -16,7 +16,7 @@ namespace Verminator
             Vector2 dir = creature.Position-caster.Position;
             dir = dir.normalized;
             Vector2 targetTile = creature.Position + dir*dist;
-            Debug.DrawRay(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),UnityEngine.Color.red,2f);
+            Debug.DrawRay(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y)*dist,UnityEngine.Color.red,2f);
             RaycastHit hit;
             // Check if the pushed creature hit a wall
             bool collided = Physics.Raycast(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),out hit,dist);
@@ -31,13 +31,13 @@ namespace Verminator
                     Debug.Log($"{hitCreature.Data.Name} takes {hitdmg} damage from the collision.");
                     Debug.Log($"{creature.Position+dir*(i-1)}");
                     creature.Move(Utils.ConvertToTileCoord(creature.Position+dir*(i-1)));
-                    break;
+                    return;
                 }
                 if (collided && hit.distance<=i) {
                     Debug.Log("Push was obstructed");
                     creature.Move(Utils.ConvertToTileCoord(creature.Position+dir*(i-1)));
                     Debug.Log($"{creature.Position+dir*(i-1)}");
-                    break;
+                    return;
                 }
             }
             creature.Move(Utils.ConvertToTileCoord(targetTile));
