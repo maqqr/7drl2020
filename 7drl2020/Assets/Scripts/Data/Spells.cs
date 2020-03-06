@@ -71,6 +71,13 @@ namespace Verminator
             }
         }
 
+        public void LeechLife (Creature target, Creature caster, string dmg) {
+            int hitdmg = Utils.RollDice(dmg,true);
+            int heal = Mathf.Min(target.Hp,hitdmg / 2);
+            target.Hp -= hitdmg;
+            caster.Hp += heal;
+        }
+
         public bool Cast(string effect, Creature caster, Creature target, string dmg) {
             switch(effect) {
                 case "Push": {
@@ -80,6 +87,10 @@ namespace Verminator
                 }
                 case "Firesquare" : {
                     Firesquare(target,dmg);
+                    return true;
+                }
+                case "Leechlife": {
+                    LeechLife(target,caster,dmg);
                     return true;
                 }
                 default: {
