@@ -14,6 +14,8 @@ namespace Verminator
         public GameObject pickupItemLinePrefab;
         public GameObject pickupList;
 
+        public GameObject ExplosionEffect;
+
         public GameObject EnemyStatsWindow;
         public GameObject EnemyStatsName;
         public GameObject EnemyStatsDesc;
@@ -618,6 +620,9 @@ namespace Verminator
             {
                 MessageBuffer.AddMessage(Color.white, $"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
+
+                var explosion = GameObject.Instantiate(ExplosionEffect);
+                explosion.transform.position = creature.transform.position;
 
                 if (creature.Data.Id == "queen")
                 {
