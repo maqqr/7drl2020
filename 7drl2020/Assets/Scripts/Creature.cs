@@ -217,12 +217,14 @@ namespace Verminator
 
             if (this.Stun > 0)
             {
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.yellow,$"{this.Data.Name} is stunned for {this.Stun} turns.");
                 this.Stun -= 1;
                 return;
             }
             if (this.Poison > 0)
             {
                 this.hp -= this.Poison;
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.green,$"{this.Data.Name} takes {this.Poison} damage poison.");
                 this.Poison--;
             }
             if (this.mp <this.MaxMp) {
