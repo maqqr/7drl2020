@@ -2922,6 +2922,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreatureSpawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7455319527626134045, guid: 523c22fda22a9e5429335afa28011ac9,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 523c22fda22a9e5429335afa28011ac9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5397,6 +5402,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreatureSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 7455319527626134045, guid: 523c22fda22a9e5429335afa28011ac9,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 523c22fda22a9e5429335afa28011ac9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5546,6 +5556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CreatureSpawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455319527626134045, guid: 523c22fda22a9e5429335afa28011ac9,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 523c22fda22a9e5429335afa28011ac9,
         type: 3}
@@ -9866,6 +9881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CreatureSpawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455319527626134045, guid: 523c22fda22a9e5429335afa28011ac9,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 523c22fda22a9e5429335afa28011ac9,
         type: 3}
