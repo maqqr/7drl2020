@@ -418,7 +418,7 @@ namespace Verminator
 
             // TODO: Check for spell usage
             if (weapon.DamageTypeStr=="magic") {
-                return Spell.Cast(weapon.Effect,attacker,defender,weapon.Damage);
+                return Spell.Cast(weapon.Effect,attacker,defender,weapon.Damage,weapon.ManaCost);
             }
 
 

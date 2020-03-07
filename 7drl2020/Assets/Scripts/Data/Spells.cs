@@ -25,7 +25,7 @@ namespace Verminator
             RaycastHit hit;
             // Check if the pushed creature hit a wall
             bool collided = Physics.Raycast(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),out hit,dist);
-            int hitdmg = Utils.RollDice(dmg,true);
+            int hitdmg = Utils.RollDice(dmg,true)+caster.Intelligence;
             creature.Hp -= hitdmg;
             creature.Stun +=1;
             gameManager.MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} takes {hitdmg} damage from getting pushed.");
@@ -50,10 +50,10 @@ namespace Verminator
             creature.Move(Utils.ConvertToTileCoord(new Vector3(targetTile.x, 0f, targetTile.y)));
         }
 
-        public void Firesquare (Creature target, string dmg, int aoedmg = 3) {
+        public void Firesquare (Creature target,Creature caster, string dmg, int aoedmg = 3) {
             int hitdmg = Utils.RollDice(dmg,true);
-            target.Hp -= hitdmg;
-            gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg} damage from the fire.");
+            target.Hp -= hitdmg+caster.Intelligence;
+            gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg+caster.Intelligence} damage from the fire.");
             for (int i = -1;i<=1;i++) {
                 for (int j =-1;j<=1;j++) {
                     try {
@@ -76,10 +76,12 @@ namespace Verminator
             eff.transform.position = Utils.ConvertToUnityCoord(target.Position) + new Vector3(0f, 0.6f, 0f);
             eff.transform.rotation = Quaternion.LookRotation(caster.gameObject.transform.position - target.transform.position);
 
-            int hitdmg = Utils.RollDice(dmg,true);
+            int hitdmg = Utils.RollDice(dmg,true)+caster.Intelligence;
             int heal = Mathf.Min(target.Hp,hitdmg / 2);
             target.Hp -= hitdmg;
+            gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg} damage from the leeching.");
             caster.Hp += heal;
+            gameManager.MessageBuffer.AddMessage(Color.white,$"{caster.Data.Name} heals {heal} hp from the leeching.");
         }
 
         public void PoisonBeam (Creature target, Creature caster, string dmg) {
@@ -87,7 +89,7 @@ namespace Verminator
             eff.transform.position = Utils.ConvertToUnityCoord(caster.Position) + new Vector3(0f, 0.6f, 0f);
             eff.transform.rotation = Quaternion.LookRotation(target.transform.position - caster.transform.position);
 
-            int roll = Utils.RollDice(dmg);
+            int roll = Utils.RollDice(dmg)+caster.Intelligence/2;
             List<Vector2Int> path = Utils.Line(caster.Position,target.Position);
             foreach (Vector2Int tile in path) {
                 try {
@@ -103,7 +105,12 @@ namespace Verminator
             }
         }
 
-        public bool Cast(string effect, Creature caster, Creature target, string dmg) {
+        public bool Cast(string effect, Creature caster, Creature target, string dmg, int manacost) {
+            if (caster.Mp < manacost) {
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.white, $"{caster.Data.Name} has't got enough mana to cast {effect}!");
+                return false;
+            }
+            caster.Mp -= manacost;
             switch(effect) {
                 case "Push": {
                     Debug.Log("Casting Push");
@@ -111,7 +118,7 @@ namespace Verminator
                     return true;
                 }
                 case "Firesquare" : {
-                    Firesquare(target,dmg);
+                    Firesquare(target,caster,dmg);
                     return true;
                 }
                 case "Leechlife": {

@@ -71,6 +71,10 @@ namespace Verminator
         public int Stun = 0;
 
         public int Poison = 0;
+        
+        // Get back 1 mp every 3 turns
+        public int ManaCounter  =0;
+        public int RecoverTime = 2;
 
         public string Desc
         {
@@ -213,13 +217,24 @@ namespace Verminator
 
             if (this.Stun > 0)
             {
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.yellow,$"{this.Data.Name} is stunned for {this.Stun} turns.");
                 this.Stun -= 1;
                 return;
             }
             if (this.Poison > 0)
             {
                 this.hp -= this.Poison;
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.green,$"{this.Data.Name} takes {this.Poison} damage poison.");
                 this.Poison--;
+            }
+            if (this.mp <this.MaxMp) {
+                if (this.ManaCounter == this.RecoverTime) {
+                    this.mp +=1;
+                    this.ManaCounter = 0;
+                }
+                else {
+                    this.ManaCounter ++;
+                }
             }
             Vector2Int newPosition;
             var rayStart = Utils.ConvertToUnityCoord(this.Position) + new Vector3(0f, 0.5f, 0f);
