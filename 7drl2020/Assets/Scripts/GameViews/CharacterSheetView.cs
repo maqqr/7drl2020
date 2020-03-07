@@ -55,21 +55,26 @@ namespace Verminator.GameViews
 
         private void StatIncreaseClicked(int index)
         {
+            const int gainHp = 10;
+            const int gainMp = 3;
+
             if (gameManager.PointsToSpend > 0)
             {
                 switch (index)
                 {
-                    case 0: gameManager.PlayerCreature.Data.BaseMaxHp += 10; gameManager.PlayerCreature.Hp += 10; break;
+                    case 0: gameManager.PlayerCreature.Data.BaseMaxHp += gainHp; gameManager.PlayerCreature.Hp += gainHp; break;
                     case 1: gameManager.PlayerCreature.Data.BaseStr += 1; break;
                     case 2: gameManager.PlayerCreature.Data.BaseInt += 1; break;
                     case 3: gameManager.PlayerCreature.Data.BaseMeleeSkill += 1; break;
                     case 4: gameManager.PlayerCreature.Data.BaseRangedSkill += 1; break;
+                    case 5: gameManager.PlayerCreature.Data.BaseMaxMp += gainMp; gameManager.PlayerCreature.Mp += gainMp; break;
                 }
 
                 gameManager.PointsToSpend--;
             }
             sheetUI.LevelUpButtons.SetActive(gameManager.PointsToSpend > 0);
             RefreshView();
+            gameManager.UpdatePlayerStatsUI();
         }
 
         public void CloseView()
@@ -150,6 +155,7 @@ namespace Verminator.GameViews
 
             // Update player stats
             sheetUI.HpText.text = Utils.FixFont($"{player.Hp}/{player.MaxHp}");
+            sheetUI.MpText.text = Utils.FixFont($"{player.Mp}/{player.MaxMp}");
             sheetUI.StrengthText.text = Utils.FixFont(player.Strength.ToString());
             sheetUI.IntelligenceText.text = Utils.FixFont(player.Intelligence.ToString());
             sheetUI.MeleeText.text = Utils.FixFont(player.MeleeSkill.ToString());

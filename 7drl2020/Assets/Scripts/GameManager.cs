@@ -53,13 +53,13 @@ namespace Verminator
 
         public MessageBuffer MessageBuffer;
 
-        public int MaxLampOil = 100;
-        public int CurrentLampOil = 25;
-        public int MaxSanity = 100;
-        public int CurrentSanity = 100;
-        public int PlayerLevel = 1;
-        public int PointsToSpend = 0;
-        public bool LanternOn = true;
+        [NonSerialized] public int MaxLampOil = 100;
+        [NonSerialized] public int CurrentLampOil = 70;
+        [NonSerialized] public int MaxSanity = 100;
+        [NonSerialized] public int CurrentSanity = 100;
+        [NonSerialized] public int PlayerLevel = 1;
+        [NonSerialized] public int PointsToSpend = 0;
+        [NonSerialized] public bool LanternOn = true;
 
         public float GameWinTimer = 0f; // Small delay after defeating the queen
 
@@ -106,8 +106,6 @@ namespace Verminator
             }
         }
 
-        private static bool oilTutorial = true;
-
         public void UpdateLampGraphics()
         {
             LampOilText.text = Utils.FixFont($"{CurrentLampOil} turns");
@@ -132,12 +130,7 @@ namespace Verminator
                     LanternOn = false;
                     LanternImage.sprite = LanternOffSprite;
                     MessageBuffer.AddMessage(Color.gray, "Your lantern ran out of lamp oil.");
-
-                    if (oilTutorial)
-                    {
-                        MessageBuffer.AddMessage(Color.cyan, "You feel the darkness slowly taking away your sanity...");
-                        oilTutorial = false;
-                    }
+                    MessageBuffer.AddMessage(Color.cyan, "You feel the darkness slowly taking away your sanity...");
                 }
             }
 
@@ -149,6 +142,12 @@ namespace Verminator
             if (!LanternOn && CurrentSanity > 0)
             {
                 CurrentSanity--;
+            }
+
+            if (CurrentSanity == 0)
+            {
+                MessageBuffer.AddMessage(Color.red, "Your insanity has an ill effect on your health.");
+                PlayerCreature.Hp--;
             }
         }
 
@@ -385,15 +384,18 @@ namespace Verminator
                 return false;
             }
             // Check if an unblocked path exists.
-            List<Vector2Int> path = Utils.Line(attacker.Position,defender.Position);
-            foreach (Vector2Int tile in path) {
-                try {
+            List<Vector2Int> path = Utils.Line(attacker.Position, defender.Position);
+            foreach (Vector2Int tile in path)
+            {
+                try
+                {
                     if (!CurrentFloor.Tiles[tile].IsWalkable) return false;
                 }
-                catch {
+                catch
+                {
                     return false;
                 }
-                
+
             }
 
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : attacker.weaponOfChoice;
@@ -417,8 +419,9 @@ namespace Verminator
             MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} attacks {defender.Data.Name}");
 
             // TODO: Check for spell usage
-            if (weapon.DamageTypeStr=="magic") {
-                return Spell.Cast(weapon.Effect,attacker,defender,weapon.Damage,weapon.ManaCost);
+            if (weapon.DamageTypeStr == "magic")
+            {
+                return Spell.Cast(weapon.Effect, attacker, defender, weapon.Damage, weapon.ManaCost);
             }
 
 
@@ -447,11 +450,12 @@ namespace Verminator
             {
                 DamageType dmgType = weapon.DamageType;
                 string dmgdice = weapon.Damage;
-                if (attacker.Data.Name.Contains("swarm")) {
-                    int missingHp = 10-(attacker.MaxHp - attacker.Hp)/2;
-                    dmgdice = missingHp.ToString() + 'd'+weapon.Damage.Split('d')[1];
+                if (attacker.Data.Name.Contains("swarm"))
+                {
+                    int missingHp = 10 - (attacker.MaxHp - attacker.Hp) / 2;
+                    dmgdice = missingHp.ToString() + 'd' + weapon.Damage.Split('d')[1];
                     Debug.Log(weapon.Damage.Split('d')[1]);
-                    Debug.Log("Swarm rolls with "+dmgdice);
+                    Debug.Log("Swarm rolls with " + dmgdice);
                 }
                 int dmg = Utils.RollDice(dmgdice, true) + attacker.Strength;
                 if (attacker==PlayerCreature) {
@@ -533,6 +537,42 @@ namespace Verminator
 
         private bool IsDungeonValid(DungeonFloor dungeonFloor)
         {
+            var downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
+            if (downStairPoint == null || downStairPoint.ToString() == "null")
+            {
+                Debug.LogWarning("Invalid dungeon: No down stairs");
+                return false;
+            }
+
+            var upstairPoint = dungeonFloor.transform.GetComponentInChildren<UpstairPoint>();
+            if (upstairPoint == null || upstairPoint.ToString() == "null")
+            {
+                Debug.LogWarning("Invalid dungeon: No up stairs");
+                return false;
+            }
+
+            if (currentFloorIndex == 9)
+            {
+                bool bossFound = false;
+                Transform[] children = dungeonFloor.transform.GetComponentsInChildren<Transform>();
+                for (int i = 0; i < children.Length; i++)
+                {
+                    if (children[i].gameObject.name == "Queen")
+                    {
+                        bossFound = true;
+                        break;
+                    }
+                }
+
+                Debug.Log("Boss found: " + bossFound);
+
+                if (!bossFound)
+                {
+                    Debug.LogWarning("Invalid dungeon: Boss not found");
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -576,7 +616,7 @@ namespace Verminator
             }
             foreach (var creature in dyingCritters)
             {
-                MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} dies!");
+                MessageBuffer.AddMessage(Color.white, $"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
 
                 if (creature.Data.Id == "queen")
