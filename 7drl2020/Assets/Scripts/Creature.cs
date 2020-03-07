@@ -71,6 +71,10 @@ namespace Verminator
         public int Stun = 0;
 
         public int Poison = 0;
+        
+        // Get back 1 mp every 3 turns
+        public int ManaCounter  =0;
+        public int RecoverTime = 2;
 
         public string Desc
         {
@@ -220,6 +224,15 @@ namespace Verminator
             {
                 this.hp -= this.Poison;
                 this.Poison--;
+            }
+            if (this.mp <this.MaxMp) {
+                if (this.ManaCounter == this.RecoverTime) {
+                    this.mp +=1;
+                    this.ManaCounter = 0;
+                }
+                else {
+                    this.ManaCounter ++;
+                }
             }
             Vector2Int newPosition;
             var rayStart = Utils.ConvertToUnityCoord(this.Position) + new Vector3(0f, 0.5f, 0f);

@@ -46,6 +46,7 @@ namespace Verminator.Data
                     IsEdible = item.Value["edible"] != null ? item.Value["edible"].AsBool : false,
                     MinRange = GetDefault(1, "minrange", item),
                     MaxRange = GetDefault(2, "maxrange", item),
+                    ManaCost = GetDefault(0, "manacost", item),
                     GainHealth = GetDefault(0, "gainhp", item),
                     GainMana = GetDefault(0, "gainmp", item),
                     GainSanity = GetDefault(0, "gainsanity", item),
