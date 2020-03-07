@@ -64,6 +64,7 @@ MonoBehaviour:
   - {fileID: 7823329940223043184, guid: 4416b650f9faf5c45a56070f617193f6, type: 3}
   - {fileID: 7823329940223043184, guid: 4416b650f9faf5c45a56070f617193f6, type: 3}
   - {fileID: 7823329940223043184, guid: 9e38bb64d8919f841900edbc4abff9a3, type: 3}
+  - {fileID: 7823329940223043184, guid: 0561dd8c71adb9b448a6ac9a2ed1db5f, type: 3}
   DeadEnds:
   - {fileID: 1769625825286644012, guid: a007c4e6f331dba4ebf3b3c048ef4af5, type: 3}
   InitialSectionTags:
