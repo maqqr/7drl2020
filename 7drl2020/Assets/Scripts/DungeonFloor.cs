@@ -23,6 +23,18 @@ namespace Verminator
 
         public bool IsInitialized { get; private set; }
 
+        public bool CreatureHasTrait()
+        {
+            return UnityEngine.Random.Range(1, 101) < 15 * (currentFloorIndex + 1);
+        }
+
+        public int CreatureRandomMutationCount()
+        {
+            int min = Mathf.FloorToInt((currentFloorIndex + 1) / 3.0f);
+            int max = Mathf.CeilToInt((currentFloorIndex + 1) / 2.0f);
+            return UnityEngine.Random.Range(min, max + 1);
+        }
+
         public void Initialize(GameManager gameManager, int currentFloor)
         {
             this.gameManager = gameManager;
@@ -36,9 +48,12 @@ namespace Verminator
                 var cre = SpawnCreatureAtSpawnPoint(enemySpawnPoints[i]);
                 if (cre != null)
                 {
-                    cre.AddTrait(cre.GetRandomTrait());
+                    if (CreatureHasTrait())
+                    {
+                        cre.AddTrait(cre.GetRandomTrait());
+                    }
 
-                    int muts = UnityEngine.Random.Range(0, 3);
+                    int muts = CreatureRandomMutationCount();
                     for (int m = 0; m < muts; m++)
                     {
                         cre.AddTrait(cre.GetRandomMutation());
@@ -186,7 +201,7 @@ namespace Verminator
                 for (int i = 0; i < 3; i++)
                 {
                     creature.AddItem(Data.GameData.Instance.ItemData[weaponList[i]]);
-                    creature.EquipSlots[i] = creature.Inventory[creature.Inventory.Count-1];
+                    creature.EquipSlots[i] = creature.Inventory[creature.Inventory.Count - 1];
                 }
             }
 

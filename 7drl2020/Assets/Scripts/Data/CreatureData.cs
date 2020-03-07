@@ -22,6 +22,8 @@ namespace Verminator.Data
         public int PiercingResBonus;
         public int MagicResBonus;
 
+        public string[] ExtraWeapons;
+
         public string ModelAssetPath;
 
         public bool IsTrait => ModelAssetPath == "";
