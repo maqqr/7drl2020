@@ -396,7 +396,7 @@ namespace Verminator
                 
             }
 
-            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
+            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : attacker.weaponOfChoice;
             Data.ItemData weapon;
             try
             {
