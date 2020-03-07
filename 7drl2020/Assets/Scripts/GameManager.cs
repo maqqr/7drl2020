@@ -21,6 +21,8 @@ namespace Verminator
         public GameObject EnemyStatsName;
         public GameObject EnemyStatsDesc;
 
+        public GameObject DamageCanvas;
+
         public TMPro.TextMeshProUGUI HpText;
         public TMPro.TextMeshProUGUI MpText;
         public TMPro.TextMeshProUGUI SanityText;
@@ -184,8 +186,7 @@ namespace Verminator
 
         public bool IsPlayerDead()
         {
-            // TODO: implement properly
-            return false;
+            return PlayerCreature.Hp == 0;
         }
 
         void Start()
@@ -479,6 +480,9 @@ namespace Verminator
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
                 SoundEffect.PlayClip(SoundEffect.Hit);
+                var dmgObj = GameObject.Instantiate(DamageCanvas);
+                dmgObj.GetComponent<FloatingDamageValue>().SetText(dmg.ToString(), Color.red);
+                dmgObj.transform.position = defender.transform.position + new Vector3(0, 1f, 0f);
             }
             else
             {
@@ -627,7 +631,14 @@ namespace Verminator
 
         public void AdvanceGameWorld(int deltaTime)
         {
-            // Update all enemy creatures
+            // Check player death
+            if (IsPlayerDead())
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+                return;
+            }
+
+            // Update all enemy creature
             List<Creature> dyingCritters = new List<Creature>();
             foreach (var creature in CurrentFloor.Creatures)
             {
@@ -660,11 +671,6 @@ namespace Verminator
                 if (creature.Data.Id == "queen")
                 {
                     GameWinTimer = 3f;
-                }
-
-                if (creature.Data.Id == "player")
-                {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(3);
                 }
             }
 

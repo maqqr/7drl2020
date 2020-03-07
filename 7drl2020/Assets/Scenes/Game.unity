@@ -4506,6 +4506,8 @@ MonoBehaviour:
   EnemyStatsWindow: {fileID: 1704219697343611461}
   EnemyStatsName: {fileID: 1704219697343611460}
   EnemyStatsDesc: {fileID: 1704219697343611459}
+  DamageCanvas: {fileID: 3799001843597971270, guid: ffdf154ca0b213745b5ac900ca8e1aa7,
+    type: 3}
   HpText: {fileID: 1352076704}
   MpText: {fileID: 1383663641}
   SanityText: {fileID: 1346412757}

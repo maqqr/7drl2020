@@ -107,7 +107,7 @@ namespace Verminator
 
         public bool Cast(string effect, Creature caster, Creature target, string dmg, int manacost) {
             if (caster.Mp < manacost) {
-                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.white, $"{caster.Data.Name} has't got enough mana to cast {effect}!");
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.white, $"{caster.Data.Name} hasn't got enough mana to cast {effect}!");
                 return false;
             }
             caster.Mp -= manacost;
