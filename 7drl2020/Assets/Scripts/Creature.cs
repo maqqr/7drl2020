@@ -77,8 +77,12 @@ namespace Verminator
             get
             {
                 string msg = "";
+                int playerSpeed = 100; // Player speed is assumed to be 100 always
 
-                msg += Utils.FixFont($"HP: {Hp} / {MaxHp}  Str: {Strength} Melee: {MeleeSkill}\n\n");
+                msg += Utils.FixFont($"HP: {Hp} / {MaxHp}  Str: {Strength} Melee: {MeleeSkill}\n");
+                if (Speed > playerSpeed) msg += "It is faster than you are.\n\n";
+                if (Speed < playerSpeed) msg += "It is slower than you are.\n\n";
+                if (Speed == playerSpeed) msg += "Its speed matches yours.\n\n";
                 msg += Utils.FixFont($"Resistances:\n");
                 msg += Utils.FixFont($"Slashing: {GetResistance(DamageType.Slashing)}%, Blunt: {GetResistance(DamageType.Blunt)}%\n");
                 msg += Utils.FixFont($"Piercing: {GetResistance(DamageType.Piercing)}%, Magic: {GetResistance(DamageType.Magic)}%\n");
