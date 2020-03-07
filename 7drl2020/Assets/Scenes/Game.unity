@@ -1925,6 +1925,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448899173}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &468323133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7585597802590650193, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704219697343611458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &532863218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2648,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603062532}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &622518430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4037026373766267038, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704219697343611458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624098845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4117957879354691192, guid: fe46b4bdd68f0724aa0db9d29fa53cf5,
@@ -4481,6 +4505,10 @@ MonoBehaviour:
   HpText: {fileID: 1352076704}
   MpText: {fileID: 1383663641}
   SanityText: {fileID: 1346412757}
+  LampOilText: {fileID: 622518430}
+  LanternImage: {fileID: 468323133}
+  LanternOnSprite: {fileID: 21300000, guid: 4a548f280a51ac845a1ca93d9cc3258f, type: 3}
+  LanternOffSprite: {fileID: 21300000, guid: 04f1d3ea4ef7d1b42a56809f803c7bba, type: 3}
   currentFloorIndex: -1
   PlayerCreature: {fileID: 0}
   ShoeMesh: {fileID: 2840823874903811969, guid: eb199ff82e45059468d98239d2727d2f,
@@ -4497,6 +4525,7 @@ MonoBehaviour:
   CurrentSanity: 100
   PlayerLevel: 1
   PointsToSpend: 0
+  LanternOn: 1
   GameWinTimer: 0
 --- !u!4 &1073530841
 Transform:
