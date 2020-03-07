@@ -530,6 +530,42 @@ namespace Verminator
 
         private bool IsDungeonValid(DungeonFloor dungeonFloor)
         {
+            var downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
+            if (downStairPoint == null || downStairPoint.ToString() == "null")
+            {
+                Debug.LogWarning("Invalid dungeon: No down stairs");
+                return false;
+            }
+
+            var upstairPoint = dungeonFloor.transform.GetComponentInChildren<UpstairPoint>();
+            if (upstairPoint == null || upstairPoint.ToString() == "null")
+            {
+                Debug.LogWarning("Invalid dungeon: No up stairs");
+                return false;
+            }
+
+            if (currentFloorIndex == 9)
+            {
+                bool bossFound = false;
+                Transform[] children = dungeonFloor.transform.GetComponentsInChildren<Transform>();
+                for (int i = 0; i < children.Length; i++)
+                {
+                    if (children[i].gameObject.name == "Queen")
+                    {
+                        bossFound = true;
+                        break;
+                    }
+                }
+
+                Debug.Log("Boss found: " + bossFound);
+
+                if (!bossFound)
+                {
+                    Debug.LogWarning("Invalid dungeon: Boss not found");
+                    return false;
+                }
+            }
+
             return true;
         }
 
