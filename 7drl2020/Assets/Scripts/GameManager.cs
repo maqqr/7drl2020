@@ -7,6 +7,7 @@ namespace Verminator
 {
     public class GameManager : MonoBehaviour
     {
+        public SoundEffects SoundEffect;
         public LevelGenerator.Scripts.LevelGenerator[] levelGeneratorPrefabs;
         public GameObject debugSphere;
         public GameObject itemLineUIPrefab;
@@ -95,6 +96,7 @@ namespace Verminator
             }
 
             LanternOn = !LanternOn;
+            SoundEffect.PlayClip(SoundEffect.Lantern);
 
             UpdateLampGraphics();
 
@@ -188,6 +190,7 @@ namespace Verminator
 
         void Start()
         {
+            SoundEffect = GetComponent<SoundEffects>();
             Data.GameData.LoadData();
 
             MessageBuffer = FindObjectOfType<MessageBuffer>();
@@ -234,6 +237,8 @@ namespace Verminator
 
         private void OnPlayerMoveAnimationEnd()
         {
+            SoundEffect.PlayClip(SoundEffect.FootStep);
+
             //Debug.Log("Anim end");
             if (CurrentFloor.IsDownstairsTile(PlayerCreature.Position))
             {
@@ -473,10 +478,13 @@ namespace Verminator
                 dmg = (int)(dmg * (1 - (defender == PlayerCreature ? defender.GetResistance(dmgType) * Mathf.Lerp(0.25f, 1f, (float)CurrentSanity / 100f) : defender.GetResistance(dmgType)) / 100.0f));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
+                SoundEffect.PlayClip(SoundEffect.Hit);
             }
             else
             {
                 MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} misses!");
+
+                SoundEffect.PlayClip(SoundEffect.Miss);
             }
             return true;
         }

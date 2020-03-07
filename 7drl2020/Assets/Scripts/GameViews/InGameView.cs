@@ -420,9 +420,16 @@ namespace Verminator.GameViews
                 {
                     //gameManager.playerAnim.StartAttackAnimation();
                     if (gameManager.Fight(player, creatureBlocking))
-                    { // TODO: Check for bugs related to pathToPos list
+                    {
                         player.Attacking = true;
-                        player.Move(pathToPos[0], true);
+                        if (pathToPos.Count > 0)
+                        {
+                            player.Move(pathToPos[0], true);
+                        }
+                        else
+                        {
+                            forcedCooldown = 0.5f;
+                        }
                         gameManager.AdvanceGameWorld(player.Speed);
                         UpdateEnemyStatWindow();
                     }

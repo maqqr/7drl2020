@@ -29,6 +29,8 @@ namespace Verminator.GameViews
 
         public void OpenView()
         {
+            gameManager.SoundEffect.PlayClip(gameManager.SoundEffect.OpenInventory);
+
             gameManager.InventoryPressed = delegate { closeRequested = true; };
 
             gameManager.inventoryCanvas.SetActive(true);
@@ -79,6 +81,7 @@ namespace Verminator.GameViews
 
         public void CloseView()
         {
+            gameManager.SoundEffect.PlayClip(gameManager.SoundEffect.CloseInventory);
             gameManager.inventoryCanvas.SetActive(false);
         }
 
