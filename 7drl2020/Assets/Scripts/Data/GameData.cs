@@ -79,7 +79,7 @@ namespace Verminator.Data
                     BaseBluntRes = GetDefault(0, "bluntres", cre),
                     BasePiercingRes = GetDefault(0, "piercingres", cre),
                     BaseMagicRes = GetDefault(0, "magicres", cre),
-                    BaseAggroRange = cre.Value["aggrorange"] != null ? cre.Value["aggrorange"].AsInt : 0,
+                    BaseAggroRange = cre.Value["aggrorange"] != null ? cre.Value["aggrorange"].AsInt : 6,
                     CreaturePrefab = Resources.Load<GameObject>(cre.Value["assetpath"])
                 };
                 List<string> allowedTraits = new List<string>();

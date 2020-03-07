@@ -218,7 +218,16 @@ namespace Verminator
                 this.Poison--;
             }
             Vector2Int newPosition;
-            if (!Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), this.AggroRange)) {
+            var rayStart = Utils.ConvertToUnityCoord(this.Position) + new Vector3(0f, 0.5f, 0f);
+            var rayEnd = Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) + new Vector3(0f, 0.5f, 0f);
+            var rayDir = rayEnd - rayStart;
+            var rayDist = rayDir.magnitude;
+            rayDir = rayDir.normalized;
+
+            if (Vector3.Distance(rayStart, rayEnd) <= AggroRange)
+                Debug.DrawRay(rayStart, rayDir * rayDist, Color.magenta, 1f);
+
+            if (Vector3.Distance(rayStart, rayEnd) <= AggroRange && !Physics.Raycast(rayStart, rayDir, rayDist)) {
                 // Use ranged attacks if at disposal
                 int weaponOfChoice = Random.Range(0,3);
                 int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position,gameManager.PlayerCreature.Position));
