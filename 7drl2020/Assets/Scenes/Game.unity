@@ -4519,13 +4519,6 @@ MonoBehaviour:
   UIEquipSlots: {fileID: 1086642260}
   lastUsedSlot: 0
   MessageBuffer: {fileID: 0}
-  MaxLampOil: 100
-  CurrentLampOil: 25
-  MaxSanity: 100
-  CurrentSanity: 100
-  PlayerLevel: 1
-  PointsToSpend: 0
-  LanternOn: 1
   GameWinTimer: 0
 --- !u!4 &1073530841
 Transform:

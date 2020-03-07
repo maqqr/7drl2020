@@ -17,6 +17,7 @@ namespace Verminator
         public TMPro.TextMeshProUGUI EquipmentText;
 
         public TMPro.TextMeshProUGUI HpText;
+        public TMPro.TextMeshProUGUI MpText;
 
         public TMPro.TextMeshProUGUI StrengthText;
         public TMPro.TextMeshProUGUI IntelligenceText;
