@@ -16,11 +16,13 @@ namespace Verminator
             {
                 textComponents[i].text = textComponents[i - 1].text;
                 textComponents[i].color = textComponents[i - 1].color;
-                textComponents[i].alpha = 1f - (i / (float)textComponents.Count);
+                //textComponents[i].alpha = 1f;
+                //textComponents[i].alpha = 1f - (i / (float)textComponents.Count);
             }
 
             textComponents[0].text = message;
             textComponents[0].color = color;
+            textComponents[0].alpha = 1f;
         }
 
         private void Awake()
@@ -47,12 +49,21 @@ namespace Verminator
             {
                 var line = textComponents[i];
                 line.text = "";
-                line.alpha = 1f - (i / (float)NumberOfLines);
+                //line.alpha = 1f - (i / (float)NumberOfLines);
+                line.alpha = 1f;
             }
         }
 
         private void Update()
         {
+            for (int i = 1; i < textComponents.Count; i++)
+            {
+                var line = textComponents[i];
+                if (line.alpha > 0f)
+                {
+                    line.alpha = Mathf.Max(0, line.alpha - 0.15f * Time.deltaTime);
+                }
+            }
         }
     }
 }
