@@ -53,13 +53,13 @@ namespace Verminator
 
         public MessageBuffer MessageBuffer;
 
-        public int MaxLampOil = 100;
-        public int CurrentLampOil = 25;
-        public int MaxSanity = 100;
-        public int CurrentSanity = 100;
-        public int PlayerLevel = 1;
-        public int PointsToSpend = 0;
-        public bool LanternOn = true;
+        [NonSerialized] public int MaxLampOil = 100;
+        [NonSerialized] public int CurrentLampOil = 70;
+        [NonSerialized] public int MaxSanity = 100;
+        [NonSerialized] public int CurrentSanity = 100;
+        [NonSerialized] public int PlayerLevel = 1;
+        [NonSerialized] public int PointsToSpend = 0;
+        [NonSerialized] public bool LanternOn = true;
 
         public float GameWinTimer = 0f; // Small delay after defeating the queen
 
