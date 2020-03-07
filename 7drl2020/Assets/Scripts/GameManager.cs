@@ -72,6 +72,13 @@ namespace Verminator
             InventoryPressed?.Invoke();
         }
 
+        public void LanternButtonPressed()
+        {
+            Debug.Log("lantern pressed");
+            //InventoryPressed?.Invoke();
+
+        }
+
         public void DrawShoe(Vector3 position, Quaternion rotation)
         {
             Graphics.DrawMesh(ShoeMesh, Matrix4x4.TRS(position, rotation, Vector3.one), ShoeMaterial, 0);

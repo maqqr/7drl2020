@@ -72,6 +72,10 @@ namespace Verminator
         }
 
         public void LeechLife (Creature target, Creature caster, string dmg) {
+            var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Leech"));
+            eff.transform.position = Utils.ConvertToUnityCoord(target.Position) + new Vector3(0f, 0.6f, 0f);
+            eff.transform.rotation = Quaternion.LookRotation(caster.gameObject.transform.position - target.transform.position);
+
             int hitdmg = Utils.RollDice(dmg,true);
             int heal = Mathf.Min(target.Hp,hitdmg / 2);
             target.Hp -= hitdmg;
@@ -79,6 +83,10 @@ namespace Verminator
         }
 
         public void PoisonBeam (Creature target, Creature caster, string dmg) {
+            var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/PoisonBeam"));
+            eff.transform.position = Utils.ConvertToUnityCoord(caster.Position) + new Vector3(0f, 0.6f, 0f);
+            eff.transform.rotation = Quaternion.LookRotation(target.transform.position - caster.transform.position);
+
             int roll = Utils.RollDice(dmg);
             List<Vector2Int> path = Utils.Line(caster.Position,target.Position);
             foreach (Vector2Int tile in path) {
