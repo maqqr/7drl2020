@@ -106,8 +106,6 @@ namespace Verminator
             }
         }
 
-        private static bool oilTutorial = true;
-
         public void UpdateLampGraphics()
         {
             LampOilText.text = Utils.FixFont($"{CurrentLampOil} turns");
@@ -132,12 +130,7 @@ namespace Verminator
                     LanternOn = false;
                     LanternImage.sprite = LanternOffSprite;
                     MessageBuffer.AddMessage(Color.gray, "Your lantern ran out of lamp oil.");
-
-                    if (oilTutorial)
-                    {
-                        MessageBuffer.AddMessage(Color.cyan, "You feel the darkness slowly taking away your sanity...");
-                        oilTutorial = false;
-                    }
+                    MessageBuffer.AddMessage(Color.cyan, "You feel the darkness slowly taking away your sanity...");
                 }
             }
 
@@ -149,6 +142,12 @@ namespace Verminator
             if (!LanternOn && CurrentSanity > 0)
             {
                 CurrentSanity--;
+            }
+
+            if (CurrentSanity == 0)
+            {
+                MessageBuffer.AddMessage(Color.red, "Your insanity has an ill effect on your health.");
+                PlayerCreature.Hp--;
             }
         }
 
@@ -385,15 +384,18 @@ namespace Verminator
                 return false;
             }
             // Check if an unblocked path exists.
-            List<Vector2Int> path = Utils.Line(attacker.Position,defender.Position);
-            foreach (Vector2Int tile in path) {
-                try {
+            List<Vector2Int> path = Utils.Line(attacker.Position, defender.Position);
+            foreach (Vector2Int tile in path)
+            {
+                try
+                {
                     if (!CurrentFloor.Tiles[tile].IsWalkable) return false;
                 }
-                catch {
+                catch
+                {
                     return false;
                 }
-                
+
             }
 
             int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
@@ -417,8 +419,9 @@ namespace Verminator
             MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} attacks {defender.Data.Name}");
 
             // TODO: Check for spell usage
-            if (weapon.DamageTypeStr=="magic") {
-                return Spell.Cast(weapon.Effect,attacker,defender,weapon.Damage,weapon.ManaCost);
+            if (weapon.DamageTypeStr == "magic")
+            {
+                return Spell.Cast(weapon.Effect, attacker, defender, weapon.Damage, weapon.ManaCost);
             }
 
 
@@ -447,11 +450,12 @@ namespace Verminator
             {
                 DamageType dmgType = weapon.DamageType;
                 string dmgdice = weapon.Damage;
-                if (attacker.Data.Name.Contains("swarm")) {
-                    int missingHp = 10-(attacker.MaxHp - attacker.Hp)/2;
-                    dmgdice = missingHp.ToString() + 'd'+weapon.Damage.Split('d')[1];
+                if (attacker.Data.Name.Contains("swarm"))
+                {
+                    int missingHp = 10 - (attacker.MaxHp - attacker.Hp) / 2;
+                    dmgdice = missingHp.ToString() + 'd' + weapon.Damage.Split('d')[1];
                     Debug.Log(weapon.Damage.Split('d')[1]);
-                    Debug.Log("Swarm rolls with "+dmgdice);
+                    Debug.Log("Swarm rolls with " + dmgdice);
                 }
                 int dmg = Utils.RollDice(dmgdice, true) + attacker.Strength;
                 dmg = (int)(dmg * (1 - defender.GetResistance(dmgType) / 100.0f));
@@ -609,7 +613,7 @@ namespace Verminator
             }
             foreach (var creature in dyingCritters)
             {
-                MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} dies!");
+                MessageBuffer.AddMessage(Color.white, $"{creature.Data.Name} dies!");
                 CurrentFloor.DestroyCreature(creature);
 
                 if (creature.Data.Id == "queen")
