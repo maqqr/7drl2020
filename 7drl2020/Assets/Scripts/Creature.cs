@@ -89,7 +89,7 @@ namespace Verminator
                 {
                     msg += "Trait: " + CurrentTrait.Name + "\n - " + CurrentTrait.Description + "\n\n";
                 }
-                foreach(var mutation in Mutations)
+                foreach (var mutation in Mutations)
                 {
                     msg += mutation.Name + "\n - " + mutation.Description + "\n";
                 }
@@ -207,19 +207,24 @@ namespace Verminator
         {
             // TODO: make proper AI
 
-            if (this.Stun>0) {
-                this.Stun -=1;
+            if (this.Stun > 0)
+            {
+                this.Stun -= 1;
                 return;
             }
-            if (this.Poison >0) {
+            if (this.Poison > 0)
+            {
                 this.hp -= this.Poison;
-                this.Poison --;
+                this.Poison--;
             }
             Vector2Int newPosition;
-            if (!Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), this.AggroRange)) {
-                newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
+            if (AggroRange > 0 && !Physics.Raycast(Utils.ConvertToUnityCoord(this.Position), Utils.ConvertToUnityCoord(gameManager.PlayerCreature.Position) - Utils.ConvertToUnityCoord(this.Position), this.AggroRange))
+            {
+                Debug.Log("Aggro");
+                newPosition = gameManager.CurrentFloor.FindPath(this.Position, gameManager.PlayerCreature.Position)[0];
             }
-            else {
+            else
+            {
                 newPosition = Position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
             }
 

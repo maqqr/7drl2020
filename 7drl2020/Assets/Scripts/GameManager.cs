@@ -21,6 +21,14 @@ namespace Verminator
         public TMPro.TextMeshProUGUI HpText;
         public TMPro.TextMeshProUGUI MpText;
         public TMPro.TextMeshProUGUI SanityText;
+        public TMPro.TextMeshProUGUI LampOilText;
+
+        private float lanternOriginalIntensity;
+        private Light lanternLight;
+
+        public UnityEngine.UI.Image LanternImage;
+        public Sprite LanternOnSprite;
+        public Sprite LanternOffSprite;
 
         public int currentFloorIndex = -1;
         private List<DungeonFloor> dungeonFloors = new List<DungeonFloor>();
@@ -51,6 +59,7 @@ namespace Verminator
         public int CurrentSanity = 100;
         public int PlayerLevel = 1;
         public int PointsToSpend = 0;
+        public bool LanternOn = true;
 
         public float GameWinTimer = 0f; // Small delay after defeating the queen
 
@@ -77,6 +86,70 @@ namespace Verminator
             Debug.Log("lantern pressed");
             //InventoryPressed?.Invoke();
 
+            if (CurrentLampOil == 0)
+            {
+                MessageBuffer.AddMessage(Color.white, "You cannot turn on your lantern until you fill it with lamp oil.");
+                return;
+            }
+
+            LanternOn = !LanternOn;
+
+            UpdateLampGraphics();
+
+            if (LanternOn)
+            {
+                MessageBuffer.AddMessage(Color.yellow, "You turn on your lantern.");
+            }
+            else
+            {
+                MessageBuffer.AddMessage(Color.gray, "You turn off your lantern.");
+            }
+        }
+
+        private static bool oilTutorial = true;
+
+        public void UpdateLampGraphics()
+        {
+            LampOilText.text = Utils.FixFont($"{CurrentLampOil} turns");
+            LanternImage.sprite = LanternOn ? LanternOnSprite : LanternOffSprite;
+
+            lanternLight.intensity = LanternOn ? lanternOriginalIntensity : 0f;
+        }
+
+        public void SpendLampOil()
+        {
+            if (!LanternOn)
+            {
+                return;
+            }
+
+            if (CurrentLampOil > 0)
+            {
+                CurrentLampOil--;
+
+                if (CurrentLampOil == 0)
+                {
+                    LanternOn = false;
+                    LanternImage.sprite = LanternOffSprite;
+                    MessageBuffer.AddMessage(Color.gray, "Your lantern ran out of lamp oil.");
+
+                    if (oilTutorial)
+                    {
+                        MessageBuffer.AddMessage(Color.cyan, "You feel the darkness slowly taking away your sanity...");
+                        oilTutorial = false;
+                    }
+                }
+            }
+
+            UpdateLampGraphics();
+        }
+
+        public void SanityCheck()
+        {
+            if (!LanternOn && CurrentSanity > 0)
+            {
+                CurrentSanity--;
+            }
         }
 
         public void DrawShoe(Vector3 position, Quaternion rotation)
@@ -143,10 +216,14 @@ namespace Verminator
 
             PlayerCreature.OnMovementAnimationEnd = OnPlayerMoveAnimationEnd;
 
+            lanternLight = PlayerCreature.gameObject.GetComponentInChildren<Light>();
+            lanternOriginalIntensity = lanternLight.intensity;
+
             Camera.main.GetComponent<CameraController>().FollowTransform = PlayerCreature.gameObject.transform;
 
             UpdateEquipSlotGraphics();
             UpdatePlayerStatsUI();
+            UpdateLampGraphics();
 
             for (int i = 0; i < UIEquipSlots.transform.childCount; i++)
             {
@@ -156,7 +233,7 @@ namespace Verminator
 
         private void OnPlayerMoveAnimationEnd()
         {
-            Debug.Log("Anim end");
+            //Debug.Log("Anim end");
             if (CurrentFloor.IsDownstairsTile(PlayerCreature.Position))
             {
                 MessageBuffer.AddMessage(Color.white, "You go down the stairs deeper into the cellar.");
@@ -509,6 +586,9 @@ namespace Verminator
                     UnityEngine.SceneManagement.SceneManager.LoadScene(3);
                 }
             }
+
+            SpendLampOil();
+            SanityCheck();
 
             UpdatePlayerStatsUI();
 

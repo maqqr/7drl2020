@@ -272,6 +272,7 @@ namespace Verminator.GameViews
                 UnselectAll();
                 RefreshView();
                 sheetUI.InteractionWindow.SetActive(false);
+                gameManager.UpdateLampGraphics();
                 return;
             }
 
