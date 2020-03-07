@@ -83,6 +83,12 @@ namespace Verminator
             }
             Debug.Log($"Found {downstairPoints.Count} downstairs");
 
+            // Place player at the front of up stairs
+            foreach (var obj in GetComponentsInChildren<UpstairPoint>())
+            {
+                gameManager.PlayerCreature.Position = Utils.ConvertToTileCoord(obj.transform.position + obj.transform.right);
+            }
+
             UpdatePathfindingGrid();
             IsInitialized = true;
         }

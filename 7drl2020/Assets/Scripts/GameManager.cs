@@ -603,6 +603,7 @@ namespace Verminator
             if (!CurrentFloor.IsInitialized)
             {
                 CurrentFloor.Initialize(this, currentFloorIndex);
+                PlayerCreature.gameObject.transform.position = Utils.ConvertToUnityCoord(PlayerCreature.Position); // Initialize may change player pos
             }
 
             if (GameWinTimer > 0f)
