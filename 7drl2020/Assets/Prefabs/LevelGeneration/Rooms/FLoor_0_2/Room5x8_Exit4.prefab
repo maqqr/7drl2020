@@ -362,6 +362,7 @@ MonoBehaviour:
   - room
   CreatesTags:
   - corridor
+  - broomcuboard
   - room
   - room
   Exits: {fileID: 3944501970560906972}

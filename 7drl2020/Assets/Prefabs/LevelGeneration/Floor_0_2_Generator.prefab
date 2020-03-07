@@ -71,6 +71,7 @@ MonoBehaviour:
   - {fileID: 7823329940223043184, guid: f0ecc7b3693ec9a43b9a55e3e166268b, type: 3}
   - {fileID: 7823329940223043184, guid: b2d5c9ef48053fa48a40c7e6d6a8412f, type: 3}
   - {fileID: 7823329940223043184, guid: 97ba7409e2f783245a47f7472c66fbff, type: 3}
+  - {fileID: 7823329940223043184, guid: 2a6fb8efa9b670a46a70d0a5948fbf44, type: 3}
   DeadEnds:
   - {fileID: 1769625825286644012, guid: a007c4e6f331dba4ebf3b3c048ef4af5, type: 3}
   InitialSectionTags:
@@ -85,3 +86,6 @@ MonoBehaviour:
   - Tag: boss
     MinAmount: 0
     MaxAmount: 0
+  - Tag: broomcuboard
+    MinAmount: 0
+    MaxAmount: 1
