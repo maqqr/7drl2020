@@ -376,7 +376,7 @@ namespace Verminator
 
 
 
-        public bool Fight(Creature attacker, Creature defender)
+        public bool Fight(Creature attacker, Creature defender, Data.ItemData overrideWeapon = null)
         {
             if (attacker == null || defender == null)
             {
@@ -408,17 +408,23 @@ namespace Verminator
             }
             catch
             {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot + 1}");
-                return false;
-            }
-            int dist = (int)Vector2.Distance(attacker.Position, defender.Position);
-            if (dist < weapon.MinRange || dist > weapon.MaxRange)
-            {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} can't attack at this distance");
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no weapon equiped at slot {usedSlot + 1}.");
                 return false;
             }
 
-            MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} attacks {defender.Data.Name}");
+            if (overrideWeapon != null)
+            {
+                weapon = overrideWeapon;
+            }
+
+            int dist = (int)Vector2.Distance(attacker.Position, defender.Position);
+            if (dist < weapon.MinRange || dist > weapon.MaxRange)
+            {
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} can't attack at this distance.");
+                return false;
+            }
+
+            MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} attacks {defender.Data.Name} with {weapon.Name}.");
 
             // TODO: Check for spell usage
             if (weapon.DamageTypeStr == "magic")
@@ -439,7 +445,7 @@ namespace Verminator
                 }
                 else
                 {
-                    MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no ammo {weapon.Ammo}");
+                    MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no ammo {weapon.Ammo}.");
                     return false;
                 }
 

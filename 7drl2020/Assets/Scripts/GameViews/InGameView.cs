@@ -406,11 +406,11 @@ namespace Verminator.GameViews
                             gameManager.AdvanceGameWorld(player.Speed);
 
                             // This is just for debugging:
-                            var item = gameManager.CurrentFloor.GetItemAt(player.Position);
-                            if (item != null)
-                            {
-                                gameManager.MessageBuffer.AddMessage(Color.white, "You see " + Utils.GetIndefiniteArticle(item.Data.Name) + " " + item.Data.Name + " here.");
-                            }
+                            //var item = gameManager.CurrentFloor.GetItemAt(player.Position);
+                            //if (item != null)
+                            //{
+                            //    gameManager.MessageBuffer.AddMessage(Color.white, "You see " + Utils.GetIndefiniteArticle(item.Data.Name) + " " + item.Data.Name + " here.");
+                            //}
                         }
 
                     }
@@ -424,6 +424,7 @@ namespace Verminator.GameViews
                         player.Attacking = true;
                         player.Move(pathToPos[0], true);
                         gameManager.AdvanceGameWorld(player.Speed);
+                        UpdateEnemyStatWindow();
                     }
                     else
                     {

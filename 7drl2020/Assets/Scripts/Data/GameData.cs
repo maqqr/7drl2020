@@ -122,6 +122,12 @@ namespace Verminator.Data
                     MagicResBonus = GetDefault(0, "magicresbonus", trait),
                     //ModelPrefab = Resources.Load<GameObject>(trait.Value["ModelAssetPath"])
                 };
+                List<string> weaponList = new List<string>();
+                foreach (var key in trait.Value["extraweapons"])
+                {
+                    weaponList.Add(key.Value);
+                }
+                traitData.ExtraWeapons = weaponList.ToArray();
                 gameData.TraitData.Add(trait.Key, traitData);
             }
 

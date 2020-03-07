@@ -253,7 +253,7 @@ namespace Verminator
                 weaponOfChoice = Random.Range(0,3);
                 int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position,gameManager.PlayerCreature.Position));
                 if (dist <= this.EquipSlots[weaponOfChoice].ItemData.MaxRange && dist >= this.EquipSlots[weaponOfChoice].ItemData.MinRange) {
-                    gameManager.Fight(this,gameManager.PlayerCreature);
+                    FightPlayer(gameManager);
                     return;
                 }
                 else {
@@ -276,11 +276,29 @@ namespace Verminator
                 else if (creatureBlocking == gameManager.PlayerCreature)
                 {
                     Attacking = true;
-                    gameManager.Fight(this, gameManager.PlayerCreature);
+                    FightPlayer(gameManager);
                     Move(newPosition, true);
                 }
 
                 //Position = newPosition;
+            }
+        }
+
+        private void FightPlayer(GameManager gameManager)
+        {
+            gameManager.Fight(this, gameManager.PlayerCreature);
+
+            var check = new List<Verminator.Data.TraitData>();
+            if (CurrentTrait != null) check.Add(CurrentTrait);
+            foreach (var mut in Mutations) check.Add(mut);
+
+            foreach(var trait in check)
+            {
+                foreach(var weaponId in trait.ExtraWeapons)
+                {
+                    Verminator.Data.ItemData traitWeapon = Verminator.Data.GameData.Instance.ItemData[weaponId];
+                    gameManager.Fight(this, gameManager.PlayerCreature, traitWeapon);
+                }
             }
         }
 
