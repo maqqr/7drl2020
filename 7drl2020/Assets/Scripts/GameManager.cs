@@ -398,7 +398,7 @@ namespace Verminator
 
             }
 
-            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : 0;
+            int usedSlot = attacker == PlayerCreature ? lastUsedSlot : attacker.weaponOfChoice;
             Data.ItemData weapon;
             try
             {
@@ -458,7 +458,10 @@ namespace Verminator
                     Debug.Log("Swarm rolls with " + dmgdice);
                 }
                 int dmg = Utils.RollDice(dmgdice, true) + attacker.Strength;
-                dmg = (int)(dmg * (1 - defender.GetResistance(dmgType) / 100.0f));
+                if (attacker==PlayerCreature) {
+                    dmg = (int)(dmg*Mathf.Lerp(1.5f,1f,(float)CurrentSanity/100f));
+                }
+                dmg = (int)(dmg * (1 - (defender==PlayerCreature ? defender.GetResistance(dmgType) * Mathf.Lerp(0.25f,1f,(float)CurrentSanity/100f) :defender.GetResistance(dmgType)) / 100.0f));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
             }

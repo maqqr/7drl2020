@@ -76,6 +76,8 @@ namespace Verminator
         public int ManaCounter  =0;
         public int RecoverTime = 2;
 
+        public int weaponOfChoice = 0;
+
         public string Desc
         {
             get
@@ -248,7 +250,7 @@ namespace Verminator
 
             if (Vector3.Distance(rayStart, rayEnd) <= AggroRange && !Physics.Raycast(rayStart, rayDir, rayDist)) {
                 // Use ranged attacks if at disposal
-                int weaponOfChoice = Random.Range(0,3);
+                weaponOfChoice = Random.Range(0,3);
                 int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position,gameManager.PlayerCreature.Position));
                 if (dist <= this.EquipSlots[weaponOfChoice].ItemData.MaxRange && dist >= this.EquipSlots[weaponOfChoice].ItemData.MinRange) {
                     gameManager.Fight(this,gameManager.PlayerCreature);
