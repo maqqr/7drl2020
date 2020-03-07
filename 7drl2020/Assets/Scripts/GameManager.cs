@@ -466,10 +466,11 @@ namespace Verminator
                     Debug.Log("Swarm rolls with " + dmgdice);
                 }
                 int dmg = Utils.RollDice(dmgdice, true) + attacker.Strength;
-                if (attacker==PlayerCreature) {
-                    dmg = (int)(dmg*Mathf.Lerp(1.5f,1f,(float)CurrentSanity/100f));
+                if (attacker == PlayerCreature)
+                {
+                    dmg = (int)(dmg * Mathf.Lerp(1.5f, 1f, (float)CurrentSanity / 100f));
                 }
-                dmg = (int)(dmg * (1 - (defender==PlayerCreature ? defender.GetResistance(dmgType) * Mathf.Lerp(0.25f,1f,(float)CurrentSanity/100f) :defender.GetResistance(dmgType)) / 100.0f));
+                dmg = (int)(dmg * (1 - (defender == PlayerCreature ? defender.GetResistance(dmgType) * Mathf.Lerp(0.25f, 1f, (float)CurrentSanity / 100f) : defender.GetResistance(dmgType)) / 100.0f));
                 defender.Hp -= dmg;
                 MessageBuffer.AddMessage(Color.white, $"{defender.Data.Name} takes {dmg} {dmgType.ToString().ToLower()} damage!");
             }
@@ -513,6 +514,24 @@ namespace Verminator
             HpText.text = Utils.FixFont($"HP: {PlayerCreature.Hp}/{PlayerCreature.MaxHp}");
             MpText.text = Utils.FixFont($"MP: {PlayerCreature.Mp}/{PlayerCreature.MaxMp}");
             SanityText.text = Utils.FixFont($"Sanity: {CurrentSanity}/{MaxSanity}");
+
+            HpText.color = Color.black;
+            SanityText.color = Color.black;
+
+            if (PlayerCreature.Hp / (float)PlayerCreature.MaxHp <= 0.6)
+            {
+                HpText.color = Color.yellow;
+            }
+
+            if (PlayerCreature.Hp / (float)PlayerCreature.MaxHp <= 0.3)
+            {
+                HpText.color = Color.red;
+            }
+
+            if (CurrentSanity / (float)MaxSanity <= 0.3)
+            {
+                SanityText.color = Color.red;
+            }
         }
 
         public void PreviousDungeonFloor()
