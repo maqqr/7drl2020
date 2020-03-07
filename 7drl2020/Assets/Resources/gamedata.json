@@ -1,9 +1,9 @@
 {
     "items": {
-        "scroll": { "name": "Push scroll", "assetpath": "Item/Scroll", "weight": 1, "minrange": 1, "maxrange": 5,"manacost":5, "effect": "Push", "dmg":"1d4+1", "dmgtype":"magic","desc": "Magic scroll." },
-        "firescroll": { "name": "Firesquare scroll", "assetpath": "Item/Scroll", "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Firesquare", "dmg":"2d3", "dmgtype":"magic","desc": "Magic scroll." },
-        "succscroll": { "name": "Leechlife scroll", "assetpath": "Item/Scroll", "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Leechlife", "dmg":"1d5+2", "dmgtype":"magic","desc": "Magic scroll." },
-        "poisoncroll": { "name": "Poisonbeam scroll", "assetpath": "Item/Scroll", "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Poisonbeam", "dmg":"1d3+1", "dmgtype":"magic","desc": "Magic scroll." },
+        "scroll":         { "name": "Push scroll", "assetpath": "Item/Scroll",          "weight": 1, "minrange": 1, "maxrange": 5,"manacost":5, "effect": "Push", "dmg":"1d4+1", "dmgtype":"magic","desc": "Magic scroll." },
+        "firescroll":     { "name": "Firesquare scroll", "assetpath": "Item/Scroll",    "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Firesquare", "dmg":"2d3", "dmgtype":"magic","desc": "Magic scroll." },
+        "succscroll":     { "name": "Leechlife scroll", "assetpath": "Item/Scroll",     "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Leechlife", "dmg":"1d5+2", "dmgtype":"magic","desc": "Magic scroll." },
+        "poisoncroll":    { "name": "Poisonbeam scroll", "assetpath": "Item/Scroll",    "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Poisonbeam", "dmg":"1d3+1", "dmgtype":"magic","desc": "Magic scroll." },
 
         "apple":          { "name": "apple", "assetpath": "Item/Apple",                     "weight": 1, "maxrange": 5, "ammo": "apple",          "fragile": true, "edible": true, "gainhp": 5,  "desc": "An apple a day, keeps the rats at bay." },
         "bread":          { "name": "bread", "assetpath": "Item/Bread",                     "weight": 3, "maxrange": 5, "ammo": "bread",          "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread that has survived the hungry mouths of rats." },
@@ -129,7 +129,8 @@
             "oilflask", "oilflask", "oilflask",
             "sword", "mace", "sword", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "arrow", "arrow", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "dart",
-            "leathercap", "leathercap"
+            "leathercap", "leathercap",
+            "scroll"
             ],
         "1":
             ["apple", "apple", "bread", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "apple", "bread", "bread", "cheese", "mugofbeer", "flaskofspirits",
@@ -138,7 +139,8 @@
             "arrow", "arrow", "arrow", "arrow", "arrow", "bolt", "dart", "dart", "dart", "dart", "dart", "dart", "dart", "javelin",
             "crossbow",
             "leathercap",
-            "leatherboots"
+            "leatherboots",
+            "scroll", "poisonscroll"
             ],
         "2": ["apple", "bread", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "oilflask",
@@ -147,7 +149,8 @@
             "crossbow", "crossbow",
             "leathercap", "leathercap", "leathercap",
             "lamellararmour",
-            "leatherboots", "leatherboots"
+            "leatherboots", "leatherboots",
+            "scroll", "poisonscroll", "succscroll"
             ],
         "3":
             ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
@@ -157,7 +160,8 @@
             "crossbow", "crossbow",
             "leathercap", "leathercap", "leathercap", "leathercap",
             "lamellararmour","lamellararmour",
-            "leatherboots", "leatherboots", "leatherboots"
+            "leatherboots", "leatherboots", "leatherboots",
+            "scroll", "poisonscroll", "succscroll", "firescroll"
             ],
         "4":
             ["apple", "bread", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
@@ -165,38 +169,42 @@
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "dart", "javelin", "javelin", "javelin",
             "crossbow",
             "chaincoif",
-            "lamellararmour"
+            "lamellararmour", "antimagicward",
+            "scroll", "poisonscroll", "succscroll","firescroll"
             ],
         "5":
             ["apple", "bread", "cheese", "cheese", "mugofbeer", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "sword", "handaxe", "mace", "spear",
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt","javelin", "javelin",
             "chaincoif", "domedhelmet",
-            "chainmail",
-            "chainmailboots"
+            "chainmail", "antimagicward",
+            "chainmailboots",
+            "poisonscroll", "succscroll", "firescroll"
             ],
         "6":
             ["apple", "bread", "cheese", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "pickaxe", "warhammer", "longspear", "longspear",
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt", "bolt",
             "chaincoif", "chaincoif", "domedhelmet",
-            "chainmail", "chainmail",
-            "chainmailboots", "platemailboots"
+            "chainmail", "chainmail", "antimagicward",
+            "chainmailboots", "platemailboots",
+            "succscroll", "firescroll"
             ],
         "7":
             ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "blackmushroom",
             "pickaxe", "warhammer", "warhammer", "longspear",
             "arrow", "arrow", "arrow", "arrow", "bolt", "bolt", "bolt",
             "chaincoif", "chaincoif", "domedhelmet", "domedhelmet",
-            "chainmail", "chainmail", "platemail",
-            "chainmailboots", "chainmailboots", "platemailboots"
+            "chainmail", "chainmail", "platemail", "antimagicward",
+            "chainmailboots", "chainmailboots", "platemailboots",
+            "firescroll"
             ],
         "8":
             ["apple", "bread", "cheese", "mugofbeer", "flaskofspirits", "greenmushroom", "greenmushroom", "blackmushroom", "blackmushroom",
             "warhammer", "longspear",
             "arrow", "arrow", "bolt",
             "chaincoif", "domedhelmet",
-            "chainmail", "platemail",
+            "chainmail", "platemail", "antimagicward",
             "chainmailboots", "platemailboots"
             ],
         "9":
