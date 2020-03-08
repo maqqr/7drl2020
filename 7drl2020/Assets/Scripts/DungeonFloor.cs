@@ -142,6 +142,11 @@ namespace Verminator
 
         private void SpawnItemAtSpawnPoint(ItemSpawnPoint itemSpawnPoint)
         {
+            int Count(string key)
+            {
+                return key == "arrow" || key == "bolt" ? 5 : 1;
+            }
+
             if (!(UnityEngine.Random.Range(1, 101) <= itemSpawnPoint.SpawnChance))
             {
                 return;
@@ -159,11 +164,18 @@ namespace Verminator
 
                 var itemKeyList = Data.GameData.Instance.ItemSpawnList[currentFloorIndex];
                 int index = UnityEngine.Random.Range(0, itemKeyList.Length);
-                SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
+
+                for (int i = 0; i < Count(itemKeyList[index]); i++)
+                {
+                    SpawnItem(itemKeyList[index], Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
+                }
             }
             else
             {
-                SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
+                for (int i = 0; i < Count(itemSpawnPoint.SpawnItem); i++)
+                {
+                    SpawnItem(itemSpawnPoint.SpawnItem, Utils.ConvertToTileCoord(itemSpawnPoint.transform.position), itemSpawnPoint.transform);
+                }
             }
         }
 
