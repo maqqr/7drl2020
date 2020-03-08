@@ -75,9 +75,9 @@ namespace Verminator
         public int Poison = 0;
 
         public bool IsVisible { get; private set; }
-        
+
         // Get back 1 mp every 3 turns
-        public int ManaCounter  =0;
+        public int ManaCounter = 0;
         public int RecoverTime = 2;
 
         public int weaponOfChoice = 0;
@@ -229,23 +229,26 @@ namespace Verminator
 
             if (this.Stun > 0)
             {
-                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.yellow,$"{this.Data.Name} is stunned for {this.Stun} turns.");
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.yellow, $"{this.Data.Name} is stunned for {this.Stun} turns.");
                 this.Stun -= 1;
                 return;
             }
             if (this.Poison > 0)
             {
                 this.hp -= this.Poison;
-                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.green,$"{this.Data.Name} takes {this.Poison} damage poison.");
+                gameManager.MessageBuffer.AddMessage(UnityEngine.Color.green, $"{this.Data.Name} takes {this.Poison} damage poison.");
                 this.Poison--;
             }
-            if (this.mp <this.MaxMp) {
-                if (this.ManaCounter == this.RecoverTime) {
-                    this.mp +=1;
+            if (this.mp < this.MaxMp)
+            {
+                if (this.ManaCounter == this.RecoverTime)
+                {
+                    this.mp += 1;
                     this.ManaCounter = 0;
                 }
-                else {
-                    this.ManaCounter ++;
+                else
+                {
+                    this.ManaCounter++;
                 }
             }
             Vector2Int newPosition;
@@ -258,16 +261,19 @@ namespace Verminator
             if (Vector3.Distance(rayStart, rayEnd) <= AggroRange)
                 Debug.DrawRay(rayStart, rayDir * rayDist, Color.magenta, 1f);
 
-            if (Vector3.Distance(rayStart, rayEnd) <= AggroRange && !Physics.Raycast(rayStart, rayDir, rayDist)) {
+            if (Vector3.Distance(rayStart, rayEnd) <= AggroRange && !Physics.Raycast(rayStart, rayDir, rayDist))
+            {
                 // Use ranged attacks if at disposal
-                weaponOfChoice = Random.Range(0,3);
-                int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position,gameManager.PlayerCreature.Position));
-                if (dist <= this.EquipSlots[weaponOfChoice].ItemData.MaxRange && dist >= this.EquipSlots[weaponOfChoice].ItemData.MinRange) {
+                weaponOfChoice = Random.Range(0, 3);
+                int dist = Mathf.FloorToInt(Vector2Int.Distance(this.Position, gameManager.PlayerCreature.Position));
+                if (dist <= this.EquipSlots[weaponOfChoice].ItemData.MaxRange && dist >= this.EquipSlots[weaponOfChoice].ItemData.MinRange)
+                {
                     FightPlayer(gameManager);
                     return;
                 }
-                else {
-                    newPosition = gameManager.CurrentFloor.FindPath(this.Position,gameManager.PlayerCreature.Position)[0];
+                else
+                {
+                    newPosition = gameManager.CurrentFloor.FindPath(this.Position, gameManager.PlayerCreature.Position)[0];
                 }
             }
             else
@@ -296,20 +302,27 @@ namespace Verminator
 
         private void FightPlayer(GameManager gameManager)
         {
+            Attacking = true;
+            Move(gameManager.PlayerCreature.Position, true);
+
             gameManager.Fight(this, gameManager.PlayerCreature);
 
-            var check = new List<Verminator.Data.TraitData>();
-            if (CurrentTrait != null) check.Add(CurrentTrait);
-            foreach (var mut in Mutations) check.Add(mut);
-
-            foreach(var trait in check)
+            if (Vector2.Distance(Position, gameManager.PlayerCreature.Position) < 2f)
             {
-                foreach(var weaponId in trait.ExtraWeapons)
+                var check = new List<Verminator.Data.TraitData>();
+                if (CurrentTrait != null) check.Add(CurrentTrait);
+                foreach (var mut in Mutations) check.Add(mut);
+
+                foreach (var trait in check)
                 {
-                    Verminator.Data.ItemData traitWeapon = Verminator.Data.GameData.Instance.ItemData[weaponId];
-                    gameManager.Fight(this, gameManager.PlayerCreature, traitWeapon);
+                    foreach (var weaponId in trait.ExtraWeapons)
+                    {
+                        Verminator.Data.ItemData traitWeapon = Verminator.Data.GameData.Instance.ItemData[weaponId];
+                        gameManager.Fight(this, gameManager.PlayerCreature, traitWeapon);
+                    }
                 }
             }
+
         }
 
         public bool AddItem(Data.ItemData newItem)
