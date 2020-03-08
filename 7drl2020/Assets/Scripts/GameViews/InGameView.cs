@@ -190,6 +190,13 @@ namespace Verminator.GameViews
             }
         }
 
+        private void WaitOneTurn()
+        {
+            gameManager.MessageBuffer.AddMessage(Color.gray, "You stand still for a moment.");
+            gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
+            forcedCooldown = 0.5f;
+        }
+
         private void HandlePlayerInput()
         {
             Vector2Int? playerMoveTo = null;
@@ -269,118 +276,12 @@ namespace Verminator.GameViews
             {
                 gameManager.EquipSlotClicked(3);
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                WaitOneTurn();
+                return;
+            }
 
-
-            //if (Utils.IsDown(gameManager.keybindings.PeekLeft))
-            //{
-            //    gameManager.playerAnim.Peek = -1;
-            //}
-            //else if (Utils.IsDown(gameManager.keybindings.PeekRight))
-            //{
-            //    gameManager.playerAnim.Peek = 1;
-            //}
-            //else
-            //{
-            //    gameManager.playerAnim.Peek = 0;
-            //}
-
-            //if (Utils.IsDown(gameManager.keybindings.MoveForward))
-            //{
-            //    playerMoveTo = Utils.ConvertToGameCoord(playerObj.transform.localPosition + playerObj.transform.forward);
-            //}
-            //else if (Utils.IsDown(gameManager.keybindings.MoveBackward))
-            //{
-            //    playerMoveTo = Utils.ConvertToGameCoord(playerObj.transform.localPosition - playerObj.transform.forward);
-            //}
-            //else if (Utils.IsDown(gameManager.keybindings.MoveRight))
-            //{
-            //    playerMoveTo = Utils.ConvertToGameCoord(playerObj.transform.localPosition + playerObj.transform.right);
-            //}
-            //else if (Utils.IsDown(gameManager.keybindings.MoveLeft))
-            //{
-            //    playerMoveTo = Utils.ConvertToGameCoord(playerObj.transform.localPosition - playerObj.transform.right);
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.PickUp))
-            //{
-            //    if (highlightedObject != null)
-            //    {
-            //        Unhighlight(highlightedObject);
-            //        var interactable = highlightedObject.GetComponent<Interaction.Interactable>();
-            //        bool advanceTime = false;
-            //        for (int i = 0; i < interactable.Interactions.Length; i++)
-            //        {
-            //            if (interactable.Interactions[i].Interact(gameManager))
-            //            {
-            //                advanceTime = true;
-            //            }
-            //        }
-
-            //        if (advanceTime)
-            //        {
-            //            gameManager.AdvanceTime(player.Speed);
-            //        }
-            //    }
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.Help))
-            //{
-            //    gameManager.HelpWindow.SetActive(!gameManager.HelpWindow.activeSelf);
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.Wait))
-            //{
-            //    gameManager.AdvanceTime(player.Speed);
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.Push) && gameManager.throwable != null)
-            //{
-            //    if (Vector3.Distance(gameManager.throwable.transform.position, gameManager.playerObject.transform.position) < 1.5f)
-            //    {
-            //        gameManager.throwable.isKinematic = false;
-            //        gameManager.throwable.AddForce(new Vector3(gameManager.Camera.transform.forward.x, 0f, gameManager.Camera.transform.forward.z) * 10f, ForceMode.Impulse);
-            //        gameManager.AdvanceTime(player.Speed);
-            //    }
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.ThrowLeftHand) || Utils.IsPressed(gameManager.keybindings.ThrowRightHand))
-            //{
-            //    EquipSlot slot = Utils.IsPressed(gameManager.keybindings.ThrowLeftHand) ? EquipSlot.LeftHand : EquipSlot.RightHand;
-            //    if (player.Equipment.ContainsKey(slot))
-            //    {
-            //        gameManager.PlayerThrowItem(slot);
-            //    }
-            //    else if (highlightedObject != null)
-            //    {
-            //        // Unhighlight(highlightedObject);
-            //        var pick = highlightedObject.GetComponent<Interaction.PickupItem>();
-            //        if (pick)
-            //        {
-            //            pick.Interact(gameManager);
-            //            foreach (var invitem in player.Inventory)
-            //            {
-            //                if (invitem.ItemKey == pick.itemKey)
-            //                {
-            //                    gameManager.PlayerEquip(invitem, slot);
-            //                    break;
-            //                }
-            //            }
-            //            gameManager.AdvanceTime(player.Speed);
-            //        }
-
-
-            //    }
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.OpenPerkTree))
-            //{
-            //    gameManager.AddNewView(new PerkTreeView());
-            //}
-
-            //if (Utils.IsPressed(gameManager.keybindings.OpenInventory))
-            //{
-            //    gameManager.AddNewView(new InventoryView());
-            //}
 
             if (playerMoveTo != null)
             {
@@ -440,6 +341,11 @@ namespace Verminator.GameViews
                         forcedCooldown = 0.5f;
                     }
                     //gameManager.AdvanceTime(player.Speed);
+                }
+                else
+                {
+                    // Player is clicked: Wait one turn
+                    WaitOneTurn();
                 }
 
                 UpdateItemPickupList();
