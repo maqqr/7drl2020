@@ -58,7 +58,7 @@ namespace Verminator.GameViews
         private void StatIncreaseClicked(int index)
         {
             const int gainHp = 10;
-            const int gainMp = 3;
+            const int gainMp = 5;
 
             if (gameManager.PointsToSpend > 0)
             {
