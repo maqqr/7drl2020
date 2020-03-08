@@ -358,6 +358,8 @@ namespace Verminator
                 //PlayerCreature.gameObject.transform.parent = CurrentFloor.gameObject.transform;
             }
 
+            CalculateEnemyVisibility();
+
             //pathfindDirty = true;
             //CurrentFloorObject.GetComponent<DungeonLevel>().UpdateAllReferences();
 
@@ -674,9 +676,9 @@ namespace Verminator
                 }
             }
 
+            CalculateEnemyVisibility();
             SpendLampOil();
             SanityCheck();
-
             UpdatePlayerStatsUI();
 
             //AdjustNutrition(-1);
@@ -685,12 +687,26 @@ namespace Verminator
             //Debug.Log("Player nutrition: " + playerObject.GetComponent<Player>().Nutrition);
         }
 
+        private void CalculateEnemyVisibility()
+        {
+            foreach (var creature in CurrentFloor.Creatures)
+            {
+                if (creature == PlayerCreature)
+                {
+                    continue;
+                }
+
+                creature.SetVisibility(Utils.LineOfSight(this, PlayerCreature.Position, creature.Position));
+            }
+        }
+
         private void Update()
         {
             if (!CurrentFloor.IsInitialized)
             {
                 CurrentFloor.Initialize(this, currentFloorIndex);
                 PlayerCreature.gameObject.transform.position = Utils.ConvertToUnityCoord(PlayerCreature.Position); // Initialize may change player pos
+                CalculateEnemyVisibility();
             }
 
             if (GameWinTimer > 0f)

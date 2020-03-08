@@ -153,8 +153,8 @@ namespace Verminator.GameViews
         private void UpdateEnemyStatWindow()
         {
             var enemy = gameManager.CurrentFloor.GetCreatureAt(gameManager.TileCoordinateUnderMouse(), includePlayer: false);
-            gameManager.EnemyStatsWindow.SetActive(enemy != null);
-            if (enemy != null)
+            gameManager.EnemyStatsWindow.SetActive(enemy != null && enemy.IsVisible);
+            if (enemy != null && enemy.IsVisible)
             {
                 var cre = enemy.GetComponent<Creature>();
                 gameManager.EnemyStatsName.GetComponent<TMPro.TextMeshProUGUI>().text = cre.Name;

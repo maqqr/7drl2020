@@ -3,7 +3,7 @@
         "scroll":         { "name": "Push scroll", "assetpath": "Item/Scroll",          "weight": 1, "minrange": 1, "maxrange": 5,"manacost":5, "effect": "Push", "dmg":"1d4+1", "dmgtype":"magic","desc": "Magic scroll." },
         "firescroll":     { "name": "Firesquare scroll", "assetpath": "Item/Scroll",    "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Firesquare", "dmg":"2d3", "dmgtype":"magic","desc": "Magic scroll." },
         "succscroll":     { "name": "Leechlife scroll", "assetpath": "Item/Scroll",     "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Leechlife", "dmg":"1d5+2", "dmgtype":"magic","desc": "Magic scroll." },
-        "poisoncroll":    { "name": "Poisonbeam scroll", "assetpath": "Item/Scroll",    "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Poisonbeam", "dmg":"1d3+1", "dmgtype":"magic","desc": "Magic scroll." },
+        "poisonscroll":    { "name": "Poisonbeam scroll", "assetpath": "Item/Scroll",    "weight": 1, "minrange": 1, "maxrange": 6,"manacost":5, "effect": "Poisonbeam", "dmg":"1d3+1", "dmgtype":"magic","desc": "Magic scroll." },
 
         "apple":          { "name": "apple", "assetpath": "Item/Apple",                     "weight": 1, "maxrange": 5, "ammo": "apple",          "fragile": true, "edible": true, "gainhp": 5,  "desc": "An apple a day, keeps the rats at bay." },
         "bread":          { "name": "bread", "assetpath": "Item/Bread",                     "weight": 3, "maxrange": 5, "ammo": "bread",          "fragile": true, "edible": true, "gainhp": 20, "desc": "A loaf of bread that has survived the hungry mouths of rats." },

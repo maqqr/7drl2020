@@ -38,6 +38,8 @@ namespace Verminator
 
         public Quaternion targetRotation;
 
+        public GameObject ModelGameObject;
+
         // Jump variables:
         Vector2Int jumpFrom;
         Vector2Int jumpTo;
@@ -71,6 +73,8 @@ namespace Verminator
         public int Stun = 0;
 
         public int Poison = 0;
+
+        public bool IsVisible { get; private set; }
         
         // Get back 1 mp every 3 turns
         public int ManaCounter  =0;
@@ -125,6 +129,12 @@ namespace Verminator
                 traitBonus += mut.GetResistanceBonus(damageType);
             }
             return Data.GetBaseResistance(damageType) + traitBonus + armorBonus;
+        }
+
+        public void SetVisibility(bool visible)
+        {
+            IsVisible = visible;
+            ModelGameObject.SetActive(visible);
         }
 
         private void Start()
