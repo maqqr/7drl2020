@@ -220,16 +220,18 @@ namespace Verminator
 
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["shortsword"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["oilflask"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["oilflask"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bread"]);
-            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["studdedleatherarmour"]);
-            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["ratscalp"]);
-            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["flaskofspirits"]);
+            //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["studdedleatherarmour"]);
+            //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["ratscalp"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["mugofbeer"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
-            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["firescroll"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
+            //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["firescroll"]);
             PlayerCreature.EquipSlots[0] = PlayerCreature.Inventory[0];
 
             PlayerCreature.OnMovementAnimationEnd = OnPlayerMoveAnimationEnd;
