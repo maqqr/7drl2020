@@ -923,7 +923,7 @@ PrefabInstance:
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
       propertyPath: SpawnChance
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
@@ -1169,6 +1169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemSpawn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
@@ -3839,7 +3844,7 @@ PrefabInstance:
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
       propertyPath: SpawnChance
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
@@ -4564,7 +4569,7 @@ PrefabInstance:
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
       propertyPath: SpawnChance
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}
@@ -5895,6 +5900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawnItem
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356221753360250073, guid: 68e5b529a6167c44fa9e0eac493b7361,
+        type: 3}
+      propertyPath: SpawnChance
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8523710888777464149, guid: 68e5b529a6167c44fa9e0eac493b7361,
         type: 3}

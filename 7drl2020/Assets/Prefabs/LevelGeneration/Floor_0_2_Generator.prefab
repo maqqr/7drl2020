@@ -88,4 +88,4 @@ MonoBehaviour:
     MaxAmount: 0
   - Tag: broomcuboard
     MinAmount: 0
-    MaxAmount: 1
+    MaxAmount: 2
