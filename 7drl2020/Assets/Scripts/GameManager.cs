@@ -471,7 +471,7 @@ namespace Verminator
             int dist = (int)Vector2.Distance(attacker.Position, defender.Position);
             if (dist < weapon.MinRange || dist > weapon.MaxRange)
             {
-                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} can't attack at this distance.");
+                MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} can't attack at this distance with {weapon.Name}.");
                 return false;
             }
 

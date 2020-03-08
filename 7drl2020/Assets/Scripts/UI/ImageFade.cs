@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ImageFade : MonoBehaviour
 {
     Image img;
+    public float FadeSpeed = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class ImageFade : MonoBehaviour
     {
         if (img.color.a > 0f)
         {
-            img.color = new Color(0, 0, 0, img.color.a - 0.5f * Time.deltaTime);
+            img.color = new Color(0, 0, 0, img.color.a - FadeSpeed * Time.deltaTime);
         }
     }
 }

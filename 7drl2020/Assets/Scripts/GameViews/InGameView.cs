@@ -183,6 +183,8 @@ namespace Verminator.GameViews
                 // Equip it instantly. This is only for debugging
                 //player.EquipSlots[0] = player.Inventory[0];
                 //gameManager.UpdateEquipSlotGraphics();
+
+                gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
             }
             else
             {
@@ -241,6 +243,7 @@ namespace Verminator.GameViews
                 if (item != null)
                 {
                     PickupItem(item);
+                    return;
                 }
             }
 

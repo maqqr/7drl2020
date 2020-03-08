@@ -282,6 +282,9 @@ namespace Verminator.GameViews
                 RefreshView();
                 sheetUI.InteractionWindow.SetActive(false);
                 gameManager.UpdateLampGraphics();
+
+                gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
+
                 return;
             }
 
@@ -309,6 +312,8 @@ namespace Verminator.GameViews
             sheetUI.InteractionWindow.SetActive(false);
 
             gameManager.MessageBuffer.AddMessage(Color.white, "You equip the " + invItem.ItemData.Name + ".");
+
+            gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
         }
 
         private void OnDropClicked(PointerEventData eventData)
@@ -337,6 +342,8 @@ namespace Verminator.GameViews
             gameManager.UpdateEquipSlotGraphics();
 
             gameManager.MessageBuffer.AddMessage(Color.white, "You drop the " + invItem.ItemData.Name + ".");
+
+            gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
         }
 
         private void OnEatClicked(PointerEventData eventData)
@@ -384,6 +391,8 @@ namespace Verminator.GameViews
             gameManager.UpdatePlayerStatsUI();
 
             gameManager.MessageBuffer.AddMessage(Color.white, "You consume the " + invItem.ItemData.Name + ". " + eff);
+
+            gameManager.AdvanceGameWorld(gameManager.PlayerCreature.Speed);
         }
     }
 }

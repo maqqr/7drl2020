@@ -1299,6 +1299,133 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305644473}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &320969863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320969865}
+  - component: {fileID: 320969864}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &320969864
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320969863}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4c1a70596f1380a429e1a79318b490bd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &320969865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320969863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 569.5, y: 444, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &339782197
 GameObject:
   m_ObjectHideFlags: 0
@@ -8914,19 +9041,18 @@ MonoBehaviour:
     one to arrive.
 
 
-    Stretching your tired limbs and counting your last few
-    coins you take a swig from the flagon and relax at the warmth of the fire. The
-    soothing effects of the drink has not yet hit you when the tavern''s old keeper
-    approaches you. Rasping voice of the innkeeper is frantic as he explains that
-    most of his wares are being eaten by few pesky rats and mice and if you would
-    be kind enough to help him dispose of the problem, he would be happy to offer
-    a free accommodation and modest pay to you. Although you are tired, the promise
-    of a few extra coins, a free bed and the experience calls you to accept the innkeeper''s
-    request. This should not take long!
+    Stretching your tired limbs and counting your last few coins
+    you take a swig from the flagon and relax at the warmth of the fire. The soothing
+    effects of the drink has not yet hit you when the tavern''s old keeper approaches
+    you. Rasping voice of the innkeeper is frantic as he explains that most of his
+    wares are being eaten by few pesky rats and mice and if you would be kind enough
+    to help him dispose of the problem, he would be happy to offer a free accommodation
+    and modest pay to you. Although you are tired, the promise of a few extra coins,
+    a free bed and the experience calls you to accept the innkeeper''s request. This
+    should not take long!
 
 
-    Press any key to enter the tavern''s
-    cellar'
+    Press any key to enter the tavern''s cellar'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7717994bed39cf046af48dde514dd73b, type: 2}
   m_sharedMaterial: {fileID: 3245423427090284995, guid: 7717994bed39cf046af48dde514dd73b,
@@ -8996,7 +9122,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2009498809}
-    characterCount: 1027
+    characterCount: 1026
     spriteCount: 0
     spaceCount: 198
     wordCount: 197
