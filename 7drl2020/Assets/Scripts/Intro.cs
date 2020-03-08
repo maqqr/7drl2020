@@ -7,18 +7,24 @@ namespace Verminator
 {
     public class Intro : MonoBehaviour
     {
-        // Start is called before the first frame update
+        private float delay = 2f;
+
+        [SerializeField] private int nextSceneNumber;
+
         void Start()
         {
 
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (Input.anyKeyDown)
+            if (delay > 0f)
             {
-                SceneManager.LoadScene(1);
+                delay -= Time.deltaTime;
+            }
+            else if (Input.anyKeyDown)
+            {
+                SceneManager.LoadScene(nextSceneNumber);
             }
         }
     }
