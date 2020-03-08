@@ -70,9 +70,16 @@ namespace Verminator
 
         public Action InventoryPressed;
 
+        private bool gainBackSanity = false;
+
         public void GainLampOil(int amount)
         {
             CurrentLampOil = Mathf.Clamp(CurrentLampOil + amount, 0, MaxLampOil);
+
+            if (CurrentSanity == 0)
+            {
+                CurrentSanity = 1;
+            }
         }
 
         public void GainSanity(int amount)
@@ -148,6 +155,12 @@ namespace Verminator
             if (!LanternOn && CurrentSanity > 0)
             {
                 CurrentSanity--;
+            }
+
+            gainBackSanity = !gainBackSanity;
+            if (gainBackSanity && LanternOn)
+            {
+                GainSanity(1);
             }
 
             if (CurrentSanity == 0)

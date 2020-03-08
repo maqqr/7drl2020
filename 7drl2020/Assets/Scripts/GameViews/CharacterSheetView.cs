@@ -273,7 +273,7 @@ namespace Verminator.GameViews
             if (invItem.ItemData.Id == "oilflask")
             {
                 // Consume oil instead of equipping
-                int gainOil = 10;
+                int gainOil = 20;
                 gameManager.CurrentLampOil = Mathf.Min(gameManager.MaxLampOil, gameManager.CurrentLampOil + gainOil);
                 int percent = (int)(100.0f * (gameManager.CurrentLampOil / (float)gameManager.MaxLampOil));
                 gameManager.MessageBuffer.AddMessage(Color.white, Utils.FixFont($"You put the oil into your lantern. Your lantern is now {percent}% filled."));
