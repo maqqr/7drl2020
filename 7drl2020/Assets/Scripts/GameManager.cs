@@ -246,6 +246,11 @@ namespace Verminator
                 MessageBuffer.AddMessage(Color.white, "You go down the stairs deeper into the cellar.");
                 NextDungeonFloor();
             }
+
+            if (CurrentFloor.IsUpstairsTile(PlayerCreature.Position))
+            {
+                PreviousDungeonFloor();
+            }
         }
 
         public void EquipSlotClicked(int index)
@@ -295,14 +300,6 @@ namespace Verminator
             // Go up one level
             currentFloorIndex++;
 
-            // Go up one level (player character levels up)
-            if (currentFloorIndex > 0)
-            {
-                PlayerLevel++;
-                PointsToSpend++;
-                MessageBuffer.AddMessage(Color.green, "Level up! Open your character sheet to assign one point to your attributes.");
-            }
-
             Debug.Log(" -- Generating dungeon floor " + currentFloorIndex + " --");
 
             // Generate dungeon if it does not exist
@@ -314,10 +311,18 @@ namespace Verminator
                     return;
                 }
 
+                // Go up one level (player character levels up)
+                if (currentFloorIndex > 0)
+                {
+                    PlayerLevel++;
+                    PointsToSpend++;
+                    MessageBuffer.AddMessage(Color.green, "Level up! Open your character sheet to assign one point to your attributes.");
+                }
+
                 DungeonFloor createdDungeonFloor;
 
                 int attempt = 0;
-                while (attempt < 10)
+                while (attempt < 30)
                 {
                     attempt++;
                     Debug.Log("Generation attempt " + attempt);
@@ -351,6 +356,27 @@ namespace Verminator
             else
             {
                 CurrentFloor.gameObject.SetActive(true);
+
+                //var downstairsPoint = CurrentFloor.gameObject.transform.GetComponentInChildren<DownstairPoint>();
+                //Vector2Int point = Utils.ConvertToTileCoord(downstairsPoint.transform.position + downstairsPoint.transform.right);
+                //PlayerCreature.transform.position = Utils.ConvertToUnityCoord(point);
+                //PlayerCreature.Position = point;
+
+                //foreach (var obj in CurrentFloor.GetComponentsInChildren<UpstairPoint>())
+                //{
+                //    PlayerCreature.Position = Utils.ConvertToTileCoord(obj.transform.position + obj.transform.right);
+                //}
+                Transform[] children = CurrentFloor.transform.GetComponentsInChildren<Transform>();
+                for (int i = 0; i < children.Length; i++)
+                {
+                    var sp = children[i].GetComponent<UpstairPoint>();
+                    if (sp != null)
+                    {
+                        PlayerCreature.Position = Utils.ConvertToTileCoord(sp.transform.position + sp.transform.right);
+                        PlayerCreature.gameObject.transform.position = Utils.ConvertToUnityCoord(PlayerCreature.Position);
+                        break;
+                    }
+                }
             }
 
             // Add player to the current floor
@@ -554,9 +580,11 @@ namespace Verminator
         {
             if (currentFloorIndex == 0)
             {
-                Debug.LogWarning("Attempted to go below level 0");
+                MessageBuffer.AddMessage(Color.gray, "You can't go back to the tavern before you have solved the rat problem.");
                 return;
             }
+
+            MessageBuffer.AddMessage(Color.white, "You go up the stairs.");
 
             // Disable current level
             CurrentFloor.gameObject.SetActive(false);
@@ -574,15 +602,23 @@ namespace Verminator
             //playerObject.transform.position = Utils.ConvertToWorldCoord(point);
             //playerCreature.Position = point;
 
+            var downstairsPoint = CurrentFloor.gameObject.transform.GetComponentInChildren<DownstairPoint>();
+            Vector2Int point = Utils.ConvertToTileCoord(downstairsPoint.transform.position - downstairsPoint.transform.right);
+            PlayerCreature.transform.position = Utils.ConvertToUnityCoord(point);
+            PlayerCreature.Position = point;
+
+            CalculateEnemyVisibility();
+
             //pathfindDirty = true;
             //CurrentFloorObject.GetComponent<DungeonLevel>().UpdateAllReferences();
         }
 
         private bool IsDungeonValid(DungeonFloor dungeonFloor)
         {
+            DownstairPoint downStairPoint = null;
             if (currentFloorIndex < 9)
             {
-                var downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
+                downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
                 if (downStairPoint == null || downStairPoint.ToString() == "null")
                 {
                     Debug.LogWarning("Invalid dungeon: No down stairs");
@@ -595,6 +631,16 @@ namespace Verminator
             {
                 Debug.LogWarning("Invalid dungeon: No up stairs");
                 return false;
+            }
+
+            // Check if stairs are to close to each other
+            if (currentFloorIndex > 2 && downStairPoint != null && upstairPoint != null)
+            {
+                if (Vector3.Distance(downStairPoint.transform.position, upstairPoint.transform.position) < 12f)
+                {
+                    Debug.LogWarning("Invalid dungeon: Stairs too close to each other");
+                    return false;
+                }
             }
 
             if (currentFloorIndex == 9)
