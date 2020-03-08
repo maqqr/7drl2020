@@ -219,13 +219,13 @@ namespace Verminator
             PlayerCreature.gameObject.transform.parent = null;
 
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["shortsword"]);
+            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["oilflask"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["oilflask"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bread"]);
             //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["studdedleatherarmour"]);
             //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["ratscalp"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["mugofbeer"]);
-            PlayerCreature.AddItem(Data.GameData.Instance.ItemData["bow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
@@ -233,6 +233,7 @@ namespace Verminator
             PlayerCreature.AddItem(Data.GameData.Instance.ItemData["arrow"]);
             //PlayerCreature.AddItem(Data.GameData.Instance.ItemData["firescroll"]);
             PlayerCreature.EquipSlots[0] = PlayerCreature.Inventory[0];
+            PlayerCreature.EquipSlots[1] = PlayerCreature.Inventory[1];
 
             PlayerCreature.OnMovementAnimationEnd = OnPlayerMoveAnimationEnd;
 

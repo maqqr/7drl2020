@@ -118,6 +118,7 @@ namespace Verminator.GameViews
         {
             forcedCooldown = 0.2f;
             HideItemPickupList();
+            gameManager.EnemyStatsWindow.SetActive(false);
             gameManager.AddNewView(new CharacterSheetView());
         }
 
@@ -299,9 +300,10 @@ namespace Verminator.GameViews
                         // Stop if the pathing goes through a creature
                         // TODO: Invisible creatures don't block the way
                         creatureBlocking = gameManager.CurrentFloor.GetCreatureAt(pathToPos[0]);
-                        if (creatureBlocking != null) {
+                        if (creatureBlocking != null)
+                        {
                             gameManager.MessageBuffer.AddMessage(Color.white, creatureBlocking.Data.Name + " is blocking the way.");
-                            forcedCooldown =1f;
+                            forcedCooldown = 1f;
                             return;
                         }
                         if (player.Move(pathToPos[0]))
@@ -322,28 +324,47 @@ namespace Verminator.GameViews
                 }
                 else if (creatureBlocking != player)
                 {
-                    //gameManager.playerAnim.StartAttackAnimation();
-                    if (gameManager.Fight(player, creatureBlocking))
+                    bool losBlocked = false;
+
+                    var tiles = Utils.Line(player.Position, creatureBlocking.Position);
+                    for (int i = 1; i < tiles.Count; i++)
                     {
-                        player.Attacking = true;
-                        if (pathToPos.Count > 0)
+                        if (!gameManager.CurrentFloor.IsWalkableFrom(tiles[i - 1], tiles[i]))
                         {
-                            player.Move(pathToPos[0], true);
+                            losBlocked = true;
+                            break;
                         }
-                        else
-                        {
-                            forcedCooldown = 0.5f;
-                        }
-                        gameManager.AdvanceGameWorld(player.Speed);
-                        UpdateEnemyStatWindow();
+                    }
+
+                    if (losBlocked)
+                    {
+                        gameManager.MessageBuffer.AddMessage(Color.gray, "Cannot attack through a wall.");
+                        forcedCooldown = 0.5f;
                     }
                     else
                     {
-                        // Failed the combat for some reason
-                        // Have a cooldown to block the message spam
-                        forcedCooldown = 0.5f;
+                        if (gameManager.Fight(player, creatureBlocking))
+                        {
+                            player.Attacking = true;
+                            if (pathToPos.Count > 0)
+                            {
+                                player.Move(pathToPos[0], true);
+                            }
+                            else
+                            {
+                                forcedCooldown = 0.5f;
+                            }
+                            gameManager.AdvanceGameWorld(player.Speed);
+                            UpdateEnemyStatWindow();
+                        }
+                        else
+                        {
+                            // Failed the combat for some reason
+                            // Have a cooldown to block the message spam
+                            forcedCooldown = 0.5f;
+                        }
+                        //gameManager.AdvanceTime(player.Speed);
                     }
-                    //gameManager.AdvanceTime(player.Speed);
                 }
                 else
                 {

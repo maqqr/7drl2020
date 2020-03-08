@@ -352,55 +352,60 @@ namespace Verminator
             return upstairsPoints.Contains(position);
         }
 
+        public bool IsWalkable(Vector2Int position)
+        {
+            return Tiles.ContainsKey(position) && Tiles[position].IsWalkable;
+        }
+
         public void UpdatePathfindingGrid()
         {
-            //CalculateBounds();
-            //int minX = (int)Mathf.Round(Bounds.min.x);
-            //int maxX = (int)Mathf.Round(Bounds.max.x);
-            //int minY = (int)Mathf.Round(Bounds.min.z);
-            //int maxY = (int)Mathf.Round(Bounds.max.z);
+            CalculateBounds();
+            int minX = (int)Mathf.Round(Bounds.min.x);
+            int maxX = (int)Mathf.Round(Bounds.max.x);
+            int minY = (int)Mathf.Round(Bounds.min.z);
+            int maxY = (int)Mathf.Round(Bounds.max.z);
 
-            //pathfindingGrid = new Pathfinding.DungeonGrid();
-            //pathfindingGrid.CreateGrid(minX, maxX, minY, maxY, delegate (Vector2Int pos)
+            pathfindingGrid = new Pathfinding.DungeonGrid();
+            pathfindingGrid.CreateGrid(minX, maxX, minY, maxY, delegate (Vector2Int pos)
+            {
+                return IsWalkable(pos);
+            });
+
+            //var deltas = new List<Vector2Int>();
+            //for (int x = -1; x < 2; x++)
             //{
-            //    return IsWalkable(pos);
-            //});
+            //    for (int y = -1; y < 2; y++)
+            //    {
+            //        if (!(x == 0 && y == 0))
+            //        {
+            //            deltas.Add(new Vector2Int(x, y));
+            //        }
+            //    }
+            //}
 
-            var deltas = new List<Vector2Int>();
-            for (int x = -1; x < 2; x++)
-            {
-                for (int y = -1; y < 2; y++)
-                {
-                    if (!(x == 0 && y == 0))
-                    {
-                        deltas.Add(new Vector2Int(x, y));
-                    }
-                }
-            }
+            //foreach (var kv in Tiles)
+            //{
+            //    var node = new Node() { Position = kv.Key };
+            //    graph.nodes.Add(node);
+            //    cache.Add(kv.Key, node);
+            //}
 
-            foreach (var kv in Tiles)
-            {
-                var node = new Node() { Position = kv.Key };
-                graph.nodes.Add(node);
-                cache.Add(kv.Key, node);
-            }
+            //foreach (var node in graph.nodes)
+            //{
+            //    foreach (var delta in deltas)
+            //    {
+            //        var neighbourPos = node.Position + delta;
+            //        if (cache.ContainsKey(neighbourPos))
+            //        {
+            //            var neighbour = cache[neighbourPos]; ;
 
-            foreach (var node in graph.nodes)
-            {
-                foreach (var delta in deltas)
-                {
-                    var neighbourPos = node.Position + delta;
-                    if (cache.ContainsKey(neighbourPos))
-                    {
-                        var neighbour = cache[neighbourPos]; ;
-
-                        if (IsWalkableFrom(node.Position, neighbourPos))
-                        {
-                            node.connections.Add(neighbour);
-                        }
-                    }
-                }
-            }
+            //            if (IsWalkableFrom(node.Position, neighbourPos))
+            //            {
+            //                node.connections.Add(neighbour);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void CalculateBounds()
@@ -414,26 +419,29 @@ namespace Verminator
 
         public List<Vector2Int> FindPath(Vector2Int from, Vector2Int to)
         {
-            //System.Func<Vector2Int, Vector2Int, bool> isWalkableFrom = delegate (Vector2Int start, Vector2Int end)
-            //{
-            //    return IsWalkableFrom(start, end);
-            //};
-
-            //return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
-
-            if (!cache.ContainsKey(from) || !cache.ContainsKey(to))
+            if (!IsWalkable(from) || !IsWalkable(to))
             {
                 return new List<Vector2Int>();
             }
-
-            List<Vector2Int> pathPoints = new List<Vector2Int>();
-            var path = graph.GetShortestPath(cache[from], cache[to]);
-            for (int i = 0; i < path.nodes.Count; i++)
+            System.Func<Vector2Int, Vector2Int, bool> isWalkableFrom = delegate (Vector2Int start, Vector2Int end)
             {
-                pathPoints.Add(path.nodes[i].Position);
-            }
-            pathPoints.RemoveAt(0);
-            return pathPoints;
+                return IsWalkableFrom(start, end);
+            };
+            return Pathfinding.Pathfinding.FindPath(pathfindingGrid, from, to, isWalkableFrom);
+
+            //if (!cache.ContainsKey(from) || !cache.ContainsKey(to))
+            //{
+            //    return new List<Vector2Int>();
+            //}
+
+            //List<Vector2Int> pathPoints = new List<Vector2Int>();
+            //var path = graph.GetShortestPath(cache[from], cache[to]);
+            //for (int i = 0; i < path.nodes.Count; i++)
+            //{
+            //    pathPoints.Add(path.nodes[i].Position);
+            //}
+            //pathPoints.RemoveAt(0);
+            //return pathPoints;
         }
 
         public bool IsWalkableFrom(Vector2Int from, Vector2Int to) // 'from' and 'to' are assumed to be next to each other
