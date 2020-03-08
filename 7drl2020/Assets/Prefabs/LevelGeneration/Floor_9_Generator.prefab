@@ -71,3 +71,6 @@ MonoBehaviour:
   - Tag: boss
     MinAmount: 1
     MaxAmount: 1
+  - Tag: downstairs
+    MinAmount: 0
+    MaxAmount: 0

@@ -303,6 +303,8 @@ namespace Verminator
                 MessageBuffer.AddMessage(Color.green, "Level up! Open your character sheet to assign one point to your attributes.");
             }
 
+            Debug.Log(" -- Generating dungeon floor " + currentFloorIndex + " --");
+
             // Generate dungeon if it does not exist
             if (currentFloorIndex >= dungeonFloors.Count)
             {
@@ -578,11 +580,14 @@ namespace Verminator
 
         private bool IsDungeonValid(DungeonFloor dungeonFloor)
         {
-            var downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
-            if (downStairPoint == null || downStairPoint.ToString() == "null")
+            if (currentFloorIndex < 9)
             {
-                Debug.LogWarning("Invalid dungeon: No down stairs");
-                return false;
+                var downStairPoint = dungeonFloor.transform.GetComponentInChildren<DownstairPoint>();
+                if (downStairPoint == null || downStairPoint.ToString() == "null")
+                {
+                    Debug.LogWarning("Invalid dungeon: No down stairs");
+                    return false;
+                }
             }
 
             var upstairPoint = dungeonFloor.transform.GetComponentInChildren<UpstairPoint>();
@@ -598,7 +603,13 @@ namespace Verminator
                 Transform[] children = dungeonFloor.transform.GetComponentsInChildren<Transform>();
                 for (int i = 0; i < children.Length; i++)
                 {
-                    if (children[i].gameObject.name == "Queen")
+                    //if (children[i].gameObject.name == "Queen")
+                    //{
+                    //    bossFound = true;
+                    //    break;
+                    //}
+                    var sp = children[i].GetComponent<CreatureSpawnPoint>();
+                    if (sp != null && sp.SpawnCreature == "queen")
                     {
                         bossFound = true;
                         break;
@@ -702,6 +713,11 @@ namespace Verminator
 
         private void Update()
         {
+            if (CurrentFloor == null)
+            {
+                return;
+            }
+
             if (!CurrentFloor.IsInitialized)
             {
                 CurrentFloor.Initialize(this, currentFloorIndex);

@@ -142,7 +142,15 @@ namespace LevelGenerator.Scripts
             }
 
             var pickedTag = PickFromExcludedTags(tags);
-            return Sections.Where(x => x.Tags.Contains(pickedTag)).PickOne();
+            try
+            {
+                return Sections.Where(x => x.Tags.Contains(pickedTag)).PickOne();
+            }
+            catch
+            {
+                Debug.LogError($"GENERATOR FAILED TO MAKE ROOM '{pickedTag}'");
+                throw;
+            }
         }
 
         protected string PickFromExcludedTags(string[] tags)
