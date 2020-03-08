@@ -17,6 +17,11 @@ namespace Verminator
             return (int)(dmg * Mathf.Lerp(1.5f, 1f, (float)gameManager.CurrentSanity / 100f));
         }
 
+        public int ReduceByMagicResistance(int dmg, Creature target)
+        {
+            return (int)(dmg * (1 - (target.GetResistance(DamageType.Magic)) / 100.0f));
+        }
+
         public void Push(Creature caster ,Creature creature,string dmg, float dist = 3) {
 
             var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Push"));
@@ -32,14 +37,14 @@ namespace Verminator
             // Check if the pushed creature hit a wall
             bool collided = Physics.Raycast(Utils.ConvertToUnityCoord(creature.Position),new Vector3(dir.x,0,dir.y),out hit,dist);
             int hitdmg = Utils.RollDice(dmg,true)+caster.Intelligence;
-            creature.Hp -= ScaleByInsanity(hitdmg);
+            creature.Hp -= ReduceByMagicResistance(ScaleByInsanity(hitdmg), creature);
             creature.Stun +=1;
             gameManager.MessageBuffer.AddMessage(Color.white,$"{creature.Data.Name} takes {hitdmg} damage from getting pushed.");
             // Creatures don't block raycasts. Check if a creature was hit.
             for(float i = 0;i<=dist;i++) {
                 Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(Utils.ConvertToTileCoord(creature.Position+dir*i));
                 if (hitCreature != null) {
-                    hitCreature.Hp -= ScaleByInsanity(hitdmg);
+                    hitCreature.Hp -= ReduceByMagicResistance(ScaleByInsanity(hitdmg), hitCreature);
                     hitCreature.Stun +=1;
                     gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {hitdmg} damage from the collision.");
                     Vector2 newPos = creature.Position + dir * (i - 1);
@@ -58,13 +63,13 @@ namespace Verminator
 
         public void Firesquare (Creature target,Creature caster, string dmg, int aoedmg = 3) {
             int hitdmg = Utils.RollDice(dmg,true);
-            target.Hp -= ScaleByInsanity(hitdmg + caster.Intelligence);
+            target.Hp -= ReduceByMagicResistance(ScaleByInsanity(hitdmg + caster.Intelligence), target);
             gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg+caster.Intelligence} damage from the fire.");
             for (int i = -1;i<=1;i++) {
                 for (int j =-1;j<=1;j++) {
                     try {
                          Creature hitCreature = gameManager.CurrentFloor.GetCreatureAt(new Vector2Int(target.Position.x+i,target.Position.y+j));
-                         hitCreature.Hp -= ScaleByInsanity(aoedmg);
+                         hitCreature.Hp -= ReduceByMagicResistance(ScaleByInsanity(aoedmg), target);
                          gameManager.MessageBuffer.AddMessage(Color.white,$"{hitCreature.Data.Name} takes {aoedmg} damage from the fire.");
 
                          var eff = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Effect/Firesquare"));
@@ -84,7 +89,7 @@ namespace Verminator
 
             int hitdmg = Utils.RollDice(dmg,true)+caster.Intelligence;
             int heal = Mathf.Min(target.Hp,hitdmg / 2);
-            target.Hp -= ScaleByInsanity(hitdmg);
+            target.Hp -= ReduceByMagicResistance(ScaleByInsanity(hitdmg), target);
             gameManager.MessageBuffer.AddMessage(Color.white,$"{target.Data.Name} takes {hitdmg} damage from the leeching.");
             caster.Hp += ScaleByInsanity(heal);
             gameManager.MessageBuffer.AddMessage(Color.white,$"{caster.Data.Name} heals {heal} hp from the leeching.");
@@ -95,7 +100,7 @@ namespace Verminator
             eff.transform.position = Utils.ConvertToUnityCoord(caster.Position) + new Vector3(0f, 0.6f, 0f);
             eff.transform.rotation = Quaternion.LookRotation(target.transform.position - caster.transform.position);
 
-            int roll = ScaleByInsanity(Utils.RollDice(dmg)+caster.Intelligence/2);
+            int roll = ReduceByMagicResistance(ScaleByInsanity(Utils.RollDice(dmg)+caster.Intelligence/2), target);
             List<Vector2Int> path = Utils.Line(caster.Position,target.Position);
             foreach (Vector2Int tile in path) {
                 try {

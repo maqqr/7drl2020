@@ -499,7 +499,6 @@ namespace Verminator
                     MessageBuffer.AddMessage(Color.white, $"{attacker.Data.Name} has no ammo {weapon.Ammo}.");
                     return false;
                 }
-
             }
             else
             {
