@@ -3322,6 +3322,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779115187}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &826059072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1209029335986871881, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248003169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &833056743
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,6 +4355,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028782079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1057691111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4939078516314343884, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248003169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1063752926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,11 +4489,11 @@ MonoBehaviour:
   inventoryCanvas: {fileID: 624098845}
   pickupItemLinePrefab: {fileID: 6632074114666674880, guid: e964623c0a19cb74daceaeccf52c9cd9,
     type: 3}
-  pickupList: {fileID: 1704219697343611462}
+  pickupList: {fileID: 826059072}
   ExplosionEffect: {fileID: 100000, guid: 4c5a17ca1f9fec84e941441ebb8be079, type: 3}
-  EnemyStatsWindow: {fileID: 1704219697343611461}
-  EnemyStatsName: {fileID: 1704219697343611460}
-  EnemyStatsDesc: {fileID: 1704219697343611459}
+  EnemyStatsWindow: {fileID: 1148448420}
+  EnemyStatsName: {fileID: 1520706556}
+  EnemyStatsDesc: {fileID: 1057691111}
   DamageCanvas: {fileID: 3799001843597971270, guid: ffdf154ca0b213745b5ac900ca8e1aa7,
     type: 3}
   HpText: {fileID: 1248003174}
@@ -4891,6 +4903,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148008875}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1148448420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8939508154000302575, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248003169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1161559228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7297,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513474935}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1520706556 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 780695060993194931, guid: 9d421d4384bbc464188baddcd0ccac24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248003169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1538459204
 GameObject:
   m_ObjectHideFlags: 0
@@ -10324,30 +10348,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d421d4384bbc464188baddcd0ccac24, type: 3}
---- !u!1 &1704219697343611459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4939078516314343884, guid: 9d421d4384bbc464188baddcd0ccac24,
-    type: 3}
-  m_PrefabInstance: {fileID: 1704219697343611458}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1704219697343611460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 780695060993194931, guid: 9d421d4384bbc464188baddcd0ccac24,
-    type: 3}
-  m_PrefabInstance: {fileID: 1704219697343611458}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1704219697343611461 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8939508154000302575, guid: 9d421d4384bbc464188baddcd0ccac24,
-    type: 3}
-  m_PrefabInstance: {fileID: 1704219697343611458}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1704219697343611462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1209029335986871881, guid: 9d421d4384bbc464188baddcd0ccac24,
-    type: 3}
-  m_PrefabInstance: {fileID: 1704219697343611458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4117957879838273637
 PrefabInstance:
   m_ObjectHideFlags: 0

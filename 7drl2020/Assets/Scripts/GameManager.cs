@@ -644,13 +644,6 @@ namespace Verminator
 
         public void AdvanceGameWorld(int deltaTime)
         {
-            // Check player death
-            if (IsPlayerDead())
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
-                return;
-            }
-
             // Update all enemy creature
             List<Creature> dyingCritters = new List<Creature>();
             foreach (var creature in CurrentFloor.Creatures)
@@ -691,6 +684,14 @@ namespace Verminator
             SpendLampOil();
             SanityCheck();
             UpdatePlayerStatsUI();
+
+            // Check player death
+            if (IsPlayerDead())
+            {
+                Debug.Log("Player died, loading end scene");
+                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+                return;
+            }
 
             //AdjustNutrition(-1);
             //UpdateHunger();
@@ -741,11 +742,11 @@ namespace Verminator
             Vector3 unityCoordinate = new Vector3(tile.x + 0.5f, 0.0f, tile.y + 0.5f);
             debugSphere.transform.position = unityCoordinate;
 
-            if (Input.GetKeyDown(KeyCode.PageDown))
+            if (Input.GetKeyDown(KeyCode.PageDown) && currentFloorIndex < 9)
             {
                 NextDungeonFloor();
             }
-            if (Input.GetKeyDown(KeyCode.PageUp))
+            if (Input.GetKeyDown(KeyCode.PageUp) && currentFloorIndex > 0)
             {
                 PreviousDungeonFloor();
             }
