@@ -713,7 +713,7 @@ namespace Verminator
                 {
                     continue;
                 }
-                if (creature.Hp <= 0)
+                if (creature.Hp <= 0 || !CurrentFloor.IsWalkable(creature.Position))
                 {
                     dyingCritters.Add(creature);
                     continue;
